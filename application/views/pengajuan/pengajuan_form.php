@@ -307,20 +307,20 @@
 			<div class="modal-header no-bd">
 				<h5 class="modal-title">
 					<span class="fw-mediumbold">
-					Dokumen <?php echo $row[0]->pengajuan_id;?></span> 
+					Dokumen - <?php echo $row[0]->pengajuan_id;?></span> 
 				</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body"><?php echo base_url() ?>
+			<div class="modal-body">
 				<?php 
 				$doc = $row[0]->dokumen_proposal;
 				?>
 				<?php $file=substr($doc,-3);
 				if($file=='JPG' or $file=='PNG' or $file=='jpg' or $file=='jpeg' or $file=='png' or $file=='PEG' or $file=='peg'){?>1
 						<img src="<?php echo base_url() ?>assets/uploads/<?php echo $doc; ?>" width="450" class="img-responsive" id="rotate-image7" style="border-radius: 10px;display: block;margin-left: auto;margin-right: auto;">
-				<?php }elseif( $file=='pdf' OR $file=='PDF'){?>2
+				<?php }elseif( $file=='pdf' OR $file=='PDF'){?>
 						<object data="<?php echo base_url() ?>assets/uploads/<?php echo $doc; ?>#view=Fit" type="application/pdf" width="100%" height='850px'>
 						</object>
 				<?php }else{ }?>

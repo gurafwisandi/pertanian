@@ -6,14 +6,14 @@ class Koperasi extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		check_not_login();
+		// check_not_login();
 		$this->load->model(['koperasi_m','petani_m']);
 	}
 
 	public function index()
 	{
-		$data['title'] = 'Koperasi';
-		$data['link'] = 'Master / Koperasi';
+		$data['title'] = 'Instansi';
+		$data['link'] = 'Master / Instansi';
 		$data['row'] = $this->koperasi_m->get();
 		$this->template->load('template','koperasi/list_koperasi',$data);
 	}
@@ -57,17 +57,14 @@ class Koperasi extends CI_Controller
 	public function process()
 	{
 		$post = $this->input->post(null, TRUE);
-								if(isset($_POST['add'])) {
-									$this->koperasi_m->add($post);
+		if(isset($_POST['add'])) {
+			$this->koperasi_m->add($post);
 
-								} else if(isset($_POST['edit'])){
-									$this->koperasi_m->edit($post);
-								}
-
-								if($this->db->affected_rows() > 0 ) {
-									echo "<script>alert('Data Berhasil disimpan');</script>";
-							}
-									echo "<script>window.location='".site_url('koperasi')."';</script>";
+		} else if(isset($_POST['edit'])){
+			$this->koperasi_m->edit($post);
+			$this->session->set_flashdata('message','Update Data Berhasil');
+			redirect('/koperasi');
+		}
 	}
 
 	public function del($id)

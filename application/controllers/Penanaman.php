@@ -6,7 +6,7 @@ class Penanaman extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		check_not_login();
+		// check_not_login();
 		$this->load->model('penanaman_m');
 	}
 
@@ -36,18 +36,16 @@ class Penanaman extends CI_Controller
 	public function process()
 	{
 		$post = $this->input->post(null, TRUE);
-								if(isset($_POST['add'])){
-									$this->penanaman_m->add($post);
+		if(isset($_POST['add'])){
+			$this->penanaman_m->add($post);
+			$this->session->set_flashdata('message','Data Berhasil Disimpan');
+			redirect('penanaman');
 
-								} else if(isset($_POST['edit'])){
-									$this->penanaman_m->edit($post);
-								}
-
-								if($this->db->affected_rows() > 0 )
-								{
-									$this->session->set_flashdata('success','Data Berhasil disimpan');
-								}
-									redirect('penanaman');
+		} else if(isset($_POST['edit'])){
+			$this->penanaman_m->edit($post);
+			$this->session->set_flashdata('message','Update Data Berhasil');
+			redirect('penanaman');
+		}
 	}
 
 	public function edit($id)
@@ -69,13 +67,9 @@ class Penanaman extends CI_Controller
 	}
 
 	public function del($id)
-							{
-								$this->penanaman_m->del($id);
-								if($this->db->affected_rows()>0)
-								{
-									$this->session->set_flashdata('success','Data Berhasil dihapus');
-								}
-									redirect('penanaman');
-								
-							}	
+	{
+		$this->penanaman_m->del($id);
+		$this->session->set_flashdata('message','Delete Data Berhasil');
+		redirect('penanaman');
+	}	
 }

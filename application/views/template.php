@@ -1,10 +1,11 @@
-<?php if($this->fungsi->user_login()->user_id != ''){?>
+<?php 
+if($this->session->userdata("user_id") != ''){?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin | Pertanian</title>
+  <title>PERTANIAN</title>
 
   <!-- Google Font: Source Sans Pro -->
   <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"> -->
@@ -103,7 +104,8 @@
 </script>
 </body>
 </html>
-<?php }else{
+<?php 
+}else{
 	redirect('/auth/login');
 } 
 ?>

@@ -19,14 +19,23 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
+				<?php if($this->session->flashdata('message') == 'Update Data Berhasil'){ ?>
+					<div class="alert alert-success alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						<h5><i class="icon fas fa-check"></i><?php echo $this->session->flashdata('message');?></h5>
+					</div>
+				<?php }elseif($this->session->flashdata('message') == 'Delete Data Berhasil'){ ?>
+					<div class="alert alert-danger alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						<h5><i class="icon fas fa-ban"></i><?php echo $this->session->flashdata('message');?></h5>
+					</div>
+				<?php } ?>
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Data Koperasi</h3>
-
-							<ol class="breadcrumb float-sm-right">
+						<h3 class="card-title">Data Instansi</h3>
+							<!-- <ol class="breadcrumb float-sm-right">
 								<a href="<?=base_url('koperasi/add')?>"><li class="fa fa-user-plus">Add</li></a>
-							</ol>
-						
+							</ol> -->
 					</div>
 
 					<!-- /.card-header -->
@@ -35,12 +44,12 @@
 							<thead>
 							<tr>
 								<th>No</th>
-								<th>ID</th>
-								<th>Nama Koperasi</th>
-								<th>Ketua</th>
+								<th>Jenis Instansi</th>
+								<th>Instansi</th>
+								<th>Nama</th>
 								<th>Alamat</th>
 								<th>Telpon</th>
-								<th>Diinput</th>
+								<th>Status</th>
 								<th>Action</th>
 							</tr>
 							</thead>
@@ -49,32 +58,42 @@
 							foreach ($row->result() as $key => $data) {?>
 							<tr>
 								<td><?php echo $no++;?></td>
-								<td><?php echo $data->koperasi_id?></td>
-								<td><?php echo $data->nama?></td>
+								<td><?php if($data->level == '1'){ echo "Dinas"; }elseif($data->level == '2'){ echo "Koperasi"; }else{ echo "Admin";}?></td>
+								<td><?php echo $data->koperasi?></td>
 								<td><?php echo $data->ketua?></td>
 								<td><?php echo $data->alamat?></td>
 								<td><?php echo $data->telpon?></td>
-								<td><?php echo $data->user_nama	?></td>
 								<td>
-																	
-                            			<a href="<?=site_url('koperasi/edit/'.$data->koperasi_id)?>"  class="btn btn-primary btn-xs">
-     									<i class="fa fa-pencil"></i> Edit</a>
-     									<a href="<?=site_url('koperasi/del/'.$data->koperasi_id)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-warning btn-xs">
-     									<i class="fa fa-trash"></i> Delete</a>
-     							
+									<a class="btn btn-<?php 
+										if($data->status == '1'){ echo "success"; 
+										}elseif($data->status == '2'){ echo "secondary"; 
+										}else{ echo "warning";}
+										?> btn-xs">
+										<?php 
+										if($data->status == '1'){ echo "Aktif"; 
+										}elseif($data->status == '2'){ echo "Tidak Aktif"; 
+										}else{ echo "Menunggu Konfirmasi";}
+										?>
+									</a>
+								</td>
+								<td>
+										<a href="<?=site_url('koperasi/edit/'.$data->koperasi_id)?>"  class="btn btn-primary btn-xs">
+										<i class="fa fa-edit"></i> Edit</a>
+										<!-- <a href="<?=site_url('koperasi/del/'.$data->koperasi_id)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-danger btn-xs">
+										<i class="fa fa-trash"></i> Delete</a> -->
 								</td>
 							</tr>
-						<?php } ?>
+							<?php } ?>
 							</tbody>
 							<tfoot>
 							<tr>
 								<th>No</th>
-								<th>ID</th>
-								<th>Nama Koperasi</th>
-								<th>Ketua</th>
+								<th>Jenis Instansi</th>
+								<th>Instansi</th>
+								<th>Nama</th>
 								<th>Alamat</th>
 								<th>Telpon</th>
-								<th>Diinput</th>
+								<th>Status</th>
 								<th>Action</th>
 							</tr>
 							</tfoot>

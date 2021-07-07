@@ -39,36 +39,29 @@ class Jenis extends CI_Controller
 				);
 
 		$this->template->load('template','jenis/jenis_add',$data);
-	} else {
-		echo "<script>alert('Data Tidak Ditemukan');";
-		echo "window.location='".site_url('jenis')."';</script>";
+		} else {
+			echo "<script>alert('Data Tidak Ditemukan');";
+			echo "window.location='".site_url('jenis')."';</script>";
+		}
 	}
-}
 
 	public function process()
 	{
-	$post = $this->input->post(null, TRUE);
-
-			if(isset($_POST['add'])){
-				$this->jenis_m->add($post);
-
-			} else if(isset($_POST['edit'])){
-				$this->jenis_m->edit($post);
-			}
-
-			 if($this->db->affected_rows() > 0)
-			 {
-			 	$this->session->set_flashdata('success','Data Berhasil disimpan');
-			 }
-			 redirect ('jenis');
+		$post = $this->input->post(null, TRUE);
+		if(isset($_POST['add'])){
+			$this->jenis_m->add($post);
+			$this->session->set_flashdata('message','Data Berhasil Disimpan');
+			redirect ('jenis');
+		} else if(isset($_POST['edit'])){
+			$this->jenis_m->edit($post);
+			$this->session->set_flashdata('message','Update Data Berhasil');
+			redirect ('jenis');
+		}
 	}
 
 	public function del($id) {
-							
-							$this->jenis_m->del($id);
-							if($this->db->affected_rows() > 0 ) {
-							echo "<script>alert('Data Berhasil hapus');</script>";
-							}
-							echo "<script>window.location='".site_url('jenis')."';</script>";
-						}							
+		$this->jenis_m->del($id);
+		$this->session->set_flashdata('message','Delete Data Berhasil');
+		redirect('jenis');
+	}							
 }

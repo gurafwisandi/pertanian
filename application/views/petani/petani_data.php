@@ -16,10 +16,25 @@
 
 <!-- Main content -->
 <section class="content">
-	<?php $this->view('messages')?>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
+				<?php if($this->session->flashdata('message') == 'Data Berhasil Disimpan'){ ?>
+					<div class="alert alert-success alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						<h5><i class="icon fas fa-check"></i><?php echo $this->session->flashdata('message');?></h5>
+					</div>
+				<?php }elseif($this->session->flashdata('message') == 'Update Data Berhasil'){ ?>
+					<div class="alert alert-success alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						<h5><i class="icon fas fa-check"></i><?php echo $this->session->flashdata('message');?></h5>
+					</div>
+				<?php }elseif($this->session->flashdata('message') == 'Delete Data Berhasil'){ ?>
+					<div class="alert alert-danger alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						<h5><i class="icon fas fa-ban"></i><?php echo $this->session->flashdata('message');?></h5>
+					</div>
+				<?php } ?>
 				<div class="card">
 					<div class="card-header">
 						<h3 class="card-title">Data Petani</h3>
@@ -35,7 +50,6 @@
 							<thead>
 							<tr>
 								<th>No</th>
-								<th>ID Petani</th>
 								<th>Nama</th>
 								<th>Nik</th>
 								<th>Koperasi</th>
@@ -49,16 +63,15 @@
 									
 							<tr>
 								<td><?php echo $no++;?></td>
-								<td><?php echo $data->petani_id?></td>
 								<td><?php echo $data->nama?></td>
 								<td><?php echo $data->nik?></td>
-								<td><?php echo $data->koperasi_nama?></td>
+								<td><?php echo $data->koperasi?></td>
 								<td><?php echo $data->penanaman_jenis?></td>
 								<td class="text-center" width="160px">
-                            			<a href="<?=site_url('petani/edit/'.$data->petani_id)?>"  class="btn btn-primary btn-xs">
-     									<i class="fa fa-pencil"></i> Edit</a>
-     									<a href="<?=site_url('petani/del/'.$data->petani_id)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-warning btn-xs">
-     									<i class="fa fa-trash"></i> Delete</a>
+									<a href="<?=site_url('petani/edit/'.$data->petani_id)?>"  class="btn btn-primary btn-xs">
+									<i class="fa fa-edit"></i> Edit</a>
+									<a href="<?=site_url('petani/del/'.$data->petani_id)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-danger btn-xs">
+									<i class="fa fa-trash"></i> Delete</a>
      							</td>
 							</tr>
 						<?php } ?>

@@ -16,31 +16,29 @@
 
     <!-- Main content -->
     <section class="content">
-        
-            <!-- general form elements -->
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Input Data Penanaman</h3>
-              </div>
+      <!-- general form elements -->
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Input Data Penanaman</h3>
+        </div>
 
-              <form action="<?=site_url('penanaman/process')?>" method="post">
-                <input type="hidden" class="form-control" name="id" value="<?=$row->penanaman_id?>"> 
-                <input type="hidden" class="form-control" name="user_id" value="<?=$this->fungsi->user_login()->user_id?>">
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Jenis</label>
-                    <input type="text" class="form-control" name="jenis" value="<?=$row->jenis?>" placeholder="Masukan Nama">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Deskripsi</label>
-                    <input type="text" class="form-control" name="deskripsi" value="<?=$row->deskripsi?>" placeholder="Jenis">
-                  </div>
+        <form action="<?=site_url('penanaman/process')?>" method="post">
+          <input type="hidden" class="form-control" name="id" value="<?=$row->penanaman_id?>"> 
+          <div class="card-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Jenis</label>
+              <input type="text" class="form-control" name="jenis" value="<?=$row->jenis?>" placeholder="Masukan Nama">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Deskripsi</label>
+              <input type="text" class="form-control" name="deskripsi" value="<?=$row->deskripsi?>" placeholder="Jenis">
+            </div>
 
-                <div class="card-footer">
-                  <button type="submit" name="<?=$page?>" class="btn btn-primary">Submit</button>
-                   <a href="<?=site_url('penanaman')?>" class="btn btn-warning">Cancel</a>
-                </div>
-              </form>
+          <div class="card-footer">
+            <button type="submit" name="<?=$page?>" class="btn btn-primary">Submit</button>
+              <a href="<?=site_url('penanaman')?>" class="btn btn-warning">Cancel</a>
+          </div>
+          </form>
         </div>
     </section>
 </div>

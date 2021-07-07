@@ -19,7 +19,6 @@ class Penanaman_m extends CI_Model
 		$params = [
 			'jenis' => $post['jenis'],
 			'deskripsi' => $post['deskripsi'],
-			'user_id' => $post['user_id'],
 			'created' => date('Y-m-d H:i:s')
 		];
 		$this->db->insert('penanaman', $params);
@@ -30,7 +29,6 @@ class Penanaman_m extends CI_Model
 		$params = [
 			'jenis' => $post['jenis'],
 			'deskripsi' => $post['deskripsi'],
-			'user_id' => $post['user_id'],
 			'updated' => date('Y-m-d H:i:s')
 		];
 		$this->db->where('penanaman_id',$post['id']);

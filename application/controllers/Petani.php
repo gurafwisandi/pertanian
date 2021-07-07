@@ -5,7 +5,7 @@ class Petani extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		check_not_login();
+		// check_not_login();
 		$this->load->model(['petani_m','koperasi_m','penanaman_m']);
 	}
 
@@ -26,10 +26,10 @@ class Petani extends CI_Controller
 		$petani->nik = null;
 		$petani->no_hp = null;
 		
-		$query_koperasi = $this->koperasi_m->get();
+		$query_koperasi = $this->koperasi_m->get($this->session->userdata("koperasi_id"));
 		$koperasi[null] = '- Pilih -';
 		foreach ($query_koperasi->result() as $kpr) {
-			$koperasi[$kpr->koperasi_id] = $kpr->nama;
+			$koperasi[$kpr->koperasi_id] = $kpr->koperasi;
 		}
 
 		$query_penanaman = $this->penanaman_m->get();
@@ -56,10 +56,10 @@ class Petani extends CI_Controller
 		{
 			$petani = $query->row();
 			
-			$query_koperasi = $this->koperasi_m->get();
+			$query_koperasi = $this->koperasi_m->get($this->session->userdata("koperasi_id"));
 			$koperasi[null] = '- Pilih -';
 			foreach ($query_koperasi->result() as $kpr) {
-			$koperasi[$kpr->koperasi_id] = $kpr->nama;
+			$koperasi[$kpr->koperasi_id] = $kpr->koperasi;
 			}
 
 			$query_penanaman = $this->penanaman_m->get();
@@ -87,25 +87,23 @@ class Petani extends CI_Controller
 	{
 		$post = $this->input->post(null, TRUE);
 		if(isset($_POST['add'])){
-		$this->petani_m->add($post);
+			$this->petani_m->add($post);
+			$this->session->set_flashdata('message','Data Berhasil Disimpan');
+			redirect('petani');
 		} else if (isset($_POST['edit'])) {
 			$this->petani_m->edit($post);
-		} 
-
-		if($this->db->affected_rows() > 0)
-		{
-			$this->session->set_flashdata('success','Data Berhasil disimpan');	
-		}
+			$this->session->set_flashdata('message','Update Data Berhasil');
 			redirect('petani');
-									
+		} 
 	}
 
-		public function del($id) {
-							
-							$this->petani_m->del($id);
-							if($this->db->affected_rows() > 0 ) {
-							echo "<script>alert('Data Berhasil hapus');</script>";
-							}
-							echo "<script>window.location='".site_url('petani')."';</script>";
-						}	
+	public function del($id) {
+		$this->petani_m->del($id);
+		$this->session->set_flashdata('message','Delete Data Berhasil');
+		redirect('/petani');
+		// if($this->db->affected_rows() > 0 ) {
+		// echo "<script>alert('Data Berhasil hapus');</script>";
+		// }
+		// echo "<script>window.location='".site_url('petani')."';</script>";
+	}	
 }

@@ -7,9 +7,10 @@ class User extends CI_Controller
 		parent::__construct();
 		$this->load->model('user_m');
 	}
+
 	public function index()
 	{
-		$data['row'] = $this->user_m->get();
+		$data['row'] = $this->user_m->get_koperasi();
 		$this->template->load('template','user/user_data',$data);
 	}
 
@@ -43,36 +44,77 @@ class User extends CI_Controller
 				'page'=>'edit',
 				'row' =>$user,
 				);
-
-		$this->template->load('template','user/user_edit',$data);
-	} else {
-		echo "<script>alert('Data Tidak Ditemukan');";
-		echo "window.location='".site_url('user')."';</script>";
+			$this->template->load('template','user/user_edit',$data);
+		} else {
+			echo "<script>alert('Data Tidak Ditemukan');";
+			echo "window.location='".site_url('user')."';</script>";
+		}
 	}
+
+	public function approve($id)
+	{
+		$query = $this->user_m->get($id);
+		if($query->num_rows() >0 ) {
+			$user = $query->row();
+		
+			$data = array(
+				'page'=>'approve',
+				'row' =>$user,
+				);
+			$this->template->load('template','user/user_edit',$data);
+		} else {
+			echo "<script>alert('Data Tidak Ditemukan');";
+			echo "window.location='".site_url('user')."';</script>";
+		}
 	}
 
 	public function process()
 	{
 		$post = $this->input->post(null, TRUE);
-								if(isset($_POST['add'])) {
-									$this->user_m->add($post);
+		if(isset($_POST['add'])) {
+			$this->user_m->add($post);
 
-								} else if(isset($_POST['edit'])){
-									$this->user_m->edit($post);
-								}
-
-								if($this->db->affected_rows() > 0 ) {
-									echo "<script>alert('Data Berhasil disimpan');</script>";
-							}
-									echo "<script>window.location='".site_url('user')."';</script>";
+		} else if(isset($_POST['edit'])){
+			$this->user_m->edit($post);
+			$this->session->set_flashdata('message','Update Data Berhasil');
+			redirect('/user');
+		} else if(isset($_POST['approve'])){
+			$this->user_m->approve($post);
+			$this->session->set_flashdata('message','Approve Data Berhasil');
+			redirect('/user');
+		} else if(isset($_POST['edit_dinas'])){
+			$this->user_m->edit($post);
+			$this->session->set_flashdata('message','Update Data Berhasil');
+			redirect('/user/dinas');
+		}
 	}
 
 	public function del($id)
 	{
 		$this->user_m->del($id);
-		if($this->db->affected_rows() > 0 ) {
-		echo "<script>alert('Data Berhasil hapus');</script>";
+		$this->session->set_flashdata('message','Delete Data Berhasil');
+		redirect('/user');
+	}
+
+	public function dinas()
+	{
+		$data['row'] = $this->user_m->get_dinas();
+		$this->template->load('template','user/dinas_data',$data);
+	}
+	public function edit_dinas($id)
+	{
+		$query = $this->user_m->get($id);
+		if($query->num_rows() >0 ) {
+			$user = $query->row();
+		
+			$data = array(
+				'page'=>'edit_dinas',
+				'row' =>$user,
+				);
+			$this->template->load('template','user/user_edit',$data);
+		} else {
+			echo "<script>alert('Data Tidak Ditemukan');";
+			echo "window.location='".site_url('user')."';</script>";
 		}
-		echo "<script>window.location='".site_url('user')."';</script>";
 	}
 }

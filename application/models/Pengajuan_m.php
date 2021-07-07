@@ -51,8 +51,8 @@ class Pengajuan_m extends CI_Model
 		$pengajuan_id = $tgl. sprintf("%04s",$q3);
 
 		$this->db->set('pengajuan_id', $pengajuan_id);
-		$this->db->set('koperasi_id', $this->fungsi->user_login()->koperasi_id);
-		$this->db->set('user_id', $this->fungsi->user_login()->user_id);
+		$this->db->set('koperasi_id', $this->session->userdata("koperasi_id"));
+		$this->db->set('user_id', $this->session->userdata("user_id"));
 		$this->db->set('status_proposal', 'Proses Pengajuan');
 		$this->db->set('tgl_proposal', date('Y-m-d'));
 		$this->db->set('created', date('Y-m-d H:i:s'));
