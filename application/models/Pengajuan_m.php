@@ -2,6 +2,14 @@
 
 class Pengajuan_m extends CI_Model
 {
+	public function list($id = null)
+	{
+		$this->db->from('pengajuan');
+		$this->db->join('koperasi', 'koperasi.koperasi_id=pengajuan.koperasi_id');
+		$this->db->join('jenis', 'jenis.jenis_id=pengajuan.jenis_id','left');
+		$query = $this->db->get();
+		return $query;
+	}
 	public function get($id = null)
 	{
 		$this->db->from('pengajuan');
@@ -10,7 +18,6 @@ class Pengajuan_m extends CI_Model
 		$query = $this->db->get();
 		return $query;
 	}
-
 	public function get_petani($id = null)
 	{
 		$this->db->from('petani_pengajuan');

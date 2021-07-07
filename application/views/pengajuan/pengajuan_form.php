@@ -89,8 +89,8 @@
 							</div>
 						<?php } ?>
 						<div class="col-3">
-							<label>Dokumen Proposal</label><br>
-										<button type="submit" name="submit" value="submit" class="btn btn-primary">Simpan</button>
+							<label>&nbsp;</label><br>
+							<button type="submit" name="submit" value="submit" class="btn btn-primary">Simpan</button>
 						</div>
 					</div>
 				</div>

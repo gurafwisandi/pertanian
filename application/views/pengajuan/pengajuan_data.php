@@ -24,23 +24,21 @@
 					<div class="card-header">
 						<h3 class="card-title">Data jenis Penanaman</h3>
 						<ol class="breadcrumb float-sm-right">
-							<a href="<?=base_url('pengajuan/no_pengajuan')?>"><li class="fa fa-user-plus">Add</li></a>
+							<a href="<?=base_url('pengajuan/no_pengajuan')?>"><li class="fa fa-user-plus"> Add</li></a>
 						</ol>
 					</div>
-
 					<!-- /.card-header -->
 					<div class="card-body">
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
 							<tr>
 								<th>No</th>
-								<th>No Pengajuan</th>
-								<th>Nama Tanaman</th>
-								<th>Jenis</th>
-								<th>Created</th>
-								<th>Status</th>
-								<th>Action</th>
-
+								<th width="150px">No Pengajuan</th>
+								<th width="150px">Tgl Pengajuan</th>
+								<th width="200px">Nama Koperasi</th>
+								<th width="200px">Jenis Kebutuhan</th>
+								<th width="200px">Status</th>
+								<th width="50px">Action</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -49,32 +47,30 @@
 							<tr>
 								<td><?php echo $no++;?></td>
 								<td><?php echo $data->pengajuan_id?></td>
-								<td><?php echo $data->koperasi_id?></td>
-								<td><?php echo $data->jenis_id?></td>
-								<td><?php echo $data->tanggal_tanam?></td>
-								<td><?php echo $data->status?></td>
+								<td><?php echo $data->tgl_proposal?></td>
+								<td><?php echo $data->nama?></td>
+								<td><?php echo $data->kebutuhan?></td>
+								<td><?php echo $data->status_proposal?></td>
 								<td class="text-center" width="160px">
-                            
-     						<a href="<?=site_url('pengajuan/edit/'.$data->pengajuan_id)?>"  class="btn btn-primary btn-xs">
-     							<i class="fa fa-pencil"></i> Edit
-     						</a>
-     						<a href="<?=site_url('pengajuan/del/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-warning btn-xs">
-     							<i class="fa fa-trash"></i> Delete
-     						</a>
-     							
-     					</td>
+									<a href="<?=site_url('pengajuan/edit/'.$data->pengajuan_id)?>" class="btn btn-primary btn-xs">
+										<i class="fa fa-pencil"></i> Edit
+									</a>
+									<a href="<?=site_url('pengajuan/del/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-warning btn-xs">
+										<i class="fa fa-trash"></i> Delete
+									</a>
+								</td>
 							</tr>
 						<?php } ?>
 							</tbody>
 							<tfoot>
 							<tr>
 								<th>No</th>
-								<th>ID Penamanan</th>
-								<th>Nama Tanaman</th>
-								<th>Jenis</th>
-								<th>Jenis</th>
-								<th>Created</th>
-								<th>Action</th>
+								<th width="150px">No Pengajuan</th>
+								<th width="150px">Tgl Pengajuan</th>
+								<th width="200px">Nama Koperasi</th>
+								<th width="200px">Jenis Kebutuhan</th>
+								<th width="200px">Status</th>
+								<th width="50px">Action</th>
 							</tr>
 							</tfoot>
 						</table>

@@ -15,7 +15,7 @@ class Pengajuan extends CI_Controller
 		$data['link'] = 'Master / Pengajuan';
 		$this->load->model('pengajuan_m');
 		
-		$data['row'] = $this->pengajuan_m->get();
+		$data['row'] = $this->pengajuan_m->list();
 		$this->template->load('template','pengajuan/pengajuan_data', $data);
 	}
 
