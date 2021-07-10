@@ -48,14 +48,14 @@
 								<td><?php echo $no++;?></td>
 								<td><?php echo $data->pengajuan_id?></td>
 								<td><?php echo $data->tgl_proposal?></td>
-								<td><?php echo $data->nama?></td>
+								<td><?php echo $data->koperasi?></td>
 								<td><?php echo $data->kebutuhan?></td>
 								<td><?php echo $data->status_proposal?></td>
 								<td class="text-center" width="160px">
-									<a href="<?=site_url('pengajuan/edit/'.$data->pengajuan_id)?>" class="btn btn-primary btn-xs">
-										<i class="fa fa-pencil"></i> Edit
+									<a href="<?=site_url('pengajuan/add/'.$data->pengajuan_id)?>" class="btn btn-primary btn-xs">
+										<i class="fa fa-edit"></i> Edit
 									</a>
-									<a href="<?=site_url('pengajuan/del/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-warning btn-xs">
+									<a href="<?=site_url('pengajuan/del/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-danger btn-xs">
 										<i class="fa fa-trash"></i> Delete
 									</a>
 								</td>

@@ -1,4 +1,3 @@
-
 <section class="content-header">
 	<div class="container-fluid">
 		<div class="row mb-4">
@@ -26,7 +25,7 @@
 				</div>
 				<div class="col-3">
 					<label>Nama Koperasi</label>
-					<input type="text" class="form-control" value="<?php echo $row[0]->nama; ?>" disabled>
+					<input type="text" class="form-control" value="<?php echo $row[0]->koperasi; ?>" disabled>
 				</div>
 				<div class="col-3">
 					<label>Ketua Koperasi</label>
@@ -39,75 +38,72 @@
 <!-- Proposal Permintaan -->
 <section class="content">
 	<form action="<?=site_url('pengajuan/proses/'.$row[0]->pengajuan_id)?>" method="POST" enctype="multipart/form-data" >
-		<div class="card card-danger">
-				<div class="card-header">
-					<h3 class="card-title">Proposal Permintaan</h3>
-				</div>
-				<input type="text" name="pengajuan_id" value="<?php echo $row[0]->pengajuan_id?>">
-				<div class="card-body">
-					<div class="row">
-						<div class="col-3">
-							<label>Dokumen Proposal</label>
-							<input type="file" name="file" class="form-control">
-								<a class="btn btn-warning btn-xs" data-toggle="modal" data-target="#doc"></i> Lihat Dokumen</a>
+		<div class="card card-info">
+			<div class="card-header">
+				<h3 class="card-title">Proposal Permintaan</h3>
+			</div>
+			<input type="hidden" name="pengajuan_id" value="<?php echo $row[0]->pengajuan_id?>">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-3">
+						<label>Dokumen Proposal</label>
+						<input type="file" name="file" class="form-control">
+							<a class="btn btn-warning btn-xs" data-toggle="modal" data-target="#doc"></i> Lihat Dokumen</a>
+					</div>
+					<div class="col-3">
+						<div class="form-group">
+							<label>Jenis Bantuan</label>
+							<select name="jenis_id" class="form-control select2" style="width: 100%;">
+								<option value="">&nbsp;</option>
+								<?php 
+									$this->db->select('*');
+									$this->db->from('jenis');                            
+									$query = $this->db->get();            
+									foreach ($query->result() as $data)
+									{
+								?>
+									<option value="<?php echo $data->jenis_id;?>"<?php if($row[0]->jenis_id == $data->jenis_id){ echo 'selected'; }?>><?php echo $data->kebutuhan;?></option>
+								<?php	} ?>
+							</select>
 						</div>
+					</div>
+					<?php if(count($petani) > 1 AND count($petani) > 1){ ?>
 						<div class="col-3">
 							<div class="form-group">
-								<label>Jenis Bantuan</label>
-								<select name="jenis_id" class="form-control select2" style="width: 100%;">
-									<option value="">&nbsp;</option>
-									<?php 
-										$this->db->select('*');
-										$this->db->from('jenis');                            
-										$query = $this->db->get();            
-										foreach ($query->result() as $data)
-										{
-									?>
-										<option value="<?php echo $data->jenis_id;?>"<?php if($row[0]->jenis_id == $data->jenis_id){ echo 'selected'; }?>><?php echo $data->kebutuhan;?></option>
-									<?php	} ?>
+								<label>Status Bantuan</label>
+								<select name="status_proposal" class="form-control select2" style="width: 100%;">
+									<option value="Proses Pengajuan" <?php if($row[0]->status_proposal == 'Proses Pengajuan'){ echo 'selected'; }?>>Proses Pengajuan</option>
+									<option value="Selesai Pengajuan" <?php if($row[0]->status_proposal == 'Selesai Pengajuan'){ echo 'selected'; }?>>Selesai Pengajuan</option>
 								</select>
 							</div>
 						</div>
-						<?php if(count($petani) > 1 AND count($petani) > 1){ ?>
-							<div class="col-3">
-								<div class="form-group">
-									<label>Status Bantuan</label>
-									<select name="status_proposal" class="form-control select2" style="width: 100%;">
-										<option value="Proses Pengajuan" <?php if($row[0]->status_proposal == 'Proses Pengajuan'){ echo 'selected'; }?>>Proses Pengajuan</option>
-										<option value="Selesai Pengajuan" <?php if($row[0]->status_proposal == 'Selesai Pengajuan'){ echo 'selected'; }?>>Selesai Pengajuan</option>
-									</select>
-								</div>
-							</div>
-						<?php }else{ ?>
-							<div class="col-3">
-								<div class="form-group">
-									<label>Status Bantuan</label>
-									<select name="status_proposal" class="form-control select2" style="width: 100%;">
-										<option value="Proses Pengajuan" <?php if($row[0]->status_proposal == 'Proses Pengajuan'){ echo 'selected'; }?>>Proses Pengajuan</option>
-									</select>
-								</div>
-							</div>
-						<?php } ?>
+					<?php }else{ ?>
 						<div class="col-3">
-							<label>&nbsp;</label><br>
-							<button type="submit" name="submit" value="submit" class="btn btn-primary">Simpan</button>
+							<div class="form-group">
+								<label>Status Bantuan</label>
+								<select name="status_proposal" class="form-control select2" style="width: 100%;">
+									<option value="Proses Pengajuan" <?php if($row[0]->status_proposal == 'Proses Pengajuan'){ echo 'selected'; }?>>Proses Pengajuan</option>
+								</select>
+							</div>
 						</div>
+					<?php } ?>
+					<div class="col-3">
+						<label>&nbsp;</label><br>
+						<button type="submit" name="submit" value="submit" class="btn btn-primary">Simpan</button>
 					</div>
 				</div>
+			</div>
 		</div>
 	</form> 
 </section>
 <!-- Data Petani -->
 <section class="content">
-	<div class="card card-danger">
+	<div class="card card-info">
 		<div class="card-header">
 			<h3 class="card-title">Data Petani</h3>
 			<div class="card-tools">
 				<button type="button" class="btn btn-tool" data-card-widget="collapse">
 					<i class="fas fa-minus"></i>
-				</button>
-				<button type="button" class="btn btn-tool" data-card-widget="remove">
-					<i class="fas fa-times"></i>
 				</button>
 			</div>
 		</div>
@@ -172,19 +168,19 @@
 					</tr>
 				</thead>
 				<tbody>
-				<?php $no=1;
-				foreach ($petani as $key => $pet) {?>
-					<tr>
-						<td><?php echo $no++;?></td>
-						<td><?php echo $pet->nik?></td>
-						<td><?php echo $pet->nama?></td>
-						<td class="text-center" width="160px">
-							<a href="<?php echo base_url('/pengajuan/delete/'.$row[0]->pengajuan_id.'/'.$pet->petani_id);?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-warning btn-xs">
-								<i class="fa fa-trash"></i> Delete
-							</a>
-						</td>
-					</tr>
-				<?php } ?>
+					<?php $no=1;
+					foreach ($petani as $key => $pet) {?>
+						<tr>
+							<td><?php echo $no++;?></td>
+							<td><?php echo $pet->nik?></td>
+							<td><?php echo $pet->nama?></td>
+							<td class="text-center" width="160px">
+								<a href="<?php echo base_url('/pengajuan/delete/'.$row[0]->pengajuan_id.'/'.$pet->petani_id);?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-danger btn-xs">
+									<i class="fa fa-trash"></i> Delete
+								</a>
+							</td>
+						</tr>
+					<?php } ?>
 				</tbody>
 				<tfoot>
 					<tr>
@@ -200,15 +196,12 @@
 </section>
 <!-- Data Item Kebutuhan Tani -->
 <section class="content">
-	<div class="card card-danger">
+	<div class="card card-info">
 		<div class="card-header">
 			<h3 class="card-title">Data Item Kebutuhan Tani</h3>
 			<div class="card-tools">
 				<button type="button" class="btn btn-tool" data-card-widget="collapse">
 					<i class="fas fa-minus"></i>
-				</button>
-				<button type="button" class="btn btn-tool" data-card-widget="remove">
-					<i class="fas fa-times"></i>
 				</button>
 			</div>
 		</div>
@@ -258,21 +251,21 @@
 			</div>
 		</div>
 		<div class="card-body" style="display: block;">
-				<button class="btn btn-primary float-right" data-toggle="modal" data-target="#addRowModal_item">
-				<i class="fa fa-plus"></i> Item
-				</button>
-				<br>
-				<br>
-				<table id="" class="table table-bordered table-striped">
-					<thead>
+			<button class="btn btn-primary float-right" data-toggle="modal" data-target="#addRowModal_item">
+			<i class="fa fa-plus"></i> Item
+			</button>
+			<br>
+			<br>
+			<table id="" class="table table-bordered table-striped">
+				<thead>
 					<tr>
 						<th>No</th>
 						<th>NIK</th>
 						<th>Nama Petani</th>
 						<th>Action</th>
 					</tr>
-					</thead>
-					<tbody>
+				</thead>
+				<tbody>
 					<?php $no=1;
 					foreach ($item as $key => $pet) {?>
 						<tr>
@@ -281,26 +274,25 @@
 							<td><?php echo $pet->qty?></td>
 							<td><?php echo $pet->keterangan?></td>
 							<td class="text-center" width="160px">
-								<a href="<?php echo base_url('/pengajuan/delete_item/'.$row[0]->pengajuan_id.'/'.$pet->id);?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-warning btn-xs">
+								<a href="<?php echo base_url('/pengajuan/delete_item/'.$row[0]->pengajuan_id.'/'.$pet->id);?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-danger btn-xs">
 									<i class="fa fa-trash"></i> Delete
 								</a>
 							</td>
 						</tr>
 					<?php } ?>
-					</tbody>
-					<tfoot>
+				</tbody>
+				<tfoot>
 					<tr>
 						<th>No</th>
 						<th>NIK</th>
 						<th>Nama Petani</th>
 						<th>Action</th>
 					</tr>
-					</tfoot>
-				</table>
+				</tfoot>
+			</table>
 		</div>
 	</div>
 </section>
-
 <div class="modal fade" id="doc" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
