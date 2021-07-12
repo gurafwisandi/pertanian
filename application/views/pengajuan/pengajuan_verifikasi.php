@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 		<div class="row mb-4">
 			<div class="col-sm-12">
-				<h1>Pengajuan</h1>
+				<h1>Verifikasi Pengajuan</h1>
 			</div>
 		</div>
 	</div><!-- /.container-fluid -->
@@ -13,15 +13,6 @@
 	<div class="alert alert-success alert-dismissible">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 		<h5><i class="icon fas fa-check"></i><?php echo $this->session->flashdata('message');?></h5>
-	</div>
-</section>
-<?php } ?>
-<?php if($row[0]->ket_kembali_admin){ ?>
-<section class="content">
-	<div class="alert alert-danger alert-dismissible">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-		<h5><i class="icon fas fa-ban"></i> Dikembalikan Administrasi!</h5>
-		<?php echo $row[0]->ket_kembali_admin;?>
 	</div>
 </section>
 <?php } ?>
@@ -51,35 +42,36 @@
 </section>
 <!-- Proposal Permintaan -->
 <section class="content">
-	<form action="<?=site_url('pengajuan/proses/'.$row[0]->pengajuan_id)?>" method="POST" enctype="multipart/form-data" >
 		<div class="card card-info">
-			<div class="card-header">
-				<h3 class="card-title">Proposal Pengajuan</h3>
-			</div>
+      <div class="card-header">
+        <h3 class="card-title">Proposal Permintaan</h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+        </div>
+      </div>
 			<input type="hidden" name="pengajuan_id" value="<?php echo $row[0]->pengajuan_id?>">
-			<div class="card-body">
+			<div class="card-body" style="display: block;">
 				<div class="row">
+          <div class="col-3">
+            <label>No Pengajuan</label>
+            <input type="text" class="form-control" value="<?php echo $row[0]->pengajuan_id; ?>" disabled>
+          </div>
+          <div class="col-3">
+            <label>Tgl Pengajuan</label>
+            <input type="text" class="form-control" value="<?php echo date('d F Y', strtotime($row[0]->tgl_proposal)); ?>" disabled>
+          </div>
 					<div class="col-3">
-						<label>No Pengajuan</label>
-						<input type="text" class="form-control" value="<?php echo $row[0]->pengajuan_id; ?>" disabled>
-					</div>
-					<div class="col-3">
-						<label>Tgl Pengajuan</label>
-						<input type="text" class="form-control" value="<?php echo date('d F Y', strtotime($row[0]->tgl_proposal)); ?>" disabled>
-					</div>
-					<div class="col-3">
-						<label>Dokumen Proposal</label>
+						<label>Dokumen Proposal</label><br>
 						<?php if($row[0]->dokumen_proposal){ ?>
-							<input type="file" name="file" class="form-control">
 							<a class="btn btn-warning btn-xs" data-toggle="modal" data-target="#doc"></i> Lihat Dokumen</a>
-						<?php }else{ ?>
-							<input type="file" name="file" class="form-control" required>
 						<?php } ?>
 					</div>
 					<div class="col-3">
 						<div class="form-group">
 							<label>Jenis Bantuan</label>
-							<select name="jenis_id" class="form-control select2" style="width: 100%;" required>
+							<select name="jenis_id" class="form-control select2" style="width: 100%;" disabled>
 								<option value="">&nbsp;</option>
 								<?php 
 									$this->db->select('*');
@@ -98,49 +90,12 @@
 					<div class="col-3">
             <div class="form-group">
               <label>Perihal Pengajuan</label>
-              <textarea class="form-control" name="perihal_proposal" id="perihal_proposal" rows="3" placeholder="Perihal Pengajuan"><?php echo $row[0]->perihal_proposal;?></textarea>
+              <textarea class="form-control" disabled name="perihal_proposal" id="perihal_proposal" rows="3" placeholder="Perihal Pengajuan"><?php echo $row[0]->perihal_proposal;?></textarea>
             </div>
 					</div>
-					<?php if($row[0]->status_proposal == 'Kembalikan Pengajuan'){ ?>
-						<div class="col-3">
-							<div class="form-group">
-								<label>Status Bantuan</label>
-								<select name="status_proposal" class="form-control select2" style="width: 100%;">
-									<option value="Kembalikan Pengajuan" <?php if($row[0]->status_proposal == 'Kembalikan Pengajuan'){ echo 'selected'; }?>>Kembalikan Pengajuan</option>
-									<option value="Selesai Pengajuan" <?php if($row[0]->status_proposal == 'Selesai Pengajuan'){ echo 'selected'; }?>>Selesai Pengajuan</option>
-								</select>
-							</div>
-						</div>
-					<?php }else{ ?>
-						<?php if(count($petani) >= 1 AND count($item) >= 1){ ?>
-							<div class="col-3">
-								<div class="form-group">
-									<label>Status Bantuan</label>
-									<select name="status_proposal" class="form-control select2" style="width: 100%;">
-										<option value="Proses Pengajuan" <?php if($row[0]->status_proposal == 'Proses Pengajuan'){ echo 'selected'; }?>>Proses Pengajuan</option>
-										<option value="Selesai Pengajuan" <?php if($row[0]->status_proposal == 'Selesai Pengajuan'){ echo 'selected'; }?>>Selesai Pengajuan</option>
-									</select>
-								</div>
-							</div>
-						<?php }else{ ?>
-							<div class="col-3">
-								<div class="form-group">
-									<label>Status Bantuan</label>
-									<select name="status_proposal" class="form-control select2" style="width: 100%;">
-										<option value="Proses Pengajuan" <?php if($row[0]->status_proposal == 'Proses Pengajuan'){ echo 'selected'; }?>>Proses Pengajuan</option>
-									</select>
-								</div>
-							</div>
-						<?php } ?>
-					<?php } ?>
-					<div class="col-3">
-						<label>&nbsp;</label><br>
-						<button type="submit" name="submit" value="submit" class="btn btn-primary">Simpan</button>
-					</div>
-				</div>
+        </div>
 			</div>
 		</div>
-	</form> 
 </section>
 <!-- Data Petani -->
 <section class="content">
@@ -199,9 +154,9 @@
 			</div>
 		</div>
 		<div class="card-body" style="display: block;">
-			<button class="btn btn-primary float-right" data-toggle="modal" data-target="#addRowModal">
+			<!-- <button class="btn btn-primary float-right" data-toggle="modal" data-target="#addRowModal">
 			<i class="fa fa-plus"></i> Petani
-			</button>
+			</button> -->
 			<br>
 			<br>
 			<table id="" class="table table-bordered table-striped">
@@ -211,7 +166,7 @@
 						<th>NIK</th>
 						<th>Nama Petani</th>
 						<th>Tanaman</th>
-						<th>Action</th>
+						<!-- <th>Action</th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -222,11 +177,11 @@
 							<td><?php echo $pet->nik?></td>
 							<td><?php echo $pet->nama?></td>
 							<td><?php echo $pet->jenis?></td>
-							<td class="text-center" width="160px">
+							<!-- <td class="text-center" width="160px">
 								<a href="<?php echo base_url('/pengajuan/delete/'.$row[0]->pengajuan_id.'/'.$pet->petani_id);?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-danger btn-xs">
 									<i class="fa fa-trash"></i> Delete
 								</a>
-							</td>
+							</td> -->
 						</tr>
 					<?php } ?>
 				</tbody>
@@ -236,7 +191,7 @@
 						<th>NIK</th>
 						<th>Nama Petani</th>
 						<th>Tanaman</th>
-						<th>Action</th>
+						<!-- <th>Action</th> -->
 					</tr>
 				</tfoot>
 			</table>
@@ -247,7 +202,7 @@
 <section class="content">
 	<div class="card card-info">
 		<div class="card-header">
-			<h3 class="card-title">Data Item Kebutuhan</h3>
+			<h3 class="card-title">Data Item Kebutuhan Tani</h3>
 			<div class="card-tools">
 				<button type="button" class="btn btn-tool" data-card-widget="collapse">
 					<i class="fas fa-minus"></i>
@@ -300,9 +255,9 @@
 			</div>
 		</div>
 		<div class="card-body" style="display: block;">
-			<button class="btn btn-primary float-right" data-toggle="modal" data-target="#addRowModal_item">
+			<!-- <button class="btn btn-primary float-right" data-toggle="modal" data-target="#addRowModal_item">
 			<i class="fa fa-plus"></i> Item
-			</button>
+			</button> -->
 			<br>
 			<br>
 			<table id="" class="table table-bordered table-striped">
@@ -312,7 +267,7 @@
 						<th>Item</th>
 						<th>Qty</th>
 						<th>Keterangan</th>
-						<th>Action</th>
+						<!-- <th>Action</th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -323,11 +278,11 @@
 							<td><?php echo $pet->item?></td>
 							<td><?php echo $pet->qty?></td>
 							<td><?php echo $pet->keterangan?></td>
-							<td class="text-center" width="160px">
+							<!-- <td class="text-center" width="160px">
 								<a href="<?php echo base_url('/pengajuan/delete_item/'.$row[0]->pengajuan_id.'/'.$pet->id);?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-danger btn-xs">
 									<i class="fa fa-trash"></i> Delete
 								</a>
-							</td>
+							</td> -->
 						</tr>
 					<?php } ?>
 				</tbody>
@@ -337,37 +292,136 @@
 						<th>Item</th>
 						<th>Qty</th>
 						<th>Keterangan</th>
-						<th>Action</th>
+						<!-- <th>Action</th> -->
 					</tr>
 				</tfoot>
 			</table>
 		</div>
 	</div>
+  <div class="modal fade" id="doc" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header no-bd">
+          <h5 class="modal-title">
+            <span class="fw-mediumbold">
+            Dokumen - <?php echo $row[0]->pengajuan_id;?></span> 
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <?php 
+          $doc = $row[0]->dokumen_proposal;
+          ?>
+          <?php $file=substr($doc,-3);
+          if($file=='JPG' or $file=='PNG' or $file=='jpg' or $file=='jpeg' or $file=='png' or $file=='PEG' or $file=='peg'){?>
+              <img src="<?php echo base_url() ?>assets/uploads/<?php echo $doc; ?>" width="450" class="img-responsive" id="rotate-image7" style="border-radius: 10px;display: block;margin-left: auto;margin-right: auto;">
+          <?php }elseif( $file=='pdf' OR $file=='PDF'){?>
+              <object data="<?php echo base_url() ?>assets/uploads/<?php echo $doc; ?>#view=Fit" type="application/pdf" width="100%" height='850px'>
+              </object>
+          <?php }else{ }?>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-<div class="modal fade" id="doc" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header no-bd">
-				<h5 class="modal-title">
-					<span class="fw-mediumbold">
-					Dokumen - <?php echo $row[0]->pengajuan_id;?></span> 
-				</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+
+<!-- verifikasi -->
+<script>
+function myFunction() {
+  var x = document.getElementById("status_proposal").value;
+  var file = document.getElementById("file").value;
+  console.log(file);
+  if (x === "Kembalikan Pengajuan" ) {
+    document.getElementById("myDIV").style.display = "block";
+    document.getElementById("myDIVdoc").style.display = "none";
+    document.getElementById("keterangan").required=true;
+    document.getElementById("file").required=false;
+  } else {
+    document.getElementById("myDIV").style.display = "none";
+    document.getElementById("myDIVdoc").style.display = "block";
+    document.getElementById("keterangan").required=false;
+    document.getElementById("file").required=true;
+  }
+}
+</script>
+<section class="content">
+	<form action="<?=site_url('pengajuan/proses/'.$row[0]->pengajuan_id)?>" method="POST" enctype="multipart/form-data" >
+		<div class="card card-danger">
+			<div class="card-header">
+				<h3 class="card-title">Verifikasi Pengajuan Admin</h3>
 			</div>
-			<div class="modal-body">
-				<?php 
-				$doc = $row[0]->dokumen_proposal;
-				?>
-				<?php $file=substr($doc,-3);
-				if($file=='JPG' or $file=='PNG' or $file=='jpg' or $file=='jpeg' or $file=='png' or $file=='PEG' or $file=='peg'){?>
-						<img src="<?php echo base_url() ?>assets/uploads/<?php echo $doc; ?>" width="450" class="img-responsive" id="rotate-image7" style="border-radius: 10px;display: block;margin-left: auto;margin-right: auto;">
-				<?php }elseif( $file=='pdf' OR $file=='PDF'){?>
-						<object data="<?php echo base_url() ?>assets/uploads/<?php echo $doc; ?>#view=Fit" type="application/pdf" width="100%" height='850px'>
-						</object>
-				<?php }else{ }?>
+			<input type="hidden" name="pengajuan_id" value="<?php echo $row[0]->pengajuan_id?>">
+			<div class="card-body">
+        <legend class=""></legend>
+				<div class="alert alert-danger alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					<h5><i class="icon fas fa-ban"></i> Dikembalikan Bupati!</h5>
+					<?php echo $row[0]->keterangan_bupati;?>
+				</div>
+								
+        <legend class=""><hr></legend>
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label>Status Verifikasi Bantuan</label>
+              <select name="status_proposal" required id="status_proposal" onchange="myFunction()" class="form-control select2" style="width: 100%;">
+                <option value="">&nbsp;</option>
+                <option value="Approve Administrasi"  <?php if($row[0]->status_proposal == 'Approve Administrasi'){ echo 'selected'; }?>>Approve Administrasi</option>
+                <option value="Kembalikan Pengajuan"  <?php if($row[0]->status_proposal == 'Kembalikan Pengajuan'){ echo 'selected'; }?>>Kembalikan Pengajuan</option>
+              </select>
+            </div>
+          </div>
+					<div class="col-3" id="myDIVdoc">
+						<label>Upload Dokumen Biaya Bantuan</label>
+						<?php if($row[0]->dokumen_biaya_admin){ ?>
+						  <input type="file" name="file" id="file" class="form-control">
+							<a class="btn btn-warning btn-xs" data-toggle="modal" data-target="#doc_biaya"></i> Lihat Dokumen</a>
+						<?php }else{ ?>
+						  <input type="file" name="file" id="file" class="form-control" required>
+						<?php } ?>
+					</div>
+					<div class="col-3" id="myDIV">
+            <div class="form-group">
+              <label>Keterangan</label>
+              <textarea class="form-control" name="keterangan" id="keterangan" rows="3" placeholder="Keterangan"><?php echo $row[0]->keterangan;?></textarea>
+            </div>
+					</div>
+					<div class="col-3">
+						<label>&nbsp;</label><br>
+						<button type="submit" name="verifikasi" value="verifikasi" class="btn btn-primary">Simpan</button>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
+	</form> 
+  <div class="modal fade" id="doc_biaya" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header no-bd">
+          <h5 class="modal-title">
+            <span class="fw-mediumbold">
+            Dokumen - <?php echo $row[0]->pengajuan_id;?></span> 
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <?php 
+          $doc = $row[0]->dokumen_biaya_admin;
+          ?>
+          <?php $file=substr($doc,-3);
+          if($file=='JPG' or $file=='PNG' or $file=='jpg' or $file=='jpeg' or $file=='png' or $file=='PEG' or $file=='peg'){?>
+              <img src="<?php echo base_url() ?>assets/uploads/<?php echo $doc; ?>" width="450" class="img-responsive" id="rotate-image7" style="border-radius: 10px;display: block;margin-left: auto;margin-right: auto;">
+          <?php }elseif( $file=='pdf' OR $file=='PDF'){?>
+              <object data="<?php echo base_url() ?>assets/uploads/<?php echo $doc; ?>#view=Fit" type="application/pdf" width="100%" height='850px'>
+              </object>
+          <?php }else{ }?>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- verifikasi -->

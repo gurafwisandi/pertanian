@@ -41,7 +41,7 @@
                 echo 'active';
               }
             ?>">
-            <i class="far fa-circle nav-icon"></i>
+            <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>Dashboard</p>
           </a>
         </li>
@@ -64,7 +64,7 @@
             ) 
           { echo 'active'; } ?>
           ">
-            <i class="nav-icon fas fa-edit"></i>
+            <i class="nav-icon fas fa-th"></i>
             <p>Master<i class="fas fa-angle-left right"></i></p>
           </a>
           <ul class="nav nav-treeview">
@@ -202,10 +202,28 @@
                 <p>pengajuan</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="<?=base_url('pengajuan')?>" class="nav-link
+                <?php 
+                  if( $this->uri->segment('1') == 'monev' )
+                  {
+                    echo 'active';
+                  }
+                ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Monev</p>
+              </a>
+            </li>
           </ul>
           <li class="nav-item">
+              <a href="" class="nav-link">           
+              <i class="nav-icon fas fa-book"></i>
+                <p>Laporan</p>
+              </a>
+          </li>
+          <li class="nav-item">
               <a href="<?=base_url('auth/logout')?>" class="nav-link">           
-              <i class="far fa-circle nav-icon"></i>
+              <i class="nav-icon fas fa-ellipsis-h"></i>
                 <p>Logout</p>
               </a>
           </li>

@@ -23,6 +23,7 @@ class Pengajuan_m extends CI_Model
 		$this->db->from('petani_pengajuan');
 		$this->db->join('pengajuan', 'pengajuan.pengajuan_id=petani_pengajuan.pengajuan_id');
 		$this->db->join('petani', 'petani.petani_id=petani_pengajuan.petani_id');
+		$this->db->join('penanaman', 'penanaman.penanaman_id=petani.penanaman_id');
 		$this->db->where('pengajuan.pengajuan_id', $id);
 		$query = $this->db->get();
 		return $query;
@@ -82,7 +83,9 @@ class Pengajuan_m extends CI_Model
 	public function update_pengajuan()
 	{
 		$this->db->set('jenis_id', $this->input->post('jenis_id'));
+		$this->db->set('perihal_proposal', $this->input->post('perihal_proposal'));
 		$this->db->set('status_proposal', $this->input->post('status_proposal'));
+		$this->db->set('updated', date('Y-m-d H:i:s'));
 		$this->db->where('pengajuan_id', $this->input->post('pengajuan_id'));
 		$this->db->update('pengajuan');
 	}
@@ -111,6 +114,18 @@ class Pengajuan_m extends CI_Model
 	public function update_doc($pengajuan_id,$nm_file)
 	{
 		$this->db->set('dokumen_proposal', $nm_file);
+		$this->db->where('pengajuan_id', $pengajuan_id);
+		$this->db->update('pengajuan');
+	}
+	public function update_bb($pengajuan_id,$nm_file)
+	{
+		$this->db->set('dokumen_biaya_admin', $nm_file);
+		$this->db->where('pengajuan_id', $pengajuan_id);
+		$this->db->update('pengajuan');
+	}
+	public function update_bbb($pengajuan_id,$nm_file)
+	{
+		$this->db->set('dokumen_biaya_bupati', $nm_file);
 		$this->db->where('pengajuan_id', $pengajuan_id);
 		$this->db->update('pengajuan');
 	}
