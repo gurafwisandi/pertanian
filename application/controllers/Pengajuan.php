@@ -84,6 +84,71 @@ class Pengajuan extends CI_Controller
 		);
 		$this->template->load('template', 'pengajuan/pengajuan_verifikasi_bupati',$data);
 	}
+	
+	public function seminar($id_pengajuan)
+	{
+		if($this->input->post('seminar') == "seminar"){
+			$this->db->set('tgl_seminar_kirim_bantuan', $this->input->post('tgl_seminar_kirim_bantuan'));
+			$this->db->set('ket_seminar_kirim_bantuan', $this->input->post('ket_seminar_kirim_bantuan'));
+			$this->db->where('pengajuan_id', $this->input->post('pengajuan_id'));
+			$this->db->update('pengajuan'); 
+			$this->session->set_flashdata('message','Update Data Berhasil');
+			redirect('/pengajuan/');
+		}
+		if($this->input->post('submit') == "item_bantuan"){
+			$this->db->set('id_item', $this->input->post('id_item'));
+			$this->db->where('id', $this->input->post('id'));
+			$this->db->update('item_pengajuan'); 
+			redirect('/pengajuan/seminar/'.$this->input->post('pengajuan_id'));
+		}
+		$pengajuan = $this->pengajuan_m->get($id_pengajuan)->result();
+		$petani = $this->pengajuan_m->get_petani($id_pengajuan)->result();
+		$item = $this->pengajuan_m->get_item($id_pengajuan)->result();
+		$query_jenis = $this->jenis_m->get();
+		$jenis[null] = '- Pilih -';
+		foreach ($query_jenis->result() as $jns) {
+		$jenis[$jns->jenis_id] = $jns->kebutuhan;
+		}
+		$data = array (
+			'page' => 'add',
+			'row' => $pengajuan,
+			'petani' => $petani,
+			'item' => $item,
+			'jenis' => $jenis,'selectedjenis' =>null,
+		);
+		$this->template->load('template', 'pengajuan/seminar',$data);
+	}
+	
+	public function serah_terima($id_pengajuan)
+	{
+		if($this->input->post('serah_terima') == "serah_terima"){
+			$this->do_uplaod_serah_terima($id_pengajuan);
+			$this->session->set_flashdata('message','Update Data Berhasil');
+			redirect('/pengajuan/serah_terima/'.$id_pengajuan);
+		}
+		$pengajuan = $this->pengajuan_m->get($id_pengajuan)->result();
+		$petani = $this->pengajuan_m->get_petani($id_pengajuan)->result();
+		$item = $this->pengajuan_m->get_item($id_pengajuan)->result();
+		$query_jenis = $this->jenis_m->get();
+		$jenis[null] = '- Pilih -';
+		foreach ($query_jenis->result() as $jns) {
+		$jenis[$jns->jenis_id] = $jns->kebutuhan;
+		}
+		$data = array (
+			'page' => 'add',
+			'row' => $pengajuan,
+			'petani' => $petani,
+			'item' => $item,
+			'jenis' => $jenis,'selectedjenis' =>null,
+		);
+		$this->template->load('template', 'pengajuan/serah_terima',$data);
+	}
+
+	public function get_conten($id)
+	{
+		$data['data'] = $this->pengajuan_m->update($id)->result();
+		$this->load->view('pengajuan/get_conten',$data);
+	}
 
 	public function proses($pengajuan_id)
 	{
@@ -173,6 +238,30 @@ class Pengajuan extends CI_Controller
 		}
 	}
 
+	public function do_uplaod_serah_terima($pengajuan_id)
+	{
+		// upload gambar
+		$config['upload_path'] = './assets/uploads_serah_terima';
+		$config['allowed_types'] = 'jpeg|jpg|png|pdf|jpeg|';
+		$config['overwrite'] = TRUE;
+		$config['remove_spaces'] = TRUE;
+
+		$new_name = date('ymdhis').'_dst_'.$pengajuan_id;
+		$config['file_name'] = $new_name;
+		
+		$this->upload->initialize($config);
+		if (! $this->upload->do_upload('file'))
+		{			
+			$error = array('error' => $this->upload->display_errors());
+		}
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());	
+			$nm_file=$this->upload->data('file_name');	
+			$this->pengajuan_m->update_dst($pengajuan_id,$nm_file);
+		}
+	}
+
 	public function do_uplaod_biaya($pengajuan_id)
 	{
 		// upload gambar
@@ -222,6 +311,25 @@ class Pengajuan extends CI_Controller
 	{
 		$this->db->set('status_proposal', 'Proses Penyaluran');
 		$this->db->set('push_bupati', '1');
+		$this->db->where('pengajuan_id', $pengajuan_id);
+		$this->db->update('pengajuan'); 
+		$this->session->set_flashdata('message','Push Pengajuan Berhasil');
+		redirect('/pengajuan/');
+	}
+
+	public function push_seminar($pengajuan_id)
+	{
+		$this->db->set('status_proposal', 'Proses Serah Terima');
+		$this->db->set('push_seminar_kirim_bantuan', '1');
+		$this->db->where('pengajuan_id', $pengajuan_id);
+		$this->db->update('pengajuan'); 
+		$this->session->set_flashdata('message','Push Pengajuan Berhasil');
+		redirect('/pengajuan/');
+	}
+
+	public function push_serah_terima($pengajuan_id)
+	{
+		$this->db->set('status_proposal', 'Done pengajuan');
 		$this->db->where('pengajuan_id', $pengajuan_id);
 		$this->db->update('pengajuan'); 
 		$this->session->set_flashdata('message','Push Pengajuan Berhasil');

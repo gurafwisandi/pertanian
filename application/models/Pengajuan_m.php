@@ -30,8 +30,11 @@ class Pengajuan_m extends CI_Model
 	}
 	public function get_item($id = null)
 	{
+		$this->db->select('item_pengajuan.*, item.nama_item, nama_vendor, item.keterangan as spek_item');
 		$this->db->from('item_pengajuan');
 		$this->db->join('pengajuan', 'pengajuan.pengajuan_id=item_pengajuan.pengajuan_id');
+		$this->db->join('item', 'item.id_item=item_pengajuan.id_item','left');
+		$this->db->join('vendor', 'vendor.id_vendor=item.id_vendor','left');
 		$this->db->where('pengajuan.pengajuan_id', $id);
 		$query = $this->db->get();
 		return $query;
@@ -128,5 +131,29 @@ class Pengajuan_m extends CI_Model
 		$this->db->set('dokumen_biaya_bupati', $nm_file);
 		$this->db->where('pengajuan_id', $pengajuan_id);
 		$this->db->update('pengajuan');
+	}
+	public function update_dst($pengajuan_id,$nm_file)
+	{
+		$this->db->set('filename', $nm_file);
+		$this->db->set('pengajuan_id', $pengajuan_id);
+		$this->db->insert('doc_serah_terima');
+
+		// jml_doc
+		$this->db->select('count(pengajuan_id) as jml');
+		$this->db->where('pengajuan_id', $pengajuan_id);
+		$query = $this->db->get('doc_serah_terima');
+		$val=$query->result();
+		if($val[0]->jml > 0){
+			$this->db->set('jml_doc', $val[0]->jml);
+			$this->db->where('pengajuan_id', $pengajuan_id);
+			$this->db->update('pengajuan');
+		}
+	}
+	public function update($id)
+	{
+		$this->db->select('*')
+							->join('pengajuan','pengajuan.pengajuan_id=item_pengajuan.pengajuan_id')
+              ->where('id',$id);
+		return $this->db->get('item_pengajuan');
 	}
 }
