@@ -24,7 +24,7 @@
     <div class="card-body">
       <form action="<?=site_url('auth/process')?>" method="post">
         <div class="input-group mb-3">
-          <input type="email" name="email" required class="form-control" placeholder="Email">
+          <input type="email" name="email" autocomplete="off" required class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" name="password" required minlength="5" class="form-control" placeholder="Password">
+          <input type="password" name="password" autocomplete="off" required minlength="5" class="form-control" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

@@ -15,6 +15,13 @@
 		<h5><i class="icon fas fa-check"></i><?php echo $this->session->flashdata('message');?></h5>
 	</div>
 </section>
+<?php }elseif($this->session->flashdata('message') == 'Data Berhasil Dihapus'){ ?>
+<section class="content">
+	<div class="alert alert-danger alert-dismissible">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<h5><i class="icon fas fa-ban"></i><?php echo $this->session->flashdata('message');?></h5>
+	</div>
+</section>
 <?php } ?>
 <?php if($row[0]->ket_kembali_admin){ ?>
 <section class="content">

@@ -52,6 +52,7 @@
             if( $this->uri->segment('1') == 'petani' ) { echo 'menu-open'; }
             if( $this->uri->segment('1') == 'penanaman' ) { echo 'menu-open';}
             if( $this->uri->segment('1') == 'jenis' ) { echo 'menu-open';}
+            if( $this->uri->segment('1') == 'vendor' ) { echo 'menu-open';}
           ?> ">
           <a href="#" class="nav-link 
           <?php  
@@ -60,6 +61,7 @@
             $this->uri->segment('1') == 'koperasi' OR
             $this->uri->segment('1') == 'petani' OR
             $this->uri->segment('1') == 'penanaman' OR
+            $this->uri->segment('1') == 'vendor' OR
             $this->uri->segment('1') == 'jenis'
             ) 
           { echo 'active'; } ?>
@@ -180,12 +182,24 @@
                 <p>Jenis Alat Pertanian</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="<?=base_url('vendor')?>" class="nav-link
+                <?php 
+                  if( $this->uri->segment('1') == 'vendor' )
+                  {
+                    echo 'active';
+                  }
+                ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Vendor</p>
+              </a>
+            </li>
           </ul>
           <li class="nav-item
           <?php 
-            if( $this->uri->segment('1') == 'pengajuan' ) { echo 'menu-open'; }
+            if( $this->uri->segment('1') == 'pengajuan'  OR $this->uri->segment('1') == 'monev') { echo 'menu-open'; }
           ?> ">
-          <a href="#" class="nav-link <?php  if( $this->uri->segment('1') == 'pengajuan' ) { echo 'active';} ?>">
+          <a href="#" class="nav-link <?php  if( $this->uri->segment('1') == 'pengajuan' OR $this->uri->segment('1') == 'monev' ) { echo 'active';} ?>">
             <i class="nav-icon fas fa-edit"></i>
             <p>Pengajuan<i class="fas fa-angle-left right"></i></p>
           </a>
@@ -199,11 +213,11 @@
                   }
                 ?>">
                 <i class="far fa-circle nav-icon"></i>
-                <p>pengajuan</p>
+                <p>Pengajuan</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?=base_url('pengajuan')?>" class="nav-link
+              <a href="<?=base_url('monev')?>" class="nav-link
                 <?php 
                   if( $this->uri->segment('1') == 'monev' )
                   {

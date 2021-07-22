@@ -3,11 +3,11 @@
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1>User</h1>
+				<h1>Vendor</h1>
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
-					<li class="breadcrumb-item"><a href="#">Master / User / User Dinas</a></li>
+					<li class="breadcrumb-item"><a href="#">Master / Vendor</a></li>
 				</ol>
 			</div>
 		</div>
@@ -16,11 +16,10 @@
 
 <!-- Main content -->
 <section class="content">
-	 <?php $this->view('messages')?>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
-				<?php if($this->session->flashdata('message') == 'Approve Data Berhasil'){ ?>
+				<?php if($this->session->flashdata('message') == 'Data Berhasil Disimpan'){ ?>
 					<div class="alert alert-success alert-dismissible">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 						<h5><i class="icon fas fa-check"></i><?php echo $this->session->flashdata('message');?></h5>
@@ -38,10 +37,12 @@
 				<?php } ?>
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Data user</h3>
+						<h3 class="card-title">Data Vendor</h3>
+
 							<ol class="breadcrumb float-sm-right">
-								<a href="<?=base_url('user/add')?>"><li class="fa fa-user-plus">Add</li></a>
+								<a href="<?=base_url('vendor/add')?>"><li class="fa fa-user-plus">Add</li></a>
 							</ol>
+						
 					</div>
 
 					<!-- /.card-header -->
@@ -50,59 +51,32 @@
 							<thead>
 							<tr>
 								<th>No</th>
-								<th>Nama</th>
-								<th>Email</th>
-								<th>Level</th>
-								<th>Status</th>
-								<th width="120px">Action</th>
+								<th>Nama vendor</th>
+								<th>Action</th>
 							</tr>
 							</thead>
 							<tbody>
 							<?php $no=1;
 							foreach ($row->result() as $key => $data) {?>
 							<tr>
-								<td><?php echo $no++;?></td>
-								<td><?php echo $data->koperasi?></td>
-								<td><?php echo $data->email?></td>
-								<td><?php if($data->level == '1'){ echo "Dinas"; }elseif($data->level == '2'){ echo "Koperasi"; }else{ echo "Admin";}?></td>
-								<td class="text-left" >
-									<a class="btn btn-<?php 
-										if($data->status == '1'){ echo "success"; 
-										}elseif($data->status == '2'){ echo "secondary"; 
-										}
-										?> btn-xs">
-										<?php 
-										if($data->status == '1'){ echo "Aktif"; 
-										}elseif($data->status == '2'){ echo "Tidak Aktif"; 
-										}
-										?>
+								<td><?=$no++?></td>
+								<td><?=$data->nama_vendor?></td>
+								<td class="text-center" width="160px">
+									<a href="<?=site_url('vendor/edit/'.$data->id_vendor)?>"  class="btn btn-primary btn-xs">
+										<i class="fa fa-edit"></i> Edit
+									</a>
+									<a href="<?=site_url('vendor/del/'.$data->id_vendor)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-danger btn-xs">
+										<i class="fa fa-trash"></i> Delete
 									</a>
 								</td>
-								<td class="text-left" width="">
-									<?php if($data->status ==  null){ ?> 
-										<a href="<?=site_url('user/approve_dinas/'.$data->user_id)?>"  class="btn btn-info btn-xs">
-											<i class="fa fa-check"></i> Approve
-										</a>
-										<a href="<?=site_url('user/del_dinas/'.$data->user_id)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-danger btn-xs">
-											<i class="fa fa-trash"></i> Delete
-										</a>
-									<?php }else{ ?>
-										<a href="<?=site_url('user/edit_dinas/'.$data->user_id)?>"  class="btn btn-primary btn-xs">
-											<i class="fa fa-edit"></i> Edit
-										</a>
-									<?php } ?>
-								</td>
 							</tr>
-						<?php } ?>
+							<?php } ?>
 							</tbody>
 							<tfoot>
 							<tr>
 								<th>No</th>
-								<th>Nama</th>
-								<th>Email</th>
-								<th>Level</th>
-								<th>Status</th>
-								<th width="120px">Action</th>
+								<th>Nama vendor</th>
+								<th>Action</th>
 							</tr>
 							</tfoot>
 						</table>

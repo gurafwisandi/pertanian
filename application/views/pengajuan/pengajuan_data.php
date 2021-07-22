@@ -35,7 +35,7 @@
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
-					<li class="breadcrumb-item"><a href="#">Pengajuan Data</a></li>
+					<li class="breadcrumb-item"><a href="#">Pengajuan / Pengajuan</a></li>
 				</ol>
 			</div>
 		</div>
