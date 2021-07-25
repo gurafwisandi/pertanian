@@ -91,30 +91,39 @@
 												btn-sm"><?php echo $status_tanam?></a>
 										</td>
 										<td class="text-center" width="160px">
-											<!-- Koperasi -->
-												<?php if($data->tgl_perkiraan_panen AND $data->status_tanam == null){ ?>
-													<!-- push -->
-														<a href="<?=site_url('monev/push_tanam/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin Akan Push Penanaman')" class="btn btn-success btn-xs">
-															<i class="fa fa-check"></i> Push Penanaman
-														</a>
-													<!-- monev -->
-														<a href="<?=site_url('monev/input_monev/'.$data->pengajuan_id)?>" class="btn btn-primary btn-xs">
-															<i class="fa fa-edit"></i> Input Penanaman
-														</a>
-												<?php } ?>
-												
-												<?php if($data->push_tanam  AND $data->status_tanam != 'Selesai Panen'){ ?>
-													<?php if($data->flag_panen){ ?>
+												<?php if($this->session->userdata("level") == '2'){ ?>
+													<!-- admin -->
+													<?php if($data->tgl_perkiraan_panen AND $data->status_tanam == null){ ?>
 														<!-- push -->
-															<a href="<?=site_url('monev/push_panen/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin Akan Push Penanaman')" class="btn btn-success btn-xs">
-																<i class="fa fa-check"></i> Push Panen
+															<a href="<?=site_url('monev/push_tanam/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin Akan Push Penanaman')" class="btn btn-success btn-xs">
+																<i class="fa fa-check"></i> Push
 															</a>
 													<?php } ?>
-													<!-- monev -->
-														<a href="<?=site_url('monev/input_panen/'.$data->pengajuan_id)?>" class="btn btn-primary btn-xs">
-															<i class="fa fa-edit"></i> Input Panen
-														</a>
+													<?php if($data->status_tanam == null){ ?>
+														<!-- monev -->
+															<a href="<?=site_url('monev/input_monev/'.$data->pengajuan_id)?>" class="btn btn-primary btn-xs">
+																<i class="fa fa-edit"></i> Penanaman
+															</a>
+													<?php } ?>
 												<?php } ?>
+												
+												<?php if($this->session->userdata("level") == '3'){ ?>
+													<?php if($data->push_tanam  AND $data->status_tanam != 'Selesai Panen'){ ?>
+														<?php if($data->flag_panen){ ?>
+															<!-- push -->
+																<a href="<?=site_url('monev/push_panen/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin Akan Push Penanaman')" class="btn btn-success btn-xs">
+																	<i class="fa fa-check"></i> Push
+																</a>
+														<?php } ?>
+														<!-- monev -->
+															<a href="<?=site_url('monev/input_panen/'.$data->pengajuan_id)?>" class="btn btn-primary btn-xs">
+																<i class="fa fa-edit"></i> Panen
+															</a>
+													<?php } ?>
+												<?php } ?>
+												<a href="<?=site_url('monev/view_panen/'.$data->pengajuan_id)?>" class="btn btn-info btn-xs">
+													<i class="fa fa-eye"></i> Lihat
+												</a>
 										</td>
 									</tr>
 								<?php } ?>

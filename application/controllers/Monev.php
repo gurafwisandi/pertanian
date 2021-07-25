@@ -95,4 +95,27 @@ class Monev extends CI_Controller
 		$this->session->set_flashdata('message','Push Penanaman Berhasil');
 		redirect('/monev/');
 	}
+	public function view_panen($id_pengajuan)
+	{
+		$pengajuan = $this->pengajuan_m->get($id_pengajuan)->result();
+		$petani = $this->pengajuan_m->get_petani($id_pengajuan)->result();
+		$item = $this->pengajuan_m->get_item($id_pengajuan)->result();
+		$query_jenis = $this->jenis_m->get();
+		$jenis[null] = '- Pilih -';
+		foreach ($query_jenis->result() as $jns) {
+		$jenis[$jns->jenis_id] = $jns->kebutuhan;
+		}
+		$tanam = $this->monev_m->tanam($id_pengajuan)->result();
+		$panen = $this->monev_m->panen($id_pengajuan)->result();
+		$data = array (
+			'page' => 'add',
+			'row' => $pengajuan,
+			'petani' => $petani,
+			'item' => $item,
+			'tanam' => $tanam,
+			'panen' => $panen,
+			'jenis' => $jenis,'selectedjenis' =>null,
+		);
+		$this->template->load('template', 'monev/view_panen',$data);
+	}
 }

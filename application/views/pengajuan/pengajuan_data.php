@@ -107,65 +107,71 @@
 												btn-sm"><?php echo $data->status_proposal?></a>
 										</td>
 										<td class="text-center" width="160px">
-											<!-- Admin -->
-												<!-- push -->
-												<?php if($data->status_proposal == 'Approve Administrasi'){ ?>
-													<a href="<?=site_url('pengajuan/push_admin/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin Akan Push Pengajuan')" class="btn btn-success btn-xs">
-														<i class="fa fa-check"></i> Push A
-													</a>
-												<?php } ?>
-												<!-- verifikasi -->
-												<?php if(($data->status_proposal == 'Proses Verifikasi' OR $data->status_proposal == 'Approve Administrasi' OR $data->status_proposal == 'Kembalikan Administrasi') AND $data->push_pengajuan == '1'){ ?>
-													<a href="<?=site_url('pengajuan/verifikasi/'.$data->pengajuan_id)?>" class="btn btn-primary btn-xs">
-														<i class="fa fa-edit"></i> Verifikasi
-													</a>
-												<?php } ?>
-												<!-- push -->
-												<?php if($data->tgl_seminar_kirim_bantuan AND $data->status_proposal != 'Proses Serah Terima' AND $data->status_proposal != 'Done pengajuan'){ ?>
-													<a href="<?=site_url('pengajuan/push_seminar/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin Akan Push Pengajuan')" class="btn btn-success btn-xs">
-														<i class="fa fa-check"></i> Push S
-													</a>
-												<?php } ?>
-												<!-- penyaluran -->
-												<?php if($data->status_proposal == 'Proses Penyaluran'){ ?>
-													<a href="<?=site_url('pengajuan/seminar/'.$data->pengajuan_id)?>" class="btn btn-primary btn-xs">
-														<i class="fa fa-edit"></i> Penjadwalan
-													</a>
-												<?php } ?>
-												<!-- serah terima bantuan -->
-												<?php if($data->status_proposal == 'Proses Serah Terima'){ ?>
-													<a href="<?=site_url('pengajuan/serah_terima/'.$data->pengajuan_id)?>" class="btn btn-primary btn-xs">
-														<i class="fa fa-edit"></i> Serah Terima
-													</a>
-												<?php } ?>
-												<!-- push -->
-												<?php if($data->jml_doc > 0 AND $data->status_proposal == 'Proses Serah Terima'){ ?>
-													<a href="<?=site_url('pengajuan/push_serah_terima/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin Akan Push Pengajuan')" class="btn btn-success btn-xs">
-														<i class="fa fa-check"></i> Push ST
-													</a>
-												<?php } ?>
-											<!-- Admin -->
-
-											<!-- bupati -->
-												<!-- verifikasi -->
-												<?php if($data->status_proposal == 'Proses Verifikasi Bupati' OR $data->status_proposal == 'Approve Bupati'){ ?>
-													<a href="<?=site_url('pengajuan/verifikasi_bupati/'.$data->pengajuan_id)?>" class="btn btn-primary btn-xs">
-														<i class="fa fa-edit"></i> Verifikasi B
-													</a>
-												<?php } ?>
-												<!-- push -->
-												<?php if($data->status_proposal == 'Approve Bupati'){ ?>
-													<a href="<?=site_url('pengajuan/push_bupati/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin Akan Push Pengajuan')" class="btn btn-success btn-xs">
-														<i class="fa fa-check"></i> Push B
-													</a>
-												<?php } ?>
-											<!-- bupati -->
+											<?php if($this->session->userdata("level") == '3'){ ?>
+												<!-- Admin -->
+													<!-- push -->
+													<?php if($data->status_proposal == 'Approve Administrasi'){ ?>
+														<a href="<?=site_url('pengajuan/push_admin/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin Akan Push Pengajuan')" class="btn btn-success btn-xs">
+															<i class="fa fa-check"></i> Push
+														</a>
+													<?php } ?>
+													<!-- verifikasi -->
+													<?php if(($data->status_proposal == 'Proses Verifikasi' OR $data->status_proposal == 'Approve Administrasi' OR $data->status_proposal == 'Kembalikan Administrasi') AND $data->push_pengajuan == '1'){ ?>
+														<a href="<?=site_url('pengajuan/verifikasi/'.$data->pengajuan_id)?>" class="btn btn-primary btn-xs">
+															<i class="fa fa-edit"></i> Verifikasi
+														</a>
+													<?php } ?>
+													<!-- push -->
+													<?php if($data->tgl_seminar_kirim_bantuan AND $data->status_proposal != 'Proses Serah Terima' AND $data->status_proposal != 'Done pengajuan'){ ?>
+														<a href="<?=site_url('pengajuan/push_seminar/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin Akan Push Pengajuan')" class="btn btn-success btn-xs">
+															<i class="fa fa-check"></i> Push
+														</a>
+													<?php } ?>
+													<!-- penyaluran -->
+													<?php if($data->status_proposal == 'Proses Penyaluran'){ ?>
+														<a href="<?=site_url('pengajuan/seminar/'.$data->pengajuan_id)?>" class="btn btn-primary btn-xs">
+															<i class="fa fa-edit"></i> Penjadwalan
+														</a>
+													<?php } ?>
+													<!-- push -->
+													<?php if($data->jml_doc > 0 AND $data->status_proposal == 'Proses Serah Terima'){ ?>
+														<a href="<?=site_url('pengajuan/push_serah_terima/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin Akan Push Pengajuan')" class="btn btn-success btn-xs">
+															<i class="fa fa-check"></i> Push
+														</a>
+													<?php } ?>
+													<!-- serah terima bantuan -->
+													<?php if($data->status_proposal == 'Proses Serah Terima'){ ?>
+														<a href="<?=site_url('pengajuan/serah_terima/'.$data->pengajuan_id)?>" class="btn btn-primary btn-xs">
+															<i class="fa fa-edit"></i> Serah Terima
+														</a>
+													<?php } ?>
+												<!-- Admin -->
+											<?php } ?>
+											
+											<?php if($this->session->userdata("level") == '1'){ ?>
+												<!-- bupati -->
+													<!-- push -->
+													<?php if($data->status_proposal == 'Approve Bupati'){ ?>
+														<a href="<?=site_url('pengajuan/push_bupati/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin Akan Push Pengajuan')" class="btn btn-success btn-xs">
+															<i class="fa fa-check"></i> Push
+														</a>
+													<?php } ?>
+												<!-- bupati -->
+													<!-- verifikasi -->
+													<?php if($data->status_proposal == 'Proses Verifikasi Bupati' OR $data->status_proposal == 'Approve Bupati'){ ?>
+														<a href="<?=site_url('pengajuan/verifikasi_bupati/'.$data->pengajuan_id)?>" class="btn btn-primary btn-xs">
+															<i class="fa fa-edit"></i> Verifikasi
+														</a>
+													<?php } ?>
+											<?php } ?>
 
 											<!-- koperasi -->
-											<?php if($data->status_proposal == 'Selesai Pengajuan'){ ?>
-												<a href="<?=site_url('pengajuan/push/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin Akan Push Pengajuan')" class="btn btn-success btn-xs">
-													<i class="fa fa-check"></i> Push
-												</a>
+											<?php if($this->session->userdata("level") == '2'){ ?>
+												<?php if($data->status_proposal == 'Selesai Pengajuan'){ ?>
+													<a href="<?=site_url('pengajuan/push/'.$data->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin Akan Push Pengajuan')" class="btn btn-success btn-xs">
+														<i class="fa fa-check"></i> Push
+													</a>
+												<?php } ?>
 											<?php } ?>
 											<?php if($data->status_proposal == 'Selesai Pengajuan' OR $data->status_proposal == 'Kembalikan Pengajuan' OR $data->status_proposal == 'Proses Pengajuan'){ ?>
 												<a href="<?=site_url('pengajuan/add/'.$data->pengajuan_id)?>" class="btn btn-primary btn-xs">
@@ -176,6 +182,9 @@
 												</a>
 											<?php } ?>
 											<!-- koperasi -->
+											<a href="<?=site_url('pengajuan/view/'.$data->pengajuan_id)?>" class="btn btn-info btn-xs">
+												<i class="fa fa-eye"></i> lihat
+											</a>
 										</td>
 									</tr>
 								<?php } ?>

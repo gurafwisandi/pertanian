@@ -25,6 +25,10 @@
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 						<h5><i class="icon fas fa-check"></i><?php echo $this->session->flashdata('message');?></h5>
 					</div>
+				<?php }elseif($this->session->flashdata('message') == 'Simpan Data Berhasil'){ ?>
+					<div class="alert alert-success alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						<h5><i class="icon fas fa-check"></i><?php echo $this->session->flashdata('message');?></h5>
 				<?php }elseif($this->session->flashdata('message') == 'Update Data Berhasil'){ ?>
 					<div class="alert alert-success alert-dismissible">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -38,7 +42,7 @@
 				<?php } ?>
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Data user</h3>
+						<h3 class="card-title">Data User Dinas</h3>
 							<ol class="breadcrumb float-sm-right">
 								<a href="<?=base_url('user/add')?>"><li class="fa fa-user-plus">Add</li></a>
 							</ol>

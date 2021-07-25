@@ -385,4 +385,24 @@ class Pengajuan extends CI_Controller
 		$this->pengajuan_m->delete_item($id);
 		redirect('/pengajuan/add/'.$id_pengajuan);
 	}
+
+	public function view($id_pengajuan)
+	{
+		$pengajuan = $this->pengajuan_m->get($id_pengajuan)->result();
+		$petani = $this->pengajuan_m->get_petani($id_pengajuan)->result();
+		$item = $this->pengajuan_m->get_item($id_pengajuan)->result();
+		$query_jenis = $this->jenis_m->get();
+		$jenis[null] = '- Pilih -';
+		foreach ($query_jenis->result() as $jns) {
+		$jenis[$jns->jenis_id] = $jns->kebutuhan;
+		}
+		$data = array (
+			'page' => 'add',
+			'row' => $pengajuan,
+			'petani' => $petani,
+			'item' => $item,
+			'jenis' => $jenis,'selectedjenis' =>null,
+		);
+		$this->template->load('template', 'pengajuan/view_pengajuan',$data);
+	}
 }

@@ -4,6 +4,8 @@ class Monev_m extends CI_Model
 {
 	public function list($id = null)
 	{
+		$this->db->select('pengajuan.pengajuan_id, koperasi.koperasi, tanam.tgl_tanam, tanam.tgl_perkiraan_panen,
+		tanam.status_tanam, tanam.flag_panen, tanam.push_tanam');
 		$this->db->from('pengajuan');
 		$this->db->join('koperasi', 'koperasi.koperasi_id=pengajuan.koperasi_id');
 		$this->db->join('jenis', 'jenis.jenis_id=pengajuan.jenis_id','left');

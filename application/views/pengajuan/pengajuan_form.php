@@ -171,7 +171,7 @@
 					<div class="modal-header no-bd">
 						<h5 class="modal-title">
 							<span class="fw-mediumbold">
-							Pengajuan <?php echo $row[0]->pengajuan_id;?></span> 
+							Pengajuan - <?php echo $row[0]->pengajuan_id;?></span> 
 						</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
@@ -272,7 +272,7 @@
 					<div class="modal-header no-bd">
 						<h5 class="modal-title">
 							<span class="fw-mediumbold">
-							Pengajuan <?php echo $row[0]->pengajuan_id;?></span> 
+							Pengajuan - <?php echo $row[0]->pengajuan_id;?></span> 
 						</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
@@ -285,13 +285,13 @@
 									<div class="col-sm-12">
 											<div class="form-group form-floating-label">
 												<label for="selectFloatingLabel2" class="placeholder">Nama Item</label>
-												<input type="text" name="item" class="form-control" value="">
+												<input type="text" autocomplete="off" name="item" class="form-control" value="">
 											</div>
 									</div>
 									<div class="col-sm-12">
 											<div class="form-group form-floating-label">
 												<label for="selectFloatingLabel2" class="placeholder">Qty</label>
-												<input type="number" min='1' name="qty" class="form-control" value="">
+												<input type="number" autocomplete="off" min='1' name="qty" class="form-control" value="">
 											</div>
 									</div>
 									<div class="col-sm-12">

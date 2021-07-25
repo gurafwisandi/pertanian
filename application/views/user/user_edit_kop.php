@@ -1,4 +1,4 @@
-    <section class="content-header">
+<section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-md-6">
@@ -28,33 +28,6 @@
             <input type="hidden" class="form-control" name="koperasi_id" value="<?=$row->koperasi_id?>">
             <div class="card-body">
               <div class="form-group">
-                <label for="exampleInputEmail1">Nip</label>
-                <input autocomplete="off" type="text" class="form-control" name="nip" required value="<?=$row->nip?>" <?php if($page == 'approve_dinas'){ echo "readonly"; }?> placeholder="Nip">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Nama</label>
-                <input autocomplete="off" type="text" class="form-control" name="ketua" required value="<?=$row->ketua?>" <?php if($page == 'approve_dinas'){ echo "readonly"; }?> placeholder="<?php if($page == 'dinas'){ echo "Nama"; }else{ echo "Ketua Koperasi"; } ?>">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Jabatan</label>
-                <input autocomplete="off" type="text" class="form-control" name="jabatan" required value="<?=$row->jabatan?>" <?php if($page == 'approve_dinas'){ echo "readonly"; }?> placeholder="Jabatan">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Alamat</label>
-                <input autocomplete="off" type="text" class="form-control" name="alamat" required value="<?=$row->alamat?>" <?php if($page == 'approve_dinas'){ echo "readonly"; }?> placeholder="Alamat">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Telpon</label>
-                <input autocomplete="off" type="text" class="form-control" name="telpon" required value="<?=$row->telpon?>" <?php if($page == 'approve_dinas'){ echo "readonly"; }?> placeholder="Telpon">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Foto</label>
-                <input type="file" class="form-control" name="file" <?php if($page == 'approve_dinas'){ echo "disabled"; }else{ if($row->foto){ }else{ echo "required";} }?> placeholder="Telpon">
-                <?php if($row->foto){ ?>
-                  <a class="btn btn-warning btn-xs" data-toggle="modal" data-target="#doc"></i> Lihat Dokumen</a>
-                <?php } ?>
-              </div>
-              <div class="form-group">
                 <label for="exampleInputPassword1">email</label>
                 <input autocomplete="off" type="email" class="form-control" name="email" required value="<?=$row->email?>" <?php if($page == 'approve_dinas'){ echo "readonly"; }?> placeholder="Email">
               </div>
@@ -62,14 +35,6 @@
                 <label for="exampleInputPassword1">Password</label>
                 <input type="hidden" class="form-control" name="password_old" value="<?=$row->password?>">
                 <input autocomplete="off" type="password" class="form-control" name="password" required value="<?=$row->password?>" <?php if($page == 'approve_dinas'){ echo "readonly"; }?> placeholder="password">
-              </div>
-              <div class="form-group">
-                <label for="selectFloatingLabel2" class="placeholder">Jenis Akun</label>
-                <select name="level" class="form-control input-solid" id="selectFloatingLabel2" <?php if($page == 'approve_dinas'){ echo "disabled"; }else{ echo "required";}?> >
-                  <option value="">&nbsp;</option>
-                  <option value="1" <?php if($row->level == '1'){ echo "selected"; }?>>Dinas</option>
-                  <option value="3" <?php if($row->level == '3'){ echo "selected"; }?>>Admin</option>
-                </select>  
               </div>
               <div class="form-group">
                 <label for="selectFloatingLabel2" class="placeholder">Status</label>

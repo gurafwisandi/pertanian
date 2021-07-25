@@ -38,7 +38,7 @@
 				<?php } ?>
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Data user</h3>
+						<h3 class="card-title">Data user Koperasi</h3>
 							<!-- <ol class="breadcrumb float-sm-right">
 								<a href="<?=base_url('user/add')?>"><li class="fa fa-user-plus">Add</li></a>
 							</ol> -->

@@ -77,7 +77,7 @@
 									</a>
 								</td>
 								<td>
-										<a href="<?=site_url('koperasi/edit/'.$data->koperasi_id)?>"  class="btn btn-primary btn-xs">
+										<a href="<?=site_url('koperasi/edit/'.$data->koperasi_id.'/'.$data->level)?>"  class="btn btn-primary btn-xs">
 										<i class="fa fa-edit"></i> Edit</a>
 										<!-- <a href="<?=site_url('koperasi/del/'.$data->koperasi_id)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-danger btn-xs">
 										<i class="fa fa-trash"></i> Delete</a> -->
