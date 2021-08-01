@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50724
 File Encoding         : 65001
 
-Date: 2021-07-25 11:40:24
+Date: 2021-08-01 10:34:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -61,17 +61,18 @@ INSERT INTO `hasil_panen` VALUES ('4', '10', '2021-07-31', '500', 'Gagal');
 -- ----------------------------
 DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
-  `id_item` int(11) NOT NULL,
+  `id_item` int(11) NOT NULL AUTO_INCREMENT,
   `nama_item` varchar(128) DEFAULT NULL,
   `id_vendor` int(11) DEFAULT NULL,
   `keterangan` varchar(258) DEFAULT NULL,
   PRIMARY KEY (`id_item`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of item
 -- ----------------------------
 INSERT INTO `item` VALUES ('1', 'Pacul', '1', 'Pacul full besi');
+INSERT INTO `item` VALUES ('2', 'max', '1', 'max');
 
 -- ----------------------------
 -- Table structure for `item_pengajuan`
@@ -85,13 +86,14 @@ CREATE TABLE `item_pengajuan` (
   `keterangan` varchar(255) DEFAULT NULL,
   `id_item` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of item_pengajuan
 -- ----------------------------
-INSERT INTO `item_pengajuan` VALUES ('2', '2107120001', 'item', '2', 'xxx', '1');
-INSERT INTO `item_pengajuan` VALUES ('3', '2107140001', '1', '2', '1xx', '1');
+INSERT INTO `item_pengajuan` VALUES ('2', '2107120001', 'item a', '2', 'xxx', '1');
+INSERT INTO `item_pengajuan` VALUES ('3', '2107140001', 'item ax', '2', '1xx', '1');
+INSERT INTO `item_pengajuan` VALUES ('4', '2107140001', 'item bx', '2', 'xxx', '2');
 
 -- ----------------------------
 -- Table structure for `jenis`
@@ -132,14 +134,18 @@ CREATE TABLE `koperasi` (
   `nip` varchar(64) DEFAULT NULL,
   `jabatan` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`koperasi_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of koperasi
 -- ----------------------------
 INSERT INTO `koperasi` VALUES ('1', 'KP. BAHAGIA SLALUx', 'sandix', 'porisx', '08381111', '210725103855_1.png', '1', '2021-07-07 22:52:45', '2021-07-25 10:42:58', null, null);
 INSERT INTO `koperasi` VALUES ('3', 'Dinas', 'rudi', 'jl', '0812', null, '3', '2021-07-07 22:53:59', null, null, null);
-INSERT INTO `koperasi` VALUES ('15', 'Admin', '3', '3', '3', '210725070736_15.png', '17', '2021-07-25 06:43:00', '2021-07-25 10:25:57', '3', '3');
+INSERT INTO `koperasi` VALUES ('15', 'Admin', '3', '3', '3', '210725070736_15.png', '17', '2021-07-25 06:43:00', '2021-07-30 05:41:52', '3', '3');
+INSERT INTO `koperasi` VALUES ('16', 'test 2_10', 'test 2_10', 'test 2_10', '123123', null, '18', '2021-07-29 14:11:03', null, null, null);
+INSERT INTO `koperasi` VALUES ('17', 'Dinas', '12', '12', '12', '210730053656_17.jpg', '19', '2021-07-30 05:36:56', null, '12', '12');
+INSERT INTO `koperasi` VALUES ('18', 'Dinas', '3', '3', '3', '210730053823_18.jpg', '20', '2021-07-30 05:38:23', null, '3', '3');
+INSERT INTO `koperasi` VALUES ('19', 'approve kop', 'approve kop', 'approve kop', 'approve kop', null, '21', '2021-07-30 05:50:02', null, null, null);
 
 -- ----------------------------
 -- Table structure for `penanaman`
@@ -206,6 +212,8 @@ CREATE TABLE `pengajuan` (
 INSERT INTO `pengajuan` VALUES ('2107120001', '1', '1', '2021-07-12', 'xxxxxx', '3', '210712113408_2107120001.jpeg', 'Done pengajuan', null, null, '1', '2021-07-12 23:32:45', '2021-07-13 00:30:37', '210713123056_bb_2107120001.jpeg', '1', '2021-07-13 00:30:56', '1', null, '210713123119_bbb_2107120001.jpeg', '1', '2021-07-14 11:59:24', '1', '2021-07-14', 'xxxx', '1', null, '3');
 INSERT INTO `pengajuan` VALUES ('2107140001', '1', '1', '2021-07-14', 'xx', '4', '210725105129_2107140001.png', 'Done pengajuan', null, null, '1', '2021-07-14 21:01:38', '2021-07-25 10:52:43', '210725110327_bb_2107140001.pdf', '17', '2021-07-25 11:03:27', '1', null, '210725111304_bbb_2107140001.pdf', '3', '2021-07-25 11:13:09', '1', '2021-07-20', '', '1', null, '2');
 INSERT INTO `pengajuan` VALUES ('2107210001', '1', '1', '2021-07-21', '', '3', '210725110440_2107210001.pdf', 'Proses Pengajuan', null, null, null, '2021-07-21 10:00:31', '2021-07-25 11:04:40', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `pengajuan` VALUES ('2107300001', '15', '17', '2021-07-30', '', null, '', 'Proses Pengajuan', null, null, null, '2021-07-30 05:50:57', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `pengajuan` VALUES ('2107300002', '15', '17', '2021-07-30', '', null, '', 'Proses Pengajuan', null, null, null, '2021-07-30 05:51:10', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `petani`
@@ -287,14 +295,18 @@ CREATE TABLE `user` (
   `created` datetime DEFAULT NULL,
   `update` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'sandi@gmail.com', '8cb2237d0679ca88db6464eac60da96345513964', '2', '1', '2021-07-07 22:52:45', '2021-07-25 10:29:56');
+INSERT INTO `user` VALUES ('1', 'koperasi1@gmail.com', '8cb2237d0679ca88db6464eac60da96345513964', '2', '1', '2021-07-07 22:52:45', '2021-07-30 05:42:04');
 INSERT INTO `user` VALUES ('3', 'dinas@gmail.com', '8cb2237d0679ca88db6464eac60da96345513964', '1', '1', '2021-07-07 22:53:59', '2021-07-08 00:41:20');
-INSERT INTO `user` VALUES ('17', 'admin@gmail.com', '8cb2237d0679ca88db6464eac60da96345513964', '3', '1', '2021-07-25 06:43:00', '2021-07-25 10:25:57');
+INSERT INTO `user` VALUES ('17', 'admin@gmail.com', '8cb2237d0679ca88db6464eac60da96345513964', '3', '1', '2021-07-25 06:43:00', '2021-07-30 05:41:52');
+INSERT INTO `user` VALUES ('18', 'koperasi2@gmail.com', '8cb2237d0679ca88db6464eac60da96345513964', '2', '1', '2021-07-29 14:11:03', '2021-07-30 05:48:09');
+INSERT INTO `user` VALUES ('19', '12@gmail.com', '8cb2237d0679ca88db6464eac60da96345513964', '1', '1', '2021-07-30 05:36:56', '2021-07-30 05:39:15');
+INSERT INTO `user` VALUES ('20', '3@gmail.com', '8cb2237d0679ca88db6464eac60da96345513964', '1', null, '2021-07-30 05:38:23', null);
+INSERT INTO `user` VALUES ('21', 'approvekop@gmail.com', '8cb2237d0679ca88db6464eac60da96345513964', '2', null, '2021-07-30 05:50:02', null);
 
 -- ----------------------------
 -- Table structure for `vendor`

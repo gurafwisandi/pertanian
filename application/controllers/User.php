@@ -19,6 +19,8 @@ class User extends CI_Controller
 	{
 		$user = new stdClass();
 		$user->user_id = null;
+		$user->koperasi_id = null;
+		$user->foto = null;
 		$user->koperasi = null;
 		$user->ketua = null;
 		$user->level = null;
@@ -65,7 +67,7 @@ class User extends CI_Controller
 				'page'=>'approve',
 				'row' =>$user,
 				);
-			$this->template->load('template','user/user_edit',$data);
+			$this->template->load('template','user/user_edit_kop',$data);
 		} else {
 			echo "<script>alert('Data Tidak Ditemukan');";
 			echo "window.location='".site_url('user')."';</script>";

@@ -29,12 +29,12 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="exampleInputPassword1">email</label>
-                <input autocomplete="off" type="email" class="form-control" name="email" required value="<?=$row->email?>" <?php if($page == 'approve_dinas'){ echo "readonly"; }?> placeholder="Email">
+                <input autocomplete="off" type="email" class="form-control" name="email" required value="<?=$row->email?>" <?php if($page == 'approve'){ echo "readonly"; }?> placeholder="Email">
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
                 <input type="hidden" class="form-control" name="password_old" value="<?=$row->password?>">
-                <input autocomplete="off" type="password" class="form-control" name="password" required value="<?=$row->password?>" <?php if($page == 'approve_dinas'){ echo "readonly"; }?> placeholder="password">
+                <input autocomplete="off" type="password" class="form-control" name="password" required <?php if($page == 'approve'){ echo 'readonly'; } ?> value="<?=$row->password?>" placeholder="password">
               </div>
               <div class="form-group">
                 <label for="selectFloatingLabel2" class="placeholder">Status</label>

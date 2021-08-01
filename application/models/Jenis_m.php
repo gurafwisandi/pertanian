@@ -35,8 +35,8 @@ class Jenis_m extends CI_Model
 	}
 
 	public function del($id)
-									{
-										$this->db->where('jenis_id', $id);
-										$this->db->delete('jenis');
-									}
+	{
+		$this->db->where('jenis_id', $id);
+		$this->db->delete('jenis');
+	}
 }

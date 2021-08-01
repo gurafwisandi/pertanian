@@ -75,8 +75,8 @@
                 <label for="selectFloatingLabel2" class="placeholder">Status</label>
                 <select name="status" class="form-control input-solid" id="selectFloatingLabel2" required>
                   <option value="">&nbsp;</option>
-                  <option value="1" <?php if($row->status == '1'){ echo "selected"; }?>>Aktif</option>
-                  <option value="2" <?php if($row->status == '2'){ echo "selected"; }?>>Tidak Aktif</option>
+                  <option value="1" <?php if(isset($row->status) AND $row->status == '1'){ echo "selected"; }?>>Aktif</option>
+                  <option value="2" <?php if(isset($row->status) AND $row->status == '2'){ echo "selected"; }?>>Tidak Aktif</option>
                 </select>  
               </div>
               <div class="card-footer">
@@ -85,7 +85,6 @@
           </form>
         </div>
     </section>
-</div>
 
 <div class="modal fade" id="doc" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" role="document">

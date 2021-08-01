@@ -420,11 +420,29 @@
 	<form action="<?=site_url('pengajuan/serah_terima/'.$row[0]->pengajuan_id)?>" method="POST" enctype="multipart/form-data" >
 		<div class="card card-danger">
 			<div class="card-header">
-				<h3 class="card-title">Dokumentasi Serah Terima</h3>
+				<h3 class="card-title">Serah Terima</h3>
 			</div>
 			<input type="hidden" name="pengajuan_id" value="<?php echo $row[0]->pengajuan_id?>">
 			<div class="card-body">
         <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label>Lokasi</label>
+              <textarea class="form-control" name="lokasi" id="lokasi" rows="3" placeholder="Lokasi"><?php #echo $row[0]->perihal_proposal;?></textarea>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group">
+              <label>Tgl Seminar dan Penyerahan Bantuan</label>
+              <input type="date" class="form-control" name="tgl_seminar_kirim_bantuan" value="<?php echo $row[0]->tgl_seminar_kirim_bantuan; ?>">
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group">
+              <label>Keterangan</label>
+              <textarea class="form-control" name="keterangan_hasil_pengajuan" id="lokasi" rows="3" placeholder="Keterangan"><?php #echo $row[0]->perihal_proposal;?></textarea>
+            </div>
+          </div>
           <div class="col-3">
             <div class="form-group">
               <label>Upload Dokumentasi</label>

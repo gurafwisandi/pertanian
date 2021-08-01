@@ -7,6 +7,9 @@ class Pengajuan_m extends CI_Model
 		$this->db->from('pengajuan');
 		$this->db->join('koperasi', 'koperasi.koperasi_id=pengajuan.koperasi_id');
 		$this->db->join('jenis', 'jenis.jenis_id=pengajuan.jenis_id','left');
+		if($this->session->userdata("level") == '2'){
+			$this->db->where('pengajuan.koperasi_id', $this->session->userdata("koperasi_id"));
+		}
 		$query = $this->db->get();
 		return $query;
 	}

@@ -11,6 +11,9 @@ class Monev_m extends CI_Model
 		$this->db->join('jenis', 'jenis.jenis_id=pengajuan.jenis_id','left');
 		$this->db->join('tanam', 'tanam.pengajuan_id=pengajuan.pengajuan_id','left');
     $this->db->where('status_proposal','Done Pengajuan');
+		if($this->session->userdata("level") == '2'){
+			$this->db->where('pengajuan.koperasi_id', $this->session->userdata("koperasi_id"));
+		}
 		$query = $this->db->get();
 		return $query;
 	}

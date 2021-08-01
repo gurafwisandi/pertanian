@@ -51,146 +51,145 @@
           </a>
         </li>
         <?php if($this->session->userdata("level") != '2'){ ?>
-        <li class="nav-item
-          <?php 
-            if( $this->uri->segment('1') == 'user' ) { echo 'menu-open'; }
-            if( $this->uri->segment('1') == 'koperasi' ) { echo 'menu-open'; }
-            if( $this->uri->segment('1') == 'petani' ) { echo 'menu-open'; }
-            if( $this->uri->segment('1') == 'penanaman' ) { echo 'menu-open';}
-            if( $this->uri->segment('1') == 'jenis' ) { echo 'menu-open';}
-            if( $this->uri->segment('1') == 'vendor' ) { echo 'menu-open';}
-          ?> ">
-          <a href="#" class="nav-link 
-            <?php  
-            if( 
-              $this->uri->segment('1') == 'user' OR
-              $this->uri->segment('1') == 'koperasi' OR
-              $this->uri->segment('1') == 'petani' OR
-              $this->uri->segment('1') == 'penanaman' OR
-              $this->uri->segment('1') == 'vendor' OR
-              $this->uri->segment('1') == 'jenis'
-              ) 
-            { echo 'active'; } ?>
-            ">
-            <i class="nav-icon fas fa-th"></i>
-            <p>Master<i class="fas fa-angle-left right"></i></p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item 
-              <?php 
-                if( $this->uri->segment('1') == 'user' ) { echo 'menu-open'; }
-              ?> ">
-              <a href="#" class="nav-link
+          <li class="nav-item
+            <?php 
+              if( $this->uri->segment('1') == 'user' ) { echo 'menu-open'; }
+              if( $this->uri->segment('1') == 'koperasi' ) { echo 'menu-open'; }
+              if( $this->uri->segment('1') == 'petani' ) { echo 'menu-open'; }
+              if( $this->uri->segment('1') == 'penanaman' ) { echo 'menu-open';}
+              if( $this->uri->segment('1') == 'jenis' ) { echo 'menu-open';}
+              if( $this->uri->segment('1') == 'vendor' ) { echo 'menu-open';}
+            ?> ">
+            <a href="#" class="nav-link 
+              <?php  
+              if( 
+                $this->uri->segment('1') == 'user' OR
+                $this->uri->segment('1') == 'koperasi' OR
+                $this->uri->segment('1') == 'petani' OR
+                $this->uri->segment('1') == 'penanaman' OR
+                $this->uri->segment('1') == 'vendor' OR
+                $this->uri->segment('1') == 'jenis'
+                ) 
+              { echo 'active'; } ?>
+              ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>Master<i class="fas fa-angle-left right"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item 
                 <?php 
-                  if( $this->uri->segment('1') == 'user' )
-                  {
-                    echo 'active';
-                  }
-                ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>
-                  User
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="<?=base_url('user')?>" class="nav-link
-                    <?php 
-                      if( $this->uri->segment('1') == 'user' 
-                      AND 
-                      ($this->uri->segment('2') != 'dinas' AND $this->uri->segment('2') != 'edit_dinas') 
-                      AND ($this->uri->segment('2') != 'add'))
-                      {
-                        echo 'active';
-                      }
-                    ?>">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>
-                      User Koperasi
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a href="<?=base_url('user/dinas')?>" class="nav-link
-                    <?php 
-                      if( ($this->uri->segment('1') == 'user'
-                      AND ($this->uri->segment('2') == 'dinas' OR $this->uri->segment('2') == 'add' OR $this->uri->segment('2') == 'edit_dinas' ))
-                      AND ($this->uri->segment('2') != 'edit') )
-                      {
-                        echo 'active';
-                      }
-                    ?>">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>
-                      User Dinas
-                    </p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="<?=base_url('koperasi')?>" class="nav-link
-                <?php 
-                  if( $this->uri->segment('1') == 'koperasi' )
-                  {
-                    echo 'active';
-                  }
-                ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Instansi</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?=base_url('petani')?>" class="nav-link
-                <?php 
-                  if( $this->uri->segment('1') == 'petani' )
-                  {
-                    echo 'active';
-                  }
-                ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Petani</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?=base_url('penanaman')?>" class="nav-link
-                <?php 
-                  if( $this->uri->segment('1') == 'penanaman' )
-                  {
-                    echo 'active';
-                  }
-                ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Penanaman</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?=base_url('jenis')?>" class="nav-link
-                <?php 
-                  if( $this->uri->segment('1') == 'jenis' )
-                  {
-                    echo 'active';
-                  }
-                ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Jenis Alat Pertanian</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?=base_url('vendor')?>" class="nav-link
-                <?php 
-                  if( $this->uri->segment('1') == 'vendor' )
-                  {
-                    echo 'active';
-                  }
-                ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Vendor</p>
-              </a>
-            </li>
-          </ul>
-        </li>
+                  if( $this->uri->segment('1') == 'user' ) { echo 'menu-open'; }
+                ?> ">
+                <a href="#" class="nav-link
+                  <?php 
+                    if( $this->uri->segment('1') == 'user' )
+                    {
+                      echo 'active';
+                    }
+                  ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>
+                    User
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="<?=base_url('user')?>" class="nav-link
+                      <?php 
+                        if( $this->uri->segment('1') == 'user' AND 
+                        ($this->uri->segment('2') != 'dinas' AND $this->uri->segment('2') != 'edit_dinas') 
+                        AND $this->uri->segment('2') != 'approve_dinas' AND $this->uri->segment('2') != 'add')
+                        {
+                          echo 'active';
+                        }
+                      ?>">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>
+                        User Koperasi
+                      </p>
+                    </a>
+                  </li>
+                  <li class="nav-item ">
+                    <a href="<?=base_url('user/dinas')?>" class="nav-link
+                      <?php 
+                        if( ($this->uri->segment('1') == 'user'
+                        AND ($this->uri->segment('2') == 'approve_dinas' OR $this->uri->segment('2') == 'dinas' OR $this->uri->segment('2') == 'add' OR $this->uri->segment('2') == 'edit_dinas' ))
+                        AND ($this->uri->segment('2') != 'edit') )
+                        {
+                          echo 'active';
+                        }
+                      ?>">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>
+                        User Dinas
+                      </p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="<?=base_url('koperasi')?>" class="nav-link
+                  <?php 
+                    if( $this->uri->segment('1') == 'koperasi' )
+                    {
+                      echo 'active';
+                    }
+                  ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Instansi</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?=base_url('petani')?>" class="nav-link
+                  <?php 
+                    if( $this->uri->segment('1') == 'petani' )
+                    {
+                      echo 'active';
+                    }
+                  ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Petani</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?=base_url('penanaman')?>" class="nav-link
+                  <?php 
+                    if( $this->uri->segment('1') == 'penanaman' )
+                    {
+                      echo 'active';
+                    }
+                  ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Penanaman</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?=base_url('jenis')?>" class="nav-link
+                  <?php 
+                    if( $this->uri->segment('1') == 'jenis' )
+                    {
+                      echo 'active';
+                    }
+                  ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Jenis Alat Pertanian</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?=base_url('vendor')?>" class="nav-link
+                  <?php 
+                    if( $this->uri->segment('1') == 'vendor' )
+                    {
+                      echo 'active';
+                    }
+                  ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Vendor</p>
+                </a>
+              </li>
+            </ul>
+          </li>
         <?php } ?>
         <li class="nav-item
           <?php 
@@ -228,7 +227,7 @@
           </ul>
         </li>
         <li class="nav-item">
-            <a href="" class="nav-link">           
+            <a href="<?=base_url('laporan')?>" class="nav-link">           
             <i class="nav-icon fas fa-book"></i>
               <p>Laporan</p>
             </a>

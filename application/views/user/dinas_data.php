@@ -29,6 +29,7 @@
 					<div class="alert alert-success alert-dismissible">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 						<h5><i class="icon fas fa-check"></i><?php echo $this->session->flashdata('message');?></h5>
+					</div>
 				<?php }elseif($this->session->flashdata('message') == 'Update Data Berhasil'){ ?>
 					<div class="alert alert-success alert-dismissible">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
