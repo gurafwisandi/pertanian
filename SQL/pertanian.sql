@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50724
 File Encoding         : 65001
 
-Date: 2021-08-01 10:34:06
+Date: 2021-08-02 21:37:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,7 +24,7 @@ CREATE TABLE `doc_serah_terima` (
   `pengajuan_id` int(11) DEFAULT NULL,
   `filename` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of doc_serah_terima
@@ -34,6 +34,7 @@ INSERT INTO `doc_serah_terima` VALUES ('2', '2107120001', '210714012922_dst_2107
 INSERT INTO `doc_serah_terima` VALUES ('3', '2107120001', '210714020312_dst_2107120001.jpeg');
 INSERT INTO `doc_serah_terima` VALUES ('4', '2107140001', '210725111426_dst_2107140001.png');
 INSERT INTO `doc_serah_terima` VALUES ('5', '2107140001', '210725111429_dst_2107140001.png');
+INSERT INTO `doc_serah_terima` VALUES ('6', '2107210001', '210802014225_dst_2107210001.png');
 
 -- ----------------------------
 -- Table structure for `hasil_panen`
@@ -65,14 +66,16 @@ CREATE TABLE `item` (
   `nama_item` varchar(128) DEFAULT NULL,
   `id_vendor` int(11) DEFAULT NULL,
   `keterangan` varchar(258) DEFAULT NULL,
+  `harga` double DEFAULT NULL,
   PRIMARY KEY (`id_item`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of item
 -- ----------------------------
-INSERT INTO `item` VALUES ('1', 'Pacul', '1', 'Pacul full besi');
-INSERT INTO `item` VALUES ('2', 'max', '1', 'max');
+INSERT INTO `item` VALUES ('1', 'Pacul', '1', 'Pacul full besi', '300000');
+INSERT INTO `item` VALUES ('2', 'max', '1', 'max', '100000');
+INSERT INTO `item` VALUES ('3', 'palu', '1', 'palu beton', '200000');
 
 -- ----------------------------
 -- Table structure for `item_pengajuan`
@@ -85,15 +88,18 @@ CREATE TABLE `item_pengajuan` (
   `qty` int(5) DEFAULT NULL,
   `keterangan` varchar(255) DEFAULT NULL,
   `id_item` int(11) DEFAULT NULL,
+  `harga_item` double DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of item_pengajuan
 -- ----------------------------
-INSERT INTO `item_pengajuan` VALUES ('2', '2107120001', 'item a', '2', 'xxx', '1');
-INSERT INTO `item_pengajuan` VALUES ('3', '2107140001', 'item ax', '2', '1xx', '1');
-INSERT INTO `item_pengajuan` VALUES ('4', '2107140001', 'item bx', '2', 'xxx', '2');
+INSERT INTO `item_pengajuan` VALUES ('2', '2107120001', 'item a', '2', 'xxx', '1', '300000');
+INSERT INTO `item_pengajuan` VALUES ('3', '2107140001', 'item ax', '2', '1xx', '1', '300000');
+INSERT INTO `item_pengajuan` VALUES ('4', '2107140001', 'item bx', '2', 'xxx', '2', null);
+INSERT INTO `item_pengajuan` VALUES ('5', '2107210001', 'pacul beton', '2', '', '1', '300000');
+INSERT INTO `item_pengajuan` VALUES ('6', '2107210001', 'palu beton', '2', '', '3', '200000');
 
 -- ----------------------------
 -- Table structure for `jenis`
@@ -201,19 +207,22 @@ CREATE TABLE `pengajuan` (
   `tgl_seminar_kirim_bantuan` date DEFAULT NULL,
   `ket_seminar_kirim_bantuan` varchar(128) DEFAULT NULL,
   `push_seminar_kirim_bantuan` int(1) DEFAULT NULL,
-  `tgl_terima_bantuan` datetime DEFAULT NULL,
+  `tgl_terima_bantuan` date DEFAULT NULL,
   `jml_doc` double DEFAULT NULL,
+  `lokasi` varchar(128) DEFAULT NULL,
+  `keterangan_hasil_pengajuan` varchar(128) DEFAULT NULL,
+  `penanggung_jawab_dinas` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`pengajuan_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of pengajuan
 -- ----------------------------
-INSERT INTO `pengajuan` VALUES ('2107120001', '1', '1', '2021-07-12', 'xxxxxx', '3', '210712113408_2107120001.jpeg', 'Done pengajuan', null, null, '1', '2021-07-12 23:32:45', '2021-07-13 00:30:37', '210713123056_bb_2107120001.jpeg', '1', '2021-07-13 00:30:56', '1', null, '210713123119_bbb_2107120001.jpeg', '1', '2021-07-14 11:59:24', '1', '2021-07-14', 'xxxx', '1', null, '3');
-INSERT INTO `pengajuan` VALUES ('2107140001', '1', '1', '2021-07-14', 'xx', '4', '210725105129_2107140001.png', 'Done pengajuan', null, null, '1', '2021-07-14 21:01:38', '2021-07-25 10:52:43', '210725110327_bb_2107140001.pdf', '17', '2021-07-25 11:03:27', '1', null, '210725111304_bbb_2107140001.pdf', '3', '2021-07-25 11:13:09', '1', '2021-07-20', '', '1', null, '2');
-INSERT INTO `pengajuan` VALUES ('2107210001', '1', '1', '2021-07-21', '', '3', '210725110440_2107210001.pdf', 'Proses Pengajuan', null, null, null, '2021-07-21 10:00:31', '2021-07-25 11:04:40', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `pengajuan` VALUES ('2107300001', '15', '17', '2021-07-30', '', null, '', 'Proses Pengajuan', null, null, null, '2021-07-30 05:50:57', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `pengajuan` VALUES ('2107300002', '15', '17', '2021-07-30', '', null, '', 'Proses Pengajuan', null, null, null, '2021-07-30 05:51:10', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `pengajuan` VALUES ('2107120001', '1', '1', '2021-07-12', 'xxxxxx', '3', '210712113408_2107120001.jpeg', 'Done pengajuan', null, null, '1', '2021-07-12 23:32:45', '2021-07-13 00:30:37', '210713123056_bb_2107120001.jpeg', '1', '2021-07-13 00:30:56', '1', null, '210713123119_bbb_2107120001.jpeg', '1', '2021-07-14 11:59:24', '1', '2021-07-14', 'xxxx', '1', '2021-08-11', '3', null, 'ada perbaikan', 'sandi');
+INSERT INTO `pengajuan` VALUES ('2107140001', '1', '1', '2021-07-14', 'xx', '4', '210725105129_2107140001.png', 'Done pengajuan', null, null, '1', '2021-07-14 21:01:38', '2021-07-25 10:52:43', '210725110327_bb_2107140001.pdf', '17', '2021-07-25 11:03:27', '1', null, '210725111304_bbb_2107140001.pdf', '3', '2021-07-25 11:13:09', '1', '2021-07-20', '', '1', '2021-08-12', '2', null, 'kehadiran tidak lengkap', 'andi');
+INSERT INTO `pengajuan` VALUES ('2107210001', '1', '1', '2021-07-21', 'tes', '3', '210725110440_2107210001.pdf', 'Proses Serah Terima', null, null, '1', '2021-07-21 10:00:31', '2021-08-02 12:32:21', '210802123436_bb_2107210001.pdf', '17', '2021-08-02 12:34:42', '1', null, '210802123502_bbb_2107210001.pdf', '3', '2021-08-02 12:35:02', '1', '2021-08-07', 'rencana', '1', '2021-08-13', '1', 'XXX', '2312', 'sandi');
+INSERT INTO `pengajuan` VALUES ('2107300001', '15', '17', '2021-07-30', '', null, '', 'Proses Pengajuan', null, null, null, '2021-07-30 05:50:57', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `pengajuan` VALUES ('2107300002', '15', '17', '2021-07-30', '', null, '', 'Proses Pengajuan', null, null, null, '2021-07-30 05:51:10', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `petani`
@@ -237,9 +246,9 @@ CREATE TABLE `petani` (
 -- ----------------------------
 INSERT INTO `petani` VALUES ('1', '32373061708900013', 'Zaelani Muhtadin Ina', 'Jalan Karang Anyar Banten', '0', '0876666', '1', '4006', '2021-07-03 09:47:30');
 INSERT INTO `petani` VALUES ('2', '3274061706900013', 'Rizal Manto angin', 'Banten Maja', '0', '08566777', '1', '4001', '0000-00-00 00:00:00');
-INSERT INTO `petani` VALUES ('3', '1', 'a2', 'a2', '0', '1', '1', '4009', '2021-07-06 19:47:16');
-INSERT INTO `petani` VALUES ('5', '244', 'd', 'd', '0', '42', '1', '4002', '0000-00-00 00:00:00');
-INSERT INTO `petani` VALUES ('7', '2', '2', '2', '0', '2', '1', '4006', '0000-00-00 00:00:00');
+INSERT INTO `petani` VALUES ('3', '1', 'Ziber', 'a2', '0', '1', '1', '4009', '2021-07-06 19:47:16');
+INSERT INTO `petani` VALUES ('5', '244', 'Udin', 'd', '0', '42', '1', '4002', '0000-00-00 00:00:00');
+INSERT INTO `petani` VALUES ('7', '2', 'Rojer', '2', '0', '2', '1', '4006', '0000-00-00 00:00:00');
 
 -- ----------------------------
 -- Table structure for `petani_pengajuan`
@@ -249,14 +258,17 @@ CREATE TABLE `petani_pengajuan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `petani_id` int(11) NOT NULL,
   `pengajuan_id` int(11) NOT NULL,
+  `kehadiran_seminar` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of petani_pengajuan
 -- ----------------------------
-INSERT INTO `petani_pengajuan` VALUES ('5', '7', '2107120001');
-INSERT INTO `petani_pengajuan` VALUES ('6', '3', '2107140001');
+INSERT INTO `petani_pengajuan` VALUES ('5', '7', '2107120001', 'Hadir');
+INSERT INTO `petani_pengajuan` VALUES ('6', '3', '2107140001', 'Hadir');
+INSERT INTO `petani_pengajuan` VALUES ('7', '1', '2107210001', 'Tidak Hadir');
+INSERT INTO `petani_pengajuan` VALUES ('8', '2', '2107210001', 'Hadir');
 
 -- ----------------------------
 -- Table structure for `tanam`
@@ -313,13 +325,13 @@ INSERT INTO `user` VALUES ('21', 'approvekop@gmail.com', '8cb2237d0679ca88db6464
 -- ----------------------------
 DROP TABLE IF EXISTS `vendor`;
 CREATE TABLE `vendor` (
-  `id_vendor` int(15) NOT NULL,
+  `id_vendor` int(15) NOT NULL AUTO_INCREMENT,
   `nama_vendor` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id_vendor`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of vendor
 -- ----------------------------
-INSERT INTO `vendor` VALUES ('0', 'x');
 INSERT INTO `vendor` VALUES ('1', 'PT Prabot');
+INSERT INTO `vendor` VALUES ('2', 'x');
