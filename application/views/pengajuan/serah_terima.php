@@ -102,107 +102,6 @@
 			</div>
 		</div>
 </section>
-<!-- Data Petani -->
-<section class="content">
-	<div class="card card-info">
-		<div class="card-header">
-			<h3 class="card-title">Data Petani</h3>
-			<div class="card-tools">
-				<button type="button" class="btn btn-tool" data-card-widget="collapse">
-					<i class="fas fa-minus"></i>
-				</button>
-			</div>
-		</div>
-		<div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header no-bd">
-						<h5 class="modal-title">
-							<span class="fw-mediumbold">
-							Pengajuan <?php echo $row[0]->pengajuan_id;?></span> 
-						</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<form action="<?php echo site_url('/pengajuan/add_petani/'.$row[0]->pengajuan_id) ?>" method="POST">
-							<div class="modal-body">
-								<div class="row">
-									<div class="col-sm-12">
-											<div class="form-group form-floating-label">
-												<label for="selectFloatingLabel2" class="placeholder">Nama Petani</label>
-												<select name="petani_id" class="form-control input-solid" id="selectFloatingLabel2" required>
-													<option value="">&nbsp;</option>
-													<?php 
-														$pengajuan_id=$row[0]->pengajuan_id;
-														$where = "petani_id NOT IN (select petani_id FROM petani_pengajuan where pengajuan_id= '$pengajuan_id')";
-														$this->db->where($where);
-														$query = $this->db->get('petani');
-														foreach ($query->result() as $ro_p)
-														{
-													?>
-														<option value="<?php echo $ro_p->petani_id;?>"><?php echo $ro_p->nama;?></option>
-													<?php	} ?>
-												</select>
-											</div>
-									</div>
-								</div>
-							</div>
-							<div class="modal-footer no-bd">
-								<button type="submit" name="submit" value="submit" class="btn btn-primary">Simpan</button>
-								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="card-body" style="display: block;">
-			<!-- <button class="btn btn-primary float-right" data-toggle="modal" data-target="#addRowModal">
-			<i class="fa fa-plus"></i> Petani
-			</button> -->
-			<br>
-			<br>
-			<table id="" class="table table-bordered table-striped">
-				<thead>
-					<tr>
-						<th>No</th>
-						<th>NIK</th>
-						<th>Nama Petani</th>
-						<th>Tanaman</th>
-						<!-- <th>Action</th> -->
-					</tr>
-				</thead>
-				<tbody>
-					<?php $no=1;
-					foreach ($petani as $key => $pet) {?>
-						<tr>
-							<td><?php echo $no++;?></td>
-							<td><?php echo $pet->nik?></td>
-							<td><?php echo $pet->nama?></td>
-							<td><?php echo $pet->jenis?></td>
-							<!-- <td class="text-center" width="160px">
-								<a href="<?php echo base_url('/pengajuan/delete/'.$row[0]->pengajuan_id.'/'.$pet->petani_id);?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-danger btn-xs">
-									<i class="fa fa-trash"></i> Delete
-								</a>
-							</td> -->
-						</tr>
-					<?php } ?>
-				</tbody>
-				<tfoot>
-					<tr>
-						<th>No</th>
-						<th>NIK</th>
-						<th>Nama Petani</th>
-						<th>Tanaman</th>
-						<!-- <th>Action</th> -->
-					</tr>
-				</tfoot>
-			</table>
-		</div>
-	</div>
-</section>
 <!-- Data Item Kebutuhan Tani -->
 <section class="content">
 	<div class="card card-info">
@@ -416,6 +315,76 @@
 </section>
 <!-- verifikasi admin -->
 
+<!-- Data Petani -->
+<section class="content">
+	<div class="card card-danger">
+		<div class="card-header">
+			<h3 class="card-title">Data Petani</h3>
+		</div>
+		<div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header no-bd">
+						<h5 class="modal-title">
+							<span class="fw-mediumbold">
+							Pengajuan <?php echo $row[0]->pengajuan_id;?></span> 
+						</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card-body" style="display: block;">
+			<table id="" class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>NIK</th>
+						<th>Nama Petani</th>
+						<th>Tanaman</th>
+						<th>Seminar</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $no=1;
+					foreach ($petani as $key => $pet) {?>
+						<tr>
+							<td><?php echo $no++;?></td>
+							<td><?php echo $pet->nik?></td>
+							<td><?php echo $pet->nama?></td>
+							<td><?php echo $pet->jenis?></td>
+							<td>
+							<?php 
+								if($pet->kehadiran_seminar == 'Tidak Hadir'){ 
+							?><a class="btn btn-danger btn-sm"><?php echo $pet->kehadiran_seminar?></a><?php
+								}elseif($pet->kehadiran_seminar == 'Hadir'){ 
+							?><a class="btn btn-success btn-sm"><?php echo $pet->kehadiran_seminar?></a><?php
+								}
+							?>
+						</td>
+							<td class="text-center" width="160px">
+									<a href="javascript:void(0)" onclick="$('#view-modal').modal('show');" data-id="<?php echo $pet->id; ?>" id="get_data" data-toggle="tooltip" title="Pilih Item Bantuan">
+										<span class="selectgroup-button selectgroup-button-icon"><i class="fas fa-edit btn btn-primary btn-xs"> Item Bantuan</i></span>
+									</a>
+							</td>
+						</tr>
+					<?php } ?>
+				</tbody>
+				<tfoot>
+					<tr>
+						<th>No</th>
+						<th>NIK</th>
+						<th>Nama Petani</th>
+						<th>Tanaman</th>
+						<th>Seminar</th>
+						<th>Action</th>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+</section>
+<!-- serah terima -->
 <section class="content">
 	<form action="<?=site_url('pengajuan/serah_terima/'.$row[0]->pengajuan_id)?>" method="POST" enctype="multipart/form-data" >
 		<div class="card card-danger">
@@ -427,20 +396,34 @@
         <div class="row">
           <div class="col-3">
             <div class="form-group">
-              <label>Lokasi</label>
-              <textarea class="form-control" name="lokasi" id="lokasi" rows="3" placeholder="Lokasi"><?php #echo $row[0]->perihal_proposal;?></textarea>
+              <label>Rencana Seminar dan Penyerahan Bantuan</label>
+              <input type="date" class="form-control" name="tgl_seminar_kirim_bantuan" readonly value="<?php echo $row[0]->tgl_seminar_kirim_bantuan; ?>">
             </div>
           </div>
           <div class="col-3">
             <div class="form-group">
-              <label>Tgl Seminar dan Penyerahan Bantuan</label>
-              <input type="date" class="form-control" name="tgl_seminar_kirim_bantuan" value="<?php echo $row[0]->tgl_seminar_kirim_bantuan; ?>">
+              <label>Realisasi Seminar dan Penyerahan Bantuan</label>
+              <input type="date" class="form-control" name="tgl_terima_bantuan" value="<?php echo $row[0]->tgl_terima_bantuan; ?>">
             </div>
           </div>
+          <div class="col-3">
+            <div class="form-group"><br>
+              <label>Penanggung Jawab Dinas</label>
+              <input type="text" class="form-control" name="penanggung_jawab_dinas" value="<?php echo $row[0]->penanggung_jawab_dinas; ?>">
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group"><br>
+              <label>Lokasi</label>
+              <textarea class="form-control" name="lokasi" id="lokasi" rows="3" placeholder="Lokasi"><?php echo $row[0]->lokasi;?></textarea>
+            </div>
+          </div>
+				</div>
+        <div class="row">
           <div class="col-3">
             <div class="form-group">
               <label>Keterangan</label>
-              <textarea class="form-control" name="keterangan_hasil_pengajuan" id="lokasi" rows="3" placeholder="Keterangan"><?php #echo $row[0]->perihal_proposal;?></textarea>
+              <textarea class="form-control" name="keterangan_hasil_pengajuan" id="lokasi" rows="3" placeholder="Keterangan"><?php echo $row[0]->keterangan_hasil_pengajuan;?></textarea>
             </div>
           </div>
           <div class="col-3">
@@ -451,7 +434,11 @@
           </div>
 					<div class="col-3">
 						<label>&nbsp;</label><br>
-						<button type="submit" name="serah_terima" value="serah_terima" class="btn btn-primary">Simpan</button>
+						<?php if(count($absensi) == 0){ ?>
+							<button type="submit" name="serah_terima" value="serah_terima" class="btn btn-primary">Simpan</button>
+						<?php }else{ ?>
+							<button disabled type="submit" name="serah_terima" value="serah_terima" class="btn btn-primary">Simpan</button>
+						<?php } ?>
 					</div>
 				</div>
 			</div>
@@ -474,7 +461,6 @@
 		</div>
 	</form> 
 </section>
-<!-- verifikasi -->
 
 <!-- /.modal EDIT-->
 <div id="view-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -500,7 +486,6 @@
 <script src="<?=base_url()?>assets/jquery.3.2.1.min.js"></script>
 <script>
 	$(document).ready(function(){
-    console.log('xxx');
 			$(document).on('click', '#get_data', function(e){
 					e.preventDefault();
 					var uid = $(this).data('id');   // it will get id of clicked row
@@ -509,7 +494,7 @@
 					$('#modal-loader').show();      // load ajax loader
 					
 					$.ajax({
-							url  : "<?php echo site_url(); ?>pengajuan/get_conten/"+uid,
+							url  : "<?php echo site_url(); ?>pengajuan/get_kehadiran/"+uid,
 							type: 'POST',
 							dataType: 'html'
 					})

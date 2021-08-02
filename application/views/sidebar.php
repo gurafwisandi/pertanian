@@ -226,12 +226,14 @@
             </li>
           </ul>
         </li>
+        <?php if($this->session->userdata("level") != '2'){?>
         <li class="nav-item">
             <a href="<?=base_url('laporan')?>" class="nav-link">           
             <i class="nav-icon fas fa-book"></i>
               <p>Laporan</p>
             </a>
         </li>
+        <?php } ?>
         <li class="nav-item">
             <a href="<?=base_url('auth/logout')?>" class="nav-link">           
             <i class="nav-icon fas fa-ellipsis-h"></i>

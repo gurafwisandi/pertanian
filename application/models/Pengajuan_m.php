@@ -159,4 +159,19 @@ class Pengajuan_m extends CI_Model
               ->where('id',$id);
 		return $this->db->get('item_pengajuan');
 	}
+	public function get_kehadiran($id)
+	{
+		$this->db->select('*')
+							->join('pengajuan','pengajuan.pengajuan_id=petani_pengajuan.pengajuan_id')
+							->join('petani','petani.petani_id=petani_pengajuan.petani_id')
+              ->where('id',$id);
+		return $this->db->get('petani_pengajuan');
+	}
+	public function absensi($id)
+	{
+		$this->db->select('*')
+		->where('kehadiran_seminar is null')
+		->where('pengajuan_id',$id);
+		return $this->db->get('petani_pengajuan');
+	}
 }

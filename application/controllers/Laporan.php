@@ -26,6 +26,9 @@ class Laporan extends CI_Controller
         $data['row'] = $this->laporan_m->lap_penyerahan();
         $this->template->load('template','laporan/lap_penyerahan',$data);
       }elseif($this->input->post('jenis_laporan') == 'Seminar Penagjuan'){
+        $data['title'] = 'Laporan Seminar';
+        $data['row'] = $this->laporan_m->lap_seminar();
+        $this->template->load('template','laporan/lap_seminar',$data);
       }elseif($this->input->post('jenis_laporan') == 'Jenis Kebutuhan Petani'){
         $data['title'] = 'Laporan Jenis Kebutuhan Petani';
         $data['row'] = $this->laporan_m->lap_kebutuhan();

@@ -29,16 +29,12 @@
 							<tr>
 								<th>No</th>
 								<th>No Pengajuan</th>
-								<th>Tgl Pengajuan</th>
+								<th>Tgl Seminar</th>
+								<th>Lokasi</th>
 								<th>Nama Koperasi</th>
-								<th>ketua Koperasi</th>
-								<th>Kebutuhan</th>
-								<th>Item Pengajuan</th>
-								<th>Qty</th>
-								<th>Pertanian</th>
-								<th>Total Anggota</th>
-								<th>Status</th>
-								<th>Dokumen</th>
+								<th>Terdaftar Seminar</th>
+								<th>Keterangan Hasil Pengajuan</th>
+								<th>Kehadiran Anggota</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -47,63 +43,35 @@
 							<tr>
 								<td><?php echo $no++;?></td>
 								<td><?php echo $data->pengajuan_id?></td>
-								<td><?php echo $data->tgl_proposal?></td>
+								<td><?php echo $data->tgl_terima_bantuan?></td>
+								<td><?php echo $data->lokasi?></td>
 								<td><?php echo $data->koperasi?></td>
-								<td><?php echo $data->ketua?></td>
-								<td>
-                  <?php 
-                  $pieces = explode(",", $data->item_kebutuhan);
-                  for ($x = 0; $x <= count($pieces) - 1; $x++) {
-                    echo $pieces[$x];
-                    if($x < count($pieces)){
-                      echo "<br>";
-                    }
-                  }
-                  ?>
-                </td>
-								<td>
-                  <?php 
-                  $pieces = explode(",", $data->item_pengajuan);
-                  for ($x = 0; $x <= count($pieces) - 1; $x++) {
-                    echo $pieces[$x];
-                    if($x < count($pieces)){
-                      echo "<br>";
-                    }
-                  }
-                  ?>
-                </td>
-								<td>
-                  <?php 
-                  $pieces = explode(",", $data->item_qty);
-                  for ($x = 0; $x <= count($pieces) - 1; $x++) {
-                    echo $pieces[$x];
-                    if($x < count($pieces)){
-                      echo "<br>";
-                    }
-                  }
-                  ?>
-                </td>
-								<td><?php echo $data->kebutuhan?></td>
 								<td><?php echo $data->jml_anggota?></td>
-								<td><?php echo $data->status_proposal?></td>
-								<td><a href="<?php echo base_url('assets/uploads/'.$data->dokumen_biaya_bupati) ?>" target="_blank">Lihat Dokumen</a></td>
-							</tr>
+								<td><?php echo $data->keterangan_hasil_pengajuan?></td>
+								<td>
+                  <?php 
+                  $pieces = explode(",", $data->nama_hadir);
+                  for ($x = 0; $x <= count($pieces) - 1; $x++) {
+                    echo $pieces[$x];
+                    if($x < count($pieces)){
+                      echo "<br>";
+                    }
+                  }
+                  ?>
+                </td>
+              </tr>
 							<?php } ?>
 							</tbody>
 							<tfoot>
 							<tr>
 								<th>No</th>
 								<th>No Pengajuan</th>
-								<th>Tgl Pengajuan</th>
+								<th>Tgl Seminar</th>
+								<th>Lokasi</th>
 								<th>Nama Koperasi</th>
-								<th>ketua Koperasi</th>
-								<th>Kebutuhan</th>
-								<th>Item Pengajuan</th>
-								<th>Qty</th>
-								<th>Pertanian</th>
-								<th>Total Anggota</th>
-								<th>Status</th>
-								<th>Dokumen</th>
+								<th>Anggota Seminar</th>
+								<th>Keterangan Hasil Pengajuan</th>
+								<th>Anggota Seminar</th>
 							</tr>
 							</tfoot>
 						</table>

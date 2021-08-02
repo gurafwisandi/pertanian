@@ -96,7 +96,19 @@ class Pengajuan extends CI_Controller
 			redirect('/pengajuan/');
 		}
 		if($this->input->post('submit') == "item_bantuan"){
+
+
+			$id_item=$this->input->post('id_item');
+			$this->db->select('harga');
+			$this->db->from('item');      
+			$this->db->where('id_item',$id_item);                 
+			$query = $this->db->get();            
+			foreach ($query->result() as $row)
+			{
+				$harga = $row->harga;
+			}
 			$this->db->set('id_item', $this->input->post('id_item'));
+			$this->db->set('harga_item', $harga);
 			$this->db->where('id', $this->input->post('id'));
 			$this->db->update('item_pengajuan'); 
 			redirect('/pengajuan/seminar/'.$this->input->post('pengajuan_id'));
@@ -122,12 +134,21 @@ class Pengajuan extends CI_Controller
 	public function serah_terima($id_pengajuan)
 	{
 		if($this->input->post('serah_terima') == "serah_terima"){
+			
+			$this->db->set('tgl_terima_bantuan', $this->input->post('tgl_terima_bantuan'));
+			$this->db->set('lokasi', $this->input->post('lokasi'));
+			$this->db->set('keterangan_hasil_pengajuan', $this->input->post('keterangan_hasil_pengajuan'));
+			$this->db->set('penanggung_jawab_dinas', $this->input->post('penanggung_jawab_dinas'));
+			$this->db->where('pengajuan_id', $this->input->post('pengajuan_id'));
+			$this->db->update('pengajuan'); 
+
 			$this->do_uplaod_serah_terima($id_pengajuan);
 			$this->session->set_flashdata('message','Update Data Berhasil');
 			redirect('/pengajuan/serah_terima/'.$id_pengajuan);
 		}
 		$pengajuan = $this->pengajuan_m->get($id_pengajuan)->result();
 		$petani = $this->pengajuan_m->get_petani($id_pengajuan)->result();
+		$absensi = $this->pengajuan_m->absensi($id_pengajuan)->result();
 		$item = $this->pengajuan_m->get_item($id_pengajuan)->result();
 		$query_jenis = $this->jenis_m->get();
 		$jenis[null] = '- Pilih -';
@@ -139,6 +160,7 @@ class Pengajuan extends CI_Controller
 			'row' => $pengajuan,
 			'petani' => $petani,
 			'item' => $item,
+			'absensi' => $absensi,
 			'jenis' => $jenis,'selectedjenis' =>null,
 		);
 		$this->template->load('template', 'pengajuan/serah_terima',$data);
@@ -148,6 +170,20 @@ class Pengajuan extends CI_Controller
 	{
 		$data['data'] = $this->pengajuan_m->update($id)->result();
 		$this->load->view('pengajuan/get_conten',$data);
+	}
+
+	public function get_kehadiran($id)
+	{
+		$data['data'] = $this->pengajuan_m->get_kehadiran($id)->result();
+		$this->load->view('pengajuan/get_kehadiran',$data);
+	}
+
+	public function kehadiran($id)
+	{
+		$this->db->set('kehadiran_seminar', $this->input->post('kehadiran'));
+		$this->db->where('id', $this->input->post('id'));
+		$this->db->update('petani_pengajuan');
+		redirect('/pengajuan/serah_terima/'.$id);
 	}
 
 	public function proses($pengajuan_id)

@@ -320,7 +320,7 @@
                 <td>
                   <?php echo $pet->nama_item;
                   if($pet->nama_item){
-                    $no_gt +=$no_t++;
+                    $no_gt +=1;
                   }
                   ?>
                 </td>

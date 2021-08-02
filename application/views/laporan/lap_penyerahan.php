@@ -34,9 +34,12 @@
 								<th>ketua Koperasi</th>
 								<th>Kebutuhan</th>
 								<th>Item Pengajuan</th>
-								<th>Vendor</th>
+								<th>Nama Vendor</th>
+								<th>Harga</th>
 								<th>Qty</th>
+								<th>Id Item</th>
 								<th>Penyerahan Pihak Dinas</th>
+								<th>Dokumen</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -45,7 +48,7 @@
 							<tr>
 								<td><?php echo $no++;?></td>
 								<td><?php echo $data->pengajuan_id?></td>
-								<td><?php echo $data->tgl_proposal?></td>
+								<td><?php echo $data->tgl_terima_bantuan?></td>
 								<td><?php echo $data->koperasi?></td>
 								<td><?php echo $data->ketua?></td>
 								<td>
@@ -72,7 +75,7 @@
                 </td>
 								<td>
                   <?php 
-                  $pieces = explode(",", $data->item_qty);
+                  $pieces = explode(",", $data->nama_vendor);
                   for ($x = 0; $x <= count($pieces) - 1; $x++) {
                     echo $pieces[$x];
                     if($x < count($pieces)){
@@ -81,9 +84,41 @@
                   }
                   ?>
                 </td>
-								<td><?php echo $data->kebutuhan?></td>
-								<td><?php echo $data->jml_anggota?></td>
-								<td><?php echo $data->status_proposal?></td>
+								<td>
+                  <?php 
+                  $pieces = explode(",", $data->item_harga);
+                  for ($x = 0; $x <= count($pieces) - 1; $x++) {
+                    echo number_format($pieces[$x]);
+                    if($x < count($pieces)){
+                      echo "<br>";
+                    }
+                  }
+                  ?>
+                </td>
+								<td>
+                  <?php 
+                  $pieces = explode(",", $data->item_qty);
+                  for ($x = 0; $x <= count($pieces) - 1; $x++) {
+                    echo number_format($pieces[$x]);
+                    if($x < count($pieces)){
+                      echo "<br>";
+                    }
+                  }
+                  ?>
+                </td>
+								<td>
+                  <?php 
+                  $pieces = explode(",", $data->id_item);
+                  for ($x = 0; $x <= count($pieces) - 1; $x++) {
+                    echo number_format($pieces[$x]);
+                    if($x < count($pieces)){
+                      echo "<br>";
+                    }
+                  }
+                  ?>
+								</td>
+								<td><?php echo $data->penanggung_jawab_dinas?></td>
+								<td><a href="<?php echo base_url('assets/uploads/'.$data->dokumen_biaya_bupati) ?>" target="_blank">Lihat Dokumen</a></td>
 							</tr>
 							<?php } ?>
 							</tbody>
@@ -96,9 +131,12 @@
 								<th>ketua Koperasi</th>
 								<th>Kebutuhan</th>
 								<th>Item Pengajuan</th>
-								<th>Vendor</th>
+								<th>Nama Vendor</th>
+								<th>Harga</th>
 								<th>Qty</th>
+								<th>Id Item</th>
 								<th>Penyerahan Pihak Dinas</th>
+								<th>Dokumen</th>
 							</tr>
 							</tfoot>
 						</table>
