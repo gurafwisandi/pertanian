@@ -51,9 +51,11 @@
 				<div class="card">
 					<div class="card-header">
 						<h3 class="card-title">Data Pengajuan</h3>
-						<ol class="breadcrumb float-sm-right">
-							<a href="<?=base_url('pengajuan/no_pengajuan')?>"><li class="fa fa-user-plus"> Add</li></a>
-						</ol>
+						<?php if($this->session->userdata("level") == '2'){ ?>
+							<ol class="breadcrumb float-sm-right">
+								<a href="<?=base_url('pengajuan/no_pengajuan')?>"><li class="fa fa-user-plus"> Add</li></a>
+							</ol>
+						<?php } ?>
 					</div>
 					<!-- /.card-header -->
 					<div class="card-body">

@@ -53,6 +53,9 @@ class User_m extends CI_Model
     $this->db->from('user');
     $this->db->join('koperasi', 'koperasi.user_id = user.user_id');
 		$this->db->where('level', '2');
+    if($this->session->userdata("level") == '2'){
+      $this->db->where('koperasi_id', $this->session->userdata("koperasi_id"));
+    }
     $query = $this->db->get();
     return $query;
   }

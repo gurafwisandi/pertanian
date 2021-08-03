@@ -24,10 +24,10 @@ class Dashboard_m extends CI_Model
 		$this->db->select('*');
 		$this->db->from('petani');
 		if($this->session->userdata("level") == '2'){
-			$this->db->join('petani_pengajuan', 'petani_pengajuan.petani_id=petani.petani_id');
-			$this->db->join('pengajuan', 'pengajuan.pengajuan_id=petani_pengajuan.pengajuan_id');
-			$this->db->join('koperasi', 'koperasi.koperasi_id=pengajuan.koperasi_id');
-			$this->db->where('pengajuan.koperasi_id', $this->session->userdata("koperasi_id"));
+			// $this->db->join('petani_pengajuan', 'petani_pengajuan.petani_id=petani.petani_id');
+			// $this->db->join('pengajuan', 'pengajuan.pengajuan_id=petani_pengajuan.pengajuan_id');
+			// $this->db->join('koperasi', 'koperasi.koperasi_id=pengajuan.koperasi_id');
+			$this->db->where('petani.koperasi_id', $this->session->userdata("koperasi_id"));
 		} 
 		$query = $this->db->get();
 		if($query->num_rows()>0) {

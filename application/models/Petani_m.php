@@ -10,11 +10,12 @@ class Petani_m extends CI_Model
 		$this->db->join('koperasi','koperasi.koperasi_id = petani.koperasi_id');
 		$this->db->join('penanaman','penanaman.penanaman_id = petani.penanaman_id');
 		if($id != null)
-			{
-								
-				$this->db->where('petani_id', $id);
-
-			}
+		{
+			$this->db->where('petani_id', $id);
+		}
+    if($this->session->userdata("level") == '2'){
+      $this->db->where('koperasi.koperasi_id', $this->session->userdata("koperasi_id"));
+    }
 		$query = $this->db->get();
 		return $query;
 	}

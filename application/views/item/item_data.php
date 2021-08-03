@@ -3,11 +3,11 @@
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1><?php echo $title;?></h1>
+				<h1>item</h1>
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
-					<li class="breadcrumb-item"><a href="#"><?php echo $link;?></a></li>
+					<li class="breadcrumb-item"><a href="#">Master / item Alat Pertanian</a></li>
 				</ol>
 			</div>
 		</div>
@@ -37,60 +37,53 @@
 				<?php } ?>
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Data Petani</h3>
-						<div class="col-sm-12">
-							<?php if($this->session->userdata("level") == '2'){?>
+						<h3 class="card-title">Data item Alat</h3>
+
 							<ol class="breadcrumb float-sm-right">
-									<a href="<?=base_url('petani/add')?>"><li class="fa fa-user-plus">Add</li></a>
+								<a href="<?=base_url('item/add')?>"><li class="fa fa-user-plus">Add</li></a>
 							</ol>
-							<?php } ?>
-						</div>
+						
 					</div>
+
 					<!-- /.card-header -->
 					<div class="card-body">
 						<table id="example1" class="table table-bordered table-striped">
 							<thead>
-								<tr>
-									<th>No</th>
-									<th>Nama</th>
-									<th>Nik</th>
-									<th>Koperasi</th>
-									<th>Tanaman</th>
-									<?php if($this->session->userdata("level") == '2'){ ?>
-										<th>Action</th>
-									<?php } ?>
-								</tr>
+							<tr>
+								<th>No</th>
+								<th>Item Kebutuhan</th>
+								<th>Keterangan</th>
+								<th>Harga</th>
+								<th>Action</th>
+							</tr>
 							</thead>
 							<tbody>
-								<?php $no=1;
-								foreach ($row->result() as $key => $data) { ?>
-									<tr>
-										<td><?php echo $no++;?></td>
-										<td><?php echo $data->nama?></td>
-										<td><?php echo $data->nik?></td>
-										<td><?php echo $data->koperasi?></td>
-										<td><?php echo $data->penanaman_jenis?></td>
-										<?php if($this->session->userdata("level") == '2'){ ?>
-											<td class="text-center" width="160px">
-												<a href="<?=site_url('petani/edit/'.$data->petani_id)?>"  class="btn btn-primary btn-xs">
-												<i class="fa fa-edit"></i> Edit</a>
-												<a href="<?=site_url('petani/del/'.$data->petani_id)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-danger btn-xs">
-												<i class="fa fa-trash"></i> Delete</a>
-											</td>
-											<?php } ?>
-									</tr>
-								<?php } ?>
+							<?php $no=1;
+							foreach ($row->result() as $key => $data) {?>
+							<tr>
+								<td><?=$no++?></td>
+								<td><?=$data->nama_item?></td>
+								<td><?=$data->keterangan?></td>
+								<td><?=number_format($data->harga)?></td>
+								<td class="text-center" width="160px">
+									<a href="<?=site_url('item/edit/'.$data->id_item)?>"  class="btn btn-primary btn-xs">
+										<i class="fa fa-edit"></i> Edit
+									</a>
+									<a href="<?=site_url('item/del/'.$data->id_item)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-danger btn-xs">
+										<i class="fa fa-trash"></i> Delete
+									</a>
+								</td>
+							</tr>
+							<?php } ?>
+							</tbody>
 							<tfoot>
-								<tr>
-									<th>No</th>
-									<th>Nama</th>
-									<th>Nik</th>
-									<th>Koperasi</th>
-									<th>Tanaman</th>
-									<?php if($this->session->userdata("level") == '2'){ ?>
-										<th>Action</th>
-									<?php } ?>
-								</tr>
+							<tr>
+								<th>No</th>
+								<th>Item Kebutuhan</th>
+                <th>Keterangan</th>
+                <th>Harga</th>
+								<th>Action</th>
+							</tr>
 							</tfoot>
 						</table>
 					</div>

@@ -11,6 +11,9 @@ class Koperasi_m extends CI_Model
 		if($id !=null){
 			$this->db->where('koperasi_id',$id);
 		}
+    if($this->session->userdata("level") == '2'){
+      $this->db->where('koperasi_id', $this->session->userdata("koperasi_id"));
+    }
 		$query = $this->db->get();
 		return $query;
 	}
