@@ -492,7 +492,13 @@
 						<tr>
 							<td><?php echo $no++;?></td>
 							<td><?php echo $tan->alamat_kebun?></td>
-							<td><?php echo $tan->jenis_panen?></td>
+							<td>
+								<?php if($tan->jenis_panen == 'Berhasil'){?>
+									<a class="btn btn-success btn-sm"><?php echo $tan->jenis_panen?></a>
+								<?php }else{?>
+									<a class="btn btn-danger btn-sm"><?php echo $tan->jenis_panen?></a>
+								<?php }?>
+							</td>
 							<td><?php echo $tan->tgl_panen?></td>
 							<td><?php echo $tan->jumlah_panen?></td>
 						</tr>

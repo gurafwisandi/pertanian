@@ -37,6 +37,18 @@ class Laporan extends CI_Controller
         $data['title'] = 'Laporan Jumlah Pengajuan Koperasi';
         $data['row'] = $this->laporan_m->lap_koperasi();
         $this->template->load('template','laporan/lap_koperasi',$data);
+      }elseif($this->input->post('jenis_laporan') == 'Panen Berhasil'){
+        $data['title'] = 'Laporan Panen Berhasil';
+        $data['row'] = $this->laporan_m->lap_berhasil();
+        $this->template->load('template','laporan/lap_tanam',$data);
+      }elseif($this->input->post('jenis_laporan') == 'Panen Gagal'){
+        $data['title'] = 'Laporan Gagal Panen';
+        $data['row'] = $this->laporan_m->lap_gagal();
+        $this->template->load('template','laporan/lap_tanam',$data);
+      }elseif($this->input->post('jenis_laporan') == 'Akun'){
+        $data['title'] = 'Laporan Akun instansi';
+        $data['row'] = $this->laporan_m->akun_instansi();
+        $this->template->load('template','laporan/lap_akun',$data);
       }
     }
   }

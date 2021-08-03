@@ -77,4 +77,42 @@ class Laporan_m extends CI_Model
 		$query = $this->db->get();
 		return $query;
 	}
+	public function lap_berhasil()
+	{
+		$this->db->select("tanam.pengajuan_id, koperasi, alamat_kebun,total_tanam,tgl_tanam,
+		GROUP_CONCAT(jumlah_panen ORDER BY hasil_panen.id DESC SEPARATOR ',') as jumlah_panen,
+		GROUP_CONCAT(tgl_panen ORDER BY hasil_panen.id DESC SEPARATOR ',') as tgl_panen");
+		$this->db->from('tanam');
+		$this->db->join('pengajuan', 'pengajuan.pengajuan_id=tanam.pengajuan_id');
+		$this->db->join('koperasi', 'koperasi.koperasi_id=pengajuan.koperasi_id');
+		$this->db->join('hasil_panen', 'hasil_panen.id_panen=tanam.id');
+    $this->db->where('jenis_panen','Berhasil');
+    $this->db->where('status_tanam','Selesai Panen');
+    $this->db->group_by('pengajuan.pengajuan_id');
+		$query = $this->db->get();
+		return $query;
+	}
+	public function lap_gagal()
+	{
+		$this->db->select("tanam.pengajuan_id, koperasi, alamat_kebun,total_tanam,tgl_tanam,
+		GROUP_CONCAT(jumlah_panen ORDER BY hasil_panen.id DESC SEPARATOR ',') as jumlah_panen,
+		GROUP_CONCAT(tgl_panen ORDER BY hasil_panen.id DESC SEPARATOR ',') as tgl_panen");
+		$this->db->from('tanam');
+		$this->db->join('pengajuan', 'pengajuan.pengajuan_id=tanam.pengajuan_id');
+		$this->db->join('koperasi', 'koperasi.koperasi_id=pengajuan.koperasi_id');
+		$this->db->join('hasil_panen', 'hasil_panen.id_panen=tanam.id');
+    $this->db->where('jenis_panen','Gagal');
+    $this->db->where('status_tanam','Selesai Panen');
+    $this->db->group_by('pengajuan.pengajuan_id');
+		$query = $this->db->get();
+		return $query;
+	}
+	public function akun_instansi()
+	{
+		$this->db->select('koperasi.*,level, status, email');
+		$this->db->from('koperasi');
+		$this->db->join('user','user.user_id = koperasi.user_id');
+		$query = $this->db->get();
+		return $query;
+	}
 }

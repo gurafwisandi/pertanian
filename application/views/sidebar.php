@@ -235,7 +235,7 @@
         </li>
         <?php } ?>
         <li class="nav-item">
-            <a href="<?=base_url('auth/logout')?>" class="nav-link">           
+            <a href="<?=base_url('auth/logout')?>" class="nav-link" onclick="return confirm('Apakah Anda Yakin Akan Logout?')">           
             <i class="nav-icon fas fa-ellipsis-h"></i>
               <p>Logout</p>
             </a>
