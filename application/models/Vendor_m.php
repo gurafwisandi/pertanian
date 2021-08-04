@@ -18,6 +18,7 @@ class Vendor_m extends CI_Model
 	{
 		$params = [
 			'nama_vendor' => $post['nama_vendor'],
+			'created' => date('Y-m-d H:i:s'),
 		];
 
 		$this->db->insert('vendor',$params);
@@ -27,6 +28,7 @@ class Vendor_m extends CI_Model
 	{
 	$params = [
 			'nama_vendor' => $post['nama_vendor'],
+			'updated' => date('Y-m-d H:i:s')
 		];
 
 		$this->db->where('id_vendor',$post['id']);

@@ -413,7 +413,7 @@ function myFunction() {
         <div class="row">
           <div class="col-3">
             <div class="form-group">
-              <label>Status Verifikasi Bantuan</label>
+              <label>Status Verifikasi Bantuan <code>*</code></label>
               <select name="status_proposal" required id="status_proposal" onchange="myFunction()" class="form-control select2" style="width: 100%;">
                 <option value="">&nbsp;</option>
                 <option value="Approve Bupati"  <?php if($row[0]->status_proposal == 'Approve Bupati'){ echo 'selected'; }?>>Approve Bupati</option>
@@ -422,7 +422,7 @@ function myFunction() {
             </div>
           </div>
 					<div class="col-3" id="myDIVdoc">
-						<label>Upload Dokumen Biaya Bantuan</label>
+						<label>Upload Dokumen Biaya Bantuan <code>*</code></label>
 						<?php if($row[0]->dokumen_biaya_bupati){ ?>
 						  <input type="file" name="file" id="file" class="form-control">
 							<a class="btn btn-warning btn-xs" data-toggle="modal" data-target="#doc_biaya_bupati"></i> Lihat Dokumen</a>
@@ -432,7 +432,7 @@ function myFunction() {
 					</div>
 					<div class="col-3" id="myDIV">
             <div class="form-group">
-              <label>Keterangan</label>
+              <label>Keterangan <code>*</code></label>
               <textarea class="form-control" name="keterangan_bupati" id="keterangan_bupati" rows="3" placeholder="Keterangan"><?php echo $row[0]->keterangan_bupati;?></textarea>
             </div>
 					</div>

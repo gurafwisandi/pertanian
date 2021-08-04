@@ -337,8 +337,8 @@
         <div class="row">
           <div class="col-3">
             <div class="form-group">
-              <label>Tgl Seminar dan Penyerahan Bantuan</label>
-              <input type="date" class="form-control" name="tgl_seminar_kirim_bantuan" value="<?php echo $row[0]->tgl_seminar_kirim_bantuan; ?>">
+              <label>Tgl Seminar dan Penyerahan Bantuan <code>*</code></label>
+              <input type="date" required class="form-control" name="tgl_seminar_kirim_bantuan" value="<?php echo $row[0]->tgl_seminar_kirim_bantuan; ?>">
             </div>
           </div>
 					<div class="col-3">

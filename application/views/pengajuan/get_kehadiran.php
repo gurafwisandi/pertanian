@@ -17,7 +17,7 @@
       </div>
       <div class="col-sm-12">
           <div class="form-group form-floating-label">
-            <label for="selectFloatingLabel2" class="placeholder">Kehadiran</label>
+            <label for="selectFloatingLabel2" class="placeholder">Kehadiran <code>*</code></label>
             <select name="kehadiran" class="form-control input-solid" id="selectFloatingLabel2" required>
               <option value="">&nbsp;</option>
               <option value="Hadir" <?php if($data[0]->kehadiran_seminar == 'Hadir'){ echo 'selected'; } ?>>Hadir</option>

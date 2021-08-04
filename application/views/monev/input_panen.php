@@ -8,21 +8,22 @@
 	</div><!-- /.container-fluid -->
 </section>
 
-<?php if($this->session->flashdata('message') == 'Simpan Data Berhasil'){ ?>
-<section class="content">
-	<div class="alert alert-success alert-dismissible">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-		<h5><i class="icon fas fa-check"></i><?php echo $this->session->flashdata('message');?></h5>
-	</div>
-</section>
-<?php }elseif($this->session->flashdata('message') == 'Data Berhasil Dihapus'){ ?>
+<?php if($this->session->flashdata('message') == 'Delete Data Berhasil'){ ?>
 <section class="content">
 	<div class="alert alert-danger alert-dismissible">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 		<h5><i class="icon fas fa-ban"></i><?php echo $this->session->flashdata('message');?></h5>
 	</div>
 </section>
+<?php }elseif($this->session->flashdata('message') == 'Simpan Data Berhasil'){ ?>
+<section class="content">
+	<div class="alert alert-success alert-dismissible">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<h5><i class="icon fas fa-ban"></i><?php echo $this->session->flashdata('message');?></h5>
+	</div>
+</section>
 <?php } ?>
+
 <!-- Data Koperasi -->
 <section class="content">
 	<div class="card card-primary">
@@ -330,18 +331,25 @@
 			<input type="hidden" name="pengajuan_id" value="<?php echo $row[0]->pengajuan_id?>">
       <div class="card-body">
         <div class="row">
-          <div class="col-sm-6">
-            <legend>Dokumentasi</legend>
-            <?php 
-              $pengajuan_id=$row[0]->pengajuan_id;
-              $this->db->where('pengajuan_id',$pengajuan_id);
-              $query = $this->db->get('doc_serah_terima');
-              foreach ($query->result() as $ro_p)
-              {
-            ?>
-              <img src="<?php echo base_url('assets/uploads_serah_terima/').$ro_p->filename;?>" width="150" height="150">
-            <?php	} ?>
-          </div>
+					<?php 
+						$pengajuan_id=$row[0]->pengajuan_id;
+						$this->db->where('pengajuan_id',$pengajuan_id);
+						$query = $this->db->get('doc_serah_terima');
+						foreach ($query->result() as $ro_p)
+						{
+							?>
+							<div class="col-sm-2">
+								<?php
+									$doc = $ro_p->filename;
+									$file=substr($doc,-3);
+									if($file=='JPG' or $file=='PNG' or $file=='jpg' or $file=='jpeg' or $file=='png' or $file=='PEG' or $file=='peg'){
+								?>
+									<a target="_blank" href="<?php echo base_url('assets/uploads_serah_terima/').$ro_p->filename;?>"><img src="<?php echo base_url('assets/uploads_serah_terima/').$ro_p->filename;?>" width="150" height="150"></a>
+								<?php	}else{ ?>
+									<a target="_blank" href="<?php echo base_url('assets/uploads_serah_terima/').$ro_p->filename;?>">Lihat PDF</a>
+								<?php } ?>
+							</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>
@@ -421,7 +429,7 @@
 								<div class="row">
 									<div class="col-sm-12">
 											<div class="form-group form-floating-label">
-												<label for="selectFloatingLabel2" class="placeholder">Tanaman</label>
+												<label for="selectFloatingLabel2" class="placeholder">Tanaman <code>*</code></label>
 												<select name="id_panen" class="form-control input-solid" id="selectFloatingLabel2" required>
 													<option value="">&nbsp;</option>
 													<?php 
@@ -438,7 +446,7 @@
 									</div>
 									<div class="col-sm-12">
 											<div class="form-group form-floating-label">
-												<label for="selectFloatingLabel2" class="placeholder">Jenis Panen</label>
+												<label for="selectFloatingLabel2" class="placeholder">Jenis Panen <code>*</code></label>
 												<select name="jenis_panen" class="form-control input-solid" id="selectFloatingLabel2" required>
 													<option value="">&nbsp;</option>
 													<option value="Berhasil">Berhasil</option>
@@ -448,13 +456,13 @@
 									</div>
 									<div class="col-sm-12">
 											<div class="form-group form-floating-label">
-												<label for="selectFloatingLabel2" class="placeholder">Tanggal Panen</label>
+												<label for="selectFloatingLabel2" class="placeholder">Tanggal Panen <code>*</code></label>
 												<input type="date" required name="tgl_panen" class="form-control">
 											</div>
 									</div>
 									<div class="col-sm-12">
 											<div class="form-group form-floating-label">
-												<label for="selectFloatingLabel2" class="placeholder">Total Panen</label>
+												<label for="selectFloatingLabel2" class="placeholder">Total Panen <code>*</code></label>
 												<input type="number" required min='0' name="jumlah_panen" class="form-control" value="">
 											</div>
 									</div>
@@ -501,6 +509,11 @@
 							</td>
 							<td><?php echo $tan->tgl_panen?></td>
 							<td><?php echo $tan->jumlah_panen?></td>
+							<td>
+								<a href="<?=site_url('monev/del_panen/'.$tan->id_panen.'/'.$tan->pengajuan_id)?>" onclick="return confirm('Apakah Anda Yakin di Hapus')" class="btn btn-danger btn-xs">
+									<i class="fa fa-trash"></i> Delete
+								</a>
+							</td>
 						</tr>
 					<?php } ?>
 				</tbody>

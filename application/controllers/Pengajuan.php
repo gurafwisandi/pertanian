@@ -16,6 +16,7 @@ class Pengajuan extends CI_Controller
 		$this->load->model('pengajuan_m');
 		
 		$data['row'] = $this->pengajuan_m->list();
+		$data['cek'] = $this->pengajuan_m->JumlahProposal();
 		$this->template->load('template','pengajuan/pengajuan_data', $data);
 	}
 
@@ -109,6 +110,7 @@ class Pengajuan extends CI_Controller
 			}
 			$this->db->set('id_item', $this->input->post('id_item'));
 			$this->db->set('harga_item', $harga);
+			$this->db->set('updated', date('Y-m-d H:i:s'));
 			$this->db->where('id', $this->input->post('id'));
 			$this->db->update('item_pengajuan'); 
 			redirect('/pengajuan/seminar/'.$this->input->post('pengajuan_id'));
@@ -181,6 +183,7 @@ class Pengajuan extends CI_Controller
 	public function kehadiran($id)
 	{
 		$this->db->set('kehadiran_seminar', $this->input->post('kehadiran'));
+		$this->db->set('updated', date('Y-m-d H:i:s'));
 		$this->db->where('id', $this->input->post('id'));
 		$this->db->update('petani_pengajuan');
 		redirect('/pengajuan/serah_terima/'.$id);

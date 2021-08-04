@@ -26,6 +26,7 @@ class Monev_m extends CI_Model
 	}
 	public function panen($pengajuan_id = null)
 	{
+		$this->db->select('*, hasil_panen.id AS id_panen');
 		$this->db->from('tanam');
 		$this->db->join('hasil_panen', 'hasil_panen.id_panen=tanam.id');
     $this->db->where('pengajuan_id',$pengajuan_id);
@@ -39,6 +40,7 @@ class Monev_m extends CI_Model
 		$this->db->set('tgl_tanam', $this->input->post('tgl_tanam'));
 		$this->db->set('tgl_perkiraan_panen', $this->input->post('tgl_perkiraan_panen'));
 		$this->db->set('pengajuan_id', $pengajuan_id);
+		$this->db->set('created', date('Y-m-d H:i:s'));
 		$this->db->insert('tanam');
 	}
 	public function input_panen()
@@ -47,6 +49,7 @@ class Monev_m extends CI_Model
 		$this->db->set('tgl_panen', $this->input->post('tgl_panen'));
 		$this->db->set('jumlah_panen', $this->input->post('jumlah_panen'));
 		$this->db->set('jenis_panen', $this->input->post('jenis_panen'));
+		$this->db->set('created', date('Y-m-d H:i:s'));
 		$this->db->insert('hasil_panen');
 
 		$pengajuan_id=$this->input->post('pengajuan_id');
@@ -58,5 +61,10 @@ class Monev_m extends CI_Model
 	{
 		$this->db->where('id', $id);
 		$this->db->delete('tanam');
+	}
+	public function del_panen($id)
+	{
+		$this->db->where('id', $id);
+		$this->db->delete('hasil_panen');
 	}
 }

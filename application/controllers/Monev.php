@@ -118,4 +118,10 @@ class Monev extends CI_Controller
 		);
 		$this->template->load('template', 'monev/view_panen',$data);
 	}
+
+	public function del_panen($id,$pengajuan_id) {
+		$this->monev_m->del_panen($id);
+		$this->session->set_flashdata('message','Delete Data Berhasil');
+		redirect('monev/input_panen/'.$pengajuan_id);
+	}		
 }

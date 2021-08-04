@@ -51,9 +51,13 @@
 				<div class="card">
 					<div class="card-header">
 						<h3 class="card-title">Data Pengajuan</h3>
-						<?php if($this->session->userdata("level") == '2'){ ?>
+						<?php if($this->session->userdata("level") == '2' AND $cek == '0'){ ?>
 							<ol class="breadcrumb float-sm-right">
 								<a href="<?=base_url('pengajuan/no_pengajuan')?>"><li class="fa fa-user-plus"> Add</li></a>
+							</ol>
+						<?php }else{ ?>
+							<ol class="breadcrumb float-sm-right"><span class=""></span>
+								<a disabled><li class="fa fa-user-times"> Proses Pengajuan</li></a>
 							</ol>
 						<?php } ?>
 					</div>

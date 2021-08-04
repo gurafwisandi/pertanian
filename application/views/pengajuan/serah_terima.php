@@ -402,20 +402,20 @@
           </div>
           <div class="col-3">
             <div class="form-group">
-              <label>Realisasi Seminar dan Penyerahan Bantuan</label>
-              <input type="date" class="form-control" name="tgl_terima_bantuan" value="<?php echo $row[0]->tgl_terima_bantuan; ?>">
+              <label>Realisasi Seminar dan Penyerahan Bantuan <code>*</code></label>
+              <input type="date" required class="form-control" name="tgl_terima_bantuan" value="<?php echo $row[0]->tgl_terima_bantuan; ?>">
             </div>
           </div>
           <div class="col-3">
             <div class="form-group"><br>
-              <label>Penanggung Jawab Dinas</label>
-              <input type="text" class="form-control" name="penanggung_jawab_dinas" value="<?php echo $row[0]->penanggung_jawab_dinas; ?>">
+              <label>Penanggung Jawab Dinas <code>*</code></label>
+              <input type="text" required class="form-control" name="penanggung_jawab_dinas" value="<?php echo $row[0]->penanggung_jawab_dinas; ?>">
             </div>
           </div>
           <div class="col-3">
             <div class="form-group"><br>
-              <label>Lokasi</label>
-              <textarea class="form-control" name="lokasi" id="lokasi" rows="3" placeholder="Lokasi"><?php echo $row[0]->lokasi;?></textarea>
+              <label>Lokasi <code>*</code></label>
+              <textarea class="form-control" required name="lokasi" id="lokasi" rows="3" placeholder="Lokasi"><?php echo $row[0]->lokasi;?></textarea>
             </div>
           </div>
 				</div>
@@ -428,8 +428,8 @@
           </div>
           <div class="col-3">
             <div class="form-group">
-              <label>Upload Dokumentasi</label>
-              <input type="file" class="form-control" name="file">
+              <label>Upload Dokumentasi <code>*</code></label>
+              <input type="file" class="form-control" name="file" required>
             </div>
           </div>
 					<div class="col-3">
@@ -444,18 +444,26 @@
 			</div>
       <div class="card-body">
         <div class="row">
-          <div class="col-sm-6">
-            <legend>Dokumentasi</legend>
-            <?php 
-              $pengajuan_id=$row[0]->pengajuan_id;
-              $this->db->where('pengajuan_id',$pengajuan_id);
-              $query = $this->db->get('doc_serah_terima');
-              foreach ($query->result() as $ro_p)
-              {
-            ?>
-              <img src="<?php echo base_url('assets/uploads_serah_terima/').$ro_p->filename;?>" width="150" height="150">
-            <?php	} ?>
-          </div>
+					<legend>Dokumentasi</legend>
+					<?php 
+						$pengajuan_id=$row[0]->pengajuan_id;
+						$this->db->where('pengajuan_id',$pengajuan_id);
+						$query = $this->db->get('doc_serah_terima');
+						foreach ($query->result() as $ro_p)
+						{
+							?>
+							<div class="col-sm-2">
+								<?php
+									$doc = $ro_p->filename;
+									$file=substr($doc,-3);
+									if($file=='JPG' or $file=='PNG' or $file=='jpg' or $file=='jpeg' or $file=='png' or $file=='PEG' or $file=='peg'){
+								?>
+									<a target="_blank" href="<?php echo base_url('assets/uploads_serah_terima/').$ro_p->filename;?>"><img src="<?php echo base_url('assets/uploads_serah_terima/').$ro_p->filename;?>" width="150" height="150"></a>
+								<?php	}else{ ?>
+									<a target="_blank" href="<?php echo base_url('assets/uploads_serah_terima/').$ro_p->filename;?>">Lihat PDF</a>
+								<?php } ?>
+							</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>

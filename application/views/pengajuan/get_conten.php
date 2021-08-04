@@ -23,7 +23,7 @@
       </div>
       <div class="col-sm-12">
           <div class="form-group form-floating-label">
-            <label for="selectFloatingLabel2" class="placeholder">Item</label>
+            <label for="selectFloatingLabel2" class="placeholder">Item <code>*</code></label>
             <select name="id_item" class="form-control input-solid" id="selectFloatingLabel2" required>
               <option value="">&nbsp;</option>
               <?php 

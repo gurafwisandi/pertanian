@@ -330,18 +330,25 @@
 			<input type="hidden" name="pengajuan_id" value="<?php echo $row[0]->pengajuan_id?>">
       <div class="card-body">
         <div class="row">
-          <div class="col-sm-6">
-            <legend>Dokumentasi</legend>
-            <?php 
-              $pengajuan_id=$row[0]->pengajuan_id;
-              $this->db->where('pengajuan_id',$pengajuan_id);
-              $query = $this->db->get('doc_serah_terima');
-              foreach ($query->result() as $ro_p)
-              {
-            ?>
-              <img src="<?php echo base_url('assets/uploads_serah_terima/').$ro_p->filename;?>" width="150" height="150">
-            <?php	} ?>
-          </div>
+					<?php 
+						$pengajuan_id=$row[0]->pengajuan_id;
+						$this->db->where('pengajuan_id',$pengajuan_id);
+						$query = $this->db->get('doc_serah_terima');
+						foreach ($query->result() as $ro_p)
+						{
+							?>
+							<div class="col-sm-2">
+								<?php
+									$doc = $ro_p->filename;
+									$file=substr($doc,-3);
+									if($file=='JPG' or $file=='PNG' or $file=='jpg' or $file=='jpeg' or $file=='png' or $file=='PEG' or $file=='peg'){
+								?>
+									<a target="_blank" href="<?php echo base_url('assets/uploads_serah_terima/').$ro_p->filename;?>"><img src="<?php echo base_url('assets/uploads_serah_terima/').$ro_p->filename;?>" width="150" height="150"></a>
+								<?php	}else{ ?>
+									<a target="_blank" href="<?php echo base_url('assets/uploads_serah_terima/').$ro_p->filename;?>">Lihat PDF</a>
+								<?php } ?>
+							</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>
@@ -371,25 +378,25 @@
 								<div class="row">
 									<div class="col-sm-12">
 											<div class="form-group form-floating-label">
-												<label for="inputFloatingLabel2" class="placeholder">Alamat Kebun</label>
+												<label for="inputFloatingLabel2" class="placeholder">Alamat Kebun <code>*</code></label>
 												<textarea name="alamat_kebun" required autocomplete="off" class="form-control input-solid" id="inputFloatingLabel2" rows="5"></textarea>
 											</div>
 									</div>
 									<div class="col-sm-12">
 											<div class="form-group form-floating-label">
-												<label for="selectFloatingLabel2" class="placeholder">Total Tanam</label>
+												<label for="selectFloatingLabel2" class="placeholder">Total Tanam <code>*</code></label>
 												<input type="number" required min='0' name="total_tanam" class="form-control" value="">
 											</div>
 									</div>
 									<div class="col-sm-12">
 											<div class="form-group form-floating-label">
-												<label for="selectFloatingLabel2" class="placeholder">Tanggal Tanam</label>
+												<label for="selectFloatingLabel2" class="placeholder">Tanggal Tanam <code>*</code></label>
 												<input type="date" required name="tgl_tanam" class="form-control">
 											</div>
 									</div>
 									<div class="col-sm-12">
 											<div class="form-group form-floating-label">
-												<label for="selectFloatingLabel2" class="placeholder">Tanggal Perkiraan Panen</label>
+												<label for="selectFloatingLabel2" class="placeholder">Tanggal Perkiraan Panen <code>*</code></label>
 												<input type="date" required name="tgl_perkiraan_panen" class="form-control">
 											</div>
 									</div>

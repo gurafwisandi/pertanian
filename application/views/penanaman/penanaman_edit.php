@@ -26,12 +26,12 @@
           <input type="hidden" class="form-control" name="id" value="<?=$row->penanaman_id?>"> 
           <div class="card-body">
             <div class="form-group">
-              <label for="exampleInputEmail1">Jenis</label>
-              <input type="text" class="form-control" name="jenis" value="<?=$row->jenis?>" placeholder="Masukan Nama">
+              <label for="exampleInputEmail1">Jenis <code>*</code></label>
+              <input type="text" required class="form-control" name="jenis" value="<?=$row->jenis?>" placeholder="Masukan Nama">
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Deskripsi</label>
-              <input type="text" class="form-control" name="deskripsi" value="<?=$row->deskripsi?>" placeholder="Jenis">
+              <label for="exampleInputPassword1">Deskripsi <code>*</code></label>
+              <input type="text" required class="form-control" name="deskripsi" value="<?=$row->deskripsi?>" placeholder="Jenis">
             </div>
 
           <div class="card-footer">

@@ -13,19 +13,22 @@ class Item extends CI_Controller
 		$this->template->load('template','item/item_data',$data);
 	}
 
-	// public function add()
-	// {
-	// 	$item = new stdClass();
-	// 	$item->item_id = null;
-	// 	$item->kebutuhan = null;
+	public function add()
+	{
+		$item = new stdClass();
+		$item->id_item = null;
+		$item->nama_item = null;
+		$item->keterangan = null;
+		$item->harga = null;
+		$item->id_vendor = null;
+		
+		$data = array(
+				'page'=>'add',
+				'row' =>$item,
+				);
 
-	// 	$data = array(
-	// 			'page'=>'add',
-	// 			'row' =>$item,
-	// 			);
-
-	// 	$this->template->load('template','item/item_add',$data);
-	// }
+		$this->template->load('template','item/item_add',$data);
+	}
 
 	public function edit($id)
 	{
@@ -45,19 +48,19 @@ class Item extends CI_Controller
 		}
 	}
 
-	// public function process()
-	// {
-	// 	$post = $this->input->post(null, TRUE);
-	// 	if(isset($_POST['add'])){
-	// 		$this->item_m->add($post);
-	// 		$this->session->set_flashdata('message','Data Berhasil Disimpan');
-	// 		redirect ('item');
-	// 	} else if(isset($_POST['edit'])){
-	// 		$this->item_m->edit($post);
-	// 		$this->session->set_flashdata('message','Update Data Berhasil');
-	// 		redirect ('item');
-	// 	}
-	// }
+	public function process()
+	{
+		$post = $this->input->post(null, TRUE);
+		if(isset($_POST['add'])){
+			$this->item_m->add($post);
+			$this->session->set_flashdata('message','Data Berhasil Disimpan');
+			redirect ('item');
+		} else if(isset($_POST['edit'])){
+			$this->item_m->edit($post);
+			$this->session->set_flashdata('message','Update Data Berhasil');
+			redirect ('item');
+		}
+	}
 
 	// public function del($id) {
 	// 	$this->item_m->del($id);

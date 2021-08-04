@@ -80,7 +80,7 @@
 						<input type="text" class="form-control" value="<?php echo date('d F Y', strtotime($row[0]->tgl_proposal)); ?>" disabled>
 					</div>
 					<div class="col-3">
-						<label>Dokumen Proposal</label>
+						<label>Dokumen Proposal <code>*</code></label>
 						<?php if($row[0]->dokumen_proposal){ ?>
 							<input type="file" name="file" class="form-control">
 							<a class="btn btn-warning btn-xs" data-toggle="modal" data-target="#doc"></i> Lihat Dokumen</a>
@@ -90,7 +90,7 @@
 					</div>
 					<div class="col-3">
 						<div class="form-group">
-							<label>Jenis Bantuan</label>
+							<label>Jenis Bantuan <code>*</code></label>
 							<select name="jenis_id" class="form-control select2" style="width: 100%;" required>
 								<option value="">&nbsp;</option>
 								<?php 
@@ -183,13 +183,14 @@
 								<div class="row">
 									<div class="col-sm-12">
 											<div class="form-group form-floating-label">
-												<label for="selectFloatingLabel2" class="placeholder">Nama Petani</label>
+												<label for="selectFloatingLabel2" class="placeholder">Nama Petani <code>*</code></label>
 												<select name="petani_id" class="form-control input-solid" id="selectFloatingLabel2" required>
 													<option value="">&nbsp;</option>
 													<?php 
 														$pengajuan_id=$row[0]->pengajuan_id;
 														$where = "petani_id NOT IN (select petani_id FROM petani_pengajuan where pengajuan_id= '$pengajuan_id')";
 														$this->db->where($where);
+														$this->db->where('koperasi_id',$this->session->userdata("koperasi_id"));
 														$query = $this->db->get('petani');
 														foreach ($query->result() as $ro_p)
 														{
@@ -284,14 +285,14 @@
 								<div class="row">
 									<div class="col-sm-12">
 											<div class="form-group form-floating-label">
-												<label for="selectFloatingLabel2" class="placeholder">Nama Item</label>
-												<input type="text" autocomplete="off" name="item" class="form-control" value="">
+												<label for="selectFloatingLabel2" class="placeholder">Nama Item <code>*</code></label>
+												<input type="text" autocomplete="off" name="item" class="form-control" required value="">
 											</div>
 									</div>
 									<div class="col-sm-12">
 											<div class="form-group form-floating-label">
-												<label for="selectFloatingLabel2" class="placeholder">Qty</label>
-												<input type="number" autocomplete="off" min='1' name="qty" class="form-control" value="">
+												<label for="selectFloatingLabel2" class="placeholder">Qty <code>*</code></label>
+												<input type="number" autocomplete="off" min='1' name="qty"required class="form-control" value="">
 											</div>
 									</div>
 									<div class="col-sm-12">

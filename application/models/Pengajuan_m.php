@@ -98,6 +98,7 @@ class Pengajuan_m extends CI_Model
 	public function add_petani($pengajuan_id)
 	{
 		$this->db->set('petani_id', $this->input->post('petani_id'));
+		$this->db->set('created', date('Y-m-d H:i:s'));
 		$this->db->set('pengajuan_id', $pengajuan_id);
 		$this->db->insert('petani_pengajuan');
 	}
@@ -106,6 +107,7 @@ class Pengajuan_m extends CI_Model
 		$this->db->set('item', $this->input->post('item'));
 		$this->db->set('qty', $this->input->post('qty'));
 		$this->db->set('keterangan', $this->input->post('keterangan'));
+		$this->db->set('created', date('Y-m-d H:i:s'));
 		$this->db->set('pengajuan_id', $pengajuan_id);
 		$this->db->insert('item_pengajuan');
 	}
@@ -139,6 +141,7 @@ class Pengajuan_m extends CI_Model
 	{
 		$this->db->set('filename', $nm_file);
 		$this->db->set('pengajuan_id', $pengajuan_id);
+		$this->db->set('created', date('Y-m-d H:i:s'));
 		$this->db->insert('doc_serah_terima');
 
 		// jml_doc
@@ -173,5 +176,19 @@ class Pengajuan_m extends CI_Model
 		->where('kehadiran_seminar is null')
 		->where('pengajuan_id',$id);
 		return $this->db->get('petani_pengajuan');
+	}
+	
+	public function JumlahProposal()
+	{   
+		$this->db->select('*');
+		$this->db->from('pengajuan');
+		$this->db->where('koperasi_id', $this->session->userdata("koperasi_id"));
+		$this->db->where('status_proposal !=', 'Done pengajuan');
+		$query = $this->db->get();
+		if($query->num_rows()>0) {
+			return $query->num_rows();
+		} else {
+			return 0;
+		}
 	}
 }

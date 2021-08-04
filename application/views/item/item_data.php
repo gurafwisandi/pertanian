@@ -3,11 +3,11 @@
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1>item</h1>
+				<h1>Item</h1>
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
-					<li class="breadcrumb-item"><a href="#">Master / item Alat Pertanian</a></li>
+					<li class="breadcrumb-item"><a href="#">Master / Item Alat Pertanian</a></li>
 				</ol>
 			</div>
 		</div>
@@ -54,6 +54,7 @@
 								<th>Item Kebutuhan</th>
 								<th>Keterangan</th>
 								<th>Harga</th>
+								<th>Vendor</th>
 								<th>Action</th>
 							</tr>
 							</thead>
@@ -65,6 +66,7 @@
 								<td><?=$data->nama_item?></td>
 								<td><?=$data->keterangan?></td>
 								<td><?=number_format($data->harga)?></td>
+								<td><?=$data->nama_vendor?></td>
 								<td class="text-center" width="160px">
 									<a href="<?=site_url('item/edit/'.$data->id_item)?>"  class="btn btn-primary btn-xs">
 										<i class="fa fa-edit"></i> Edit
@@ -82,6 +84,7 @@
 								<th>Item Kebutuhan</th>
                 <th>Keterangan</th>
                 <th>Harga</th>
+								<th>Vendor</th>
 								<th>Action</th>
 							</tr>
 							</tfoot>

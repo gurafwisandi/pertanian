@@ -28,11 +28,11 @@
         <input type="hidden" class="form-control" name="koperasi_id" value="<?=$row->koperasi_id?>">
         <div class="card-body">
           <div class="form-group">
-            <label for="exampleInputPassword1">email</label>
+            <label for="exampleInputPassword1">Email <code>*</code></label>
             <input autocomplete="off" type="email" class="form-control" name="email" required value="<?=$row->email?>" <?php if($page == 'approve'){ echo "readonly"; }?> placeholder="Email">
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
+            <label for="exampleInputPassword1">Password <code>*</code></label>
             <input type="hidden" class="form-control" name="password_old" value="<?=$row->password?>">
             <input autocomplete="off" type="password" class="form-control" name="password" required <?php if($page == 'approve'){ echo 'readonly'; } ?> value="<?=$row->password?>" placeholder="password">
           </div>

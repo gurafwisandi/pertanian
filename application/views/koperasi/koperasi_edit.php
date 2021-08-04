@@ -25,23 +25,23 @@
         <input type="hidden" class="form-control" name="id" value="<?=$row->koperasi_id?>">
         <div class="card-body">
           <div class="form-group">
-            <label for="exampleInputEmail1">Instansi</label>
-            <input type="text" class="form-control" name="nama" value="<?=$row->koperasi?>"placeholder="Masukan Nama Koperasi">
+            <label for="exampleInputEmail1">Instansi <code>*</code></label>
+            <input type="text" class="form-control" required name="nama" value="<?=$row->koperasi?>"placeholder="Masukan Nama Koperasi">
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Nama</label>
-            <input type="text" class="form-control" name="ketua" value="<?=$row->ketua?>"placeholder="Masukan Nama ketua Koperasi">
+            <label for="exampleInputPassword1">Nama <code>*</code></label>
+            <input type="text" class="form-control" required name="ketua" value="<?=$row->ketua?>"placeholder="Masukan Nama ketua Koperasi">
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Alamat</label>
-            <input type="text" class="form-control" name="alamat" value="<?=$row->alamat?>"placeholder="Alamat Koperasi">
+            <label for="exampleInputPassword1">Alamat <code>*</code></label>
+            <input type="text" class="form-control" required name="alamat" value="<?=$row->alamat?>"placeholder="Alamat Koperasi">
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Nomor Telepon</label>
-            <input type="number" class="form-control" name="telpon" value="<?=$row->telpon?>"placeholder="Masukan Telpon">
+            <label for="exampleInputPassword1">Nomor Telepon <code>*</code></label>
+            <input type="number" class="form-control" required name="telpon" value="<?=$row->telpon?>"placeholder="Masukan Telpon">
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Foto</label>
+            <label for="exampleInputEmail1">Foto <code>*</code></label>
             <input type="file" class="form-control" name="file" <?php if($page == 'approve_dinas'){ echo "disabled"; }else{ if($row->foto){ }else{ echo "required";} }?> placeholder="Telpon">
             <?php if($row->foto){ ?>
               <a class="btn btn-warning btn-xs" data-toggle="modal" data-target="#doc"></i> Lihat Dokumen</a>

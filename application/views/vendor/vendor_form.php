@@ -26,8 +26,8 @@
           <input type="hidden" class="form-control" name="id" value="<?=$row->id_vendor?>"> 
           <div class="card-body">
             <div class="form-group">
-              <label for="exampleInputEmail1">Vendor</label>
-              <input type="text" class="form-control" name="nama_vendor" value="<?=$row->nama_vendor?>" placeholder="Masukan Nama Vendor" required>
+              <label for="exampleInputEmail1">Vendor <code>*</code></label>
+              <input type="text" required class="form-control" name="nama_vendor" value="<?=$row->nama_vendor?>" placeholder="Masukan Nama Vendor" required>
             </div>
 
           <div class="card-footer">

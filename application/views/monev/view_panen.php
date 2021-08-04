@@ -330,18 +330,25 @@
 			<input type="hidden" name="pengajuan_id" value="<?php echo $row[0]->pengajuan_id?>">
       <div class="card-body">
         <div class="row">
-          <div class="col-sm-6">
-            <legend>Dokumentasi</legend>
-            <?php 
-              $pengajuan_id=$row[0]->pengajuan_id;
-              $this->db->where('pengajuan_id',$pengajuan_id);
-              $query = $this->db->get('doc_serah_terima');
-              foreach ($query->result() as $ro_p)
-              {
-            ?>
-              <img src="<?php echo base_url('assets/uploads_serah_terima/').$ro_p->filename;?>" width="150" height="150">
-            <?php	} ?>
-          </div>
+					<?php 
+						$pengajuan_id=$row[0]->pengajuan_id;
+						$this->db->where('pengajuan_id',$pengajuan_id);
+						$query = $this->db->get('doc_serah_terima');
+						foreach ($query->result() as $ro_p)
+						{
+							?>
+							<div class="col-sm-2">
+								<?php
+									$doc = $ro_p->filename;
+									$file=substr($doc,-3);
+									if($file=='JPG' or $file=='PNG' or $file=='jpg' or $file=='jpeg' or $file=='png' or $file=='PEG' or $file=='peg'){
+								?>
+									<a target="_blank" href="<?php echo base_url('assets/uploads_serah_terima/').$ro_p->filename;?>"><img src="<?php echo base_url('assets/uploads_serah_terima/').$ro_p->filename;?>" width="150" height="150"></a>
+								<?php	}else{ ?>
+									<a target="_blank" href="<?php echo base_url('assets/uploads_serah_terima/').$ro_p->filename;?>">Lihat PDF</a>
+								<?php } ?>
+							</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>
