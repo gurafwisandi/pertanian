@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50724
 File Encoding         : 65001
 
-Date: 2021-08-04 21:51:47
+Date: 2021-08-08 15:58:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -251,6 +251,7 @@ INSERT INTO `pengajuan` VALUES ('2107300002', '15', '17', '2021-07-30', '', null
 INSERT INTO `pengajuan` VALUES ('2108030001', '1', '1', '2021-08-03', 'xxxxx', '4', '210804070505_2108030001.pdf', 'Proses Serah Terima', null, null, '1', '2021-08-03 22:25:44', '2021-08-04 07:05:05', '210804070642_bb_2108030001.pdf', '17', '2021-08-04 07:06:42', '1', null, '210804070700_bbb_2108030001.pdf', '3', '2021-08-04 07:07:00', '1', '2021-08-07', '', '1', '0000-00-00', null, '', '', '');
 INSERT INTO `pengajuan` VALUES ('2108040001', '1', '1', '2021-08-04', '', '1', '210804094431_2108040001.pdf', 'Proses Verifikasi', null, null, '1', '2021-08-04 07:54:02', '2021-08-04 21:44:38', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `pengajuan` VALUES ('2108040002', '16', '18', '2021-08-04', 'sudah di perbaiki dokumennya', '2', '210804085549_2108040002.pdf', 'Done pengajuan', null, null, '1', '2021-08-04 20:54:38', '2021-08-04 21:12:06', '210804091315_bb_2108040002.pdf', '17', '2021-08-04 21:13:15', '1', null, '210804091341_bbb_2108040002.pdf', '3', '2021-08-04 21:13:41', '1', '2021-08-07', '', '1', '2021-08-07', '2', 'balai kota', '', 'aqilah');
+INSERT INTO `pengajuan` VALUES ('2108080001', '16', '18', '2021-08-08', '', null, '', 'Proses Pengajuan', null, null, null, '2021-08-08 15:21:40', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `petani`
@@ -264,6 +265,7 @@ CREATE TABLE `petani` (
   `no_hp` varchar(16) NOT NULL,
   `koperasi_id` int(11) NOT NULL,
   `penanaman_id` int(11) NOT NULL,
+  `status_petani` varchar(11) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `updated` datetime DEFAULT NULL,
   PRIMARY KEY (`petani_id`)
@@ -272,15 +274,15 @@ CREATE TABLE `petani` (
 -- ----------------------------
 -- Records of petani
 -- ----------------------------
-INSERT INTO `petani` VALUES ('1', '32373061708900013', 'Zaelani Muhtadin Ina', 'Jalan Karang Anyar Banten', '0876666', '1', '4006', null, '2021-08-03 22:19:29');
-INSERT INTO `petani` VALUES ('2', '3274061706900013', 'Rizal Manto angin', 'Banten Maja', '08566777', '1', '4001', null, null);
-INSERT INTO `petani` VALUES ('3', '1', 'Ziber', 'a2', '1', '1', '4009', null, '2021-07-06 19:47:16');
-INSERT INTO `petani` VALUES ('5', '244', 'Udin', 'd', '42', '1', '4002', null, null);
-INSERT INTO `petani` VALUES ('7', '2', 'Rojer', '2', '2', '1', '4006', null, null);
-INSERT INTO `petani` VALUES ('8', '12342512', 'shofiah aqilah', 'ketapang', '0812', '1', '4002', null, '2021-08-03 22:25:22');
-INSERT INTO `petani` VALUES ('9', '123412', 'Budi', 'jl.', '0921398', '16', '4007', null, null);
-INSERT INTO `petani` VALUES ('11', '1', '1', '1', '1', '1', '4002', '2021-08-04 06:59:30', '2021-08-04 21:43:13');
-INSERT INTO `petani` VALUES ('12', '123123', 'arsalan', '3123', '123123', '16', '4002', '2021-08-04 20:58:33', null);
+INSERT INTO `petani` VALUES ('1', '32373061708900013', 'Zaelani Muhtadin Ina', 'Jalan Karang Anyar Banten', '0876666', '1', '4006', 'Aktif', null, '2021-08-08 15:15:30');
+INSERT INTO `petani` VALUES ('2', '3274061706900013', 'Rizal Manto angin', 'Banten Maja', '08566777', '1', '4001', 'Aktif', null, '2021-08-08 15:16:48');
+INSERT INTO `petani` VALUES ('3', '1', 'Ziber', 'a2', '1', '1', '4009', 'Tidak Aktif', null, '2021-07-06 19:47:16');
+INSERT INTO `petani` VALUES ('5', '244', 'Udin', 'd', '42', '1', '4002', 'Aktif', null, null);
+INSERT INTO `petani` VALUES ('7', '2', 'Rojer', '2', '2', '1', '4006', 'Aktif', null, null);
+INSERT INTO `petani` VALUES ('8', '12342512', 'shofiah aqilah', 'ketapang', '0812', '1', '4002', 'Aktif', null, '2021-08-03 22:25:22');
+INSERT INTO `petani` VALUES ('9', '123412', 'Budi', 'jl.', '0921398', '16', '4007', 'Aktif', null, null);
+INSERT INTO `petani` VALUES ('11', '1', '1', '1', '1', '1', '4002', 'Tidak Aktif', '2021-08-04 06:59:30', '2021-08-04 21:43:13');
+INSERT INTO `petani` VALUES ('12', '123123', 'arsalan', '3123', '123123', '16', '4002', 'Tidak Aktif', '2021-08-04 20:58:33', '2021-08-08 15:23:41');
 
 -- ----------------------------
 -- Table structure for `petani_pengajuan`
