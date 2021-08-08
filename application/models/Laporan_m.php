@@ -115,4 +115,13 @@ class Laporan_m extends CI_Model
 		$query = $this->db->get();
 		return $query;
 	}
+	public function lap_petani()
+	{
+		$this->db->select('petani.*,koperasi');
+		$this->db->from('petani');
+		$this->db->join('koperasi','koperasi.koperasi_id = petani.koperasi_id');
+		$this->db->order_by('koperasi,nama','ASC');
+		$query = $this->db->get();
+		return $query;
+	}
 }

@@ -43,6 +43,7 @@ class Petani_m extends CI_Model
 			'no_hp' => $post['no_hp'],
 			'koperasi_id' => $post['koperasi'],
 			'penanaman_id' => $post['penanaman'],
+			'status_petani' => $post['status_petani'],
 			'updated' => date('Y-m-d H:i:s')
 		];
 		$this->db->where('petani_id', $post['id']);

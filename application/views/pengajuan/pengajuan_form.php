@@ -190,6 +190,7 @@
 														$pengajuan_id=$row[0]->pengajuan_id;
 														$where = "petani_id NOT IN (select petani_id FROM petani_pengajuan where pengajuan_id= '$pengajuan_id')";
 														$this->db->where($where);
+														$this->db->where('status_petani','Aktif');
 														$this->db->where('koperasi_id',$this->session->userdata("koperasi_id"));
 														$query = $this->db->get('petani');
 														foreach ($query->result() as $ro_p)

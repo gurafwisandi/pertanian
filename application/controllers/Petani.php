@@ -25,6 +25,7 @@ class Petani extends CI_Controller
 		$petani->alamat = null;
 		$petani->nik = null;
 		$petani->no_hp = null;
+		$petani->status_petani = null;
 		
 		$query_koperasi = $this->koperasi_m->get($this->session->userdata("koperasi_id"));
 		$koperasi[null] = '- Pilih -';

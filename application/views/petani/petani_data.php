@@ -56,6 +56,7 @@
 									<th>Nik</th>
 									<th>Koperasi</th>
 									<th>Tanaman</th>
+									<th>Status</th>
 									<?php if($this->session->userdata("level") == '2'){ ?>
 										<th>Action</th>
 									<?php } ?>
@@ -70,6 +71,7 @@
 										<td><?php echo $data->nik?></td>
 										<td><?php echo $data->koperasi?></td>
 										<td><?php echo $data->penanaman_jenis?></td>
+										<td><a class="btn btn-<?php if($data->status_petani == 'Aktif'){ echo 'success'; }else{ echo 'danger';} ?> btn-xs"><?php echo $data->status_petani?></a></td>
 										<?php if($this->session->userdata("level") == '2'){ ?>
 											<td class="text-center" width="160px">
 												<a href="<?=site_url('petani/edit/'.$data->petani_id)?>"  class="btn btn-primary btn-xs">
@@ -87,6 +89,7 @@
 									<th>Nik</th>
 									<th>Koperasi</th>
 									<th>Tanaman</th>
+									<th>Status</th>
 									<?php if($this->session->userdata("level") == '2'){ ?>
 										<th>Action</th>
 									<?php } ?>

@@ -46,12 +46,21 @@
             <?php echo form_dropdown('koperasi', $koperasi, $selectedkoperasi,
                     ['class'=>'form-control','required' =>'required']);?>
           </div>
-            <div class="form-group">
+          <div class="form-group">
             <label for="exampleInputPassword1">Jenis Penanaman <code>*</code></label>
             <?php echo form_dropdown('penanaman', $penanaman, $selectedpenanaman,
                     ['class'=>'form-control','required' =>'required']);?>
+          </div>
+          <div class="form-group">
+            <div class="form-group form-floating-label">
+              <label for="selectFloatingLabel2" class="placeholder">Status <code>*</code></label>
+              <select name="status_petani" class="form-control input-solid" id="selectFloatingLabel2" required>
+                <option value="">&nbsp;</option>
+                  <option value="Aktif"<?php if($row->status_petani == 'Aktif'){ echo 'selected'; }?>>Aktif</option>
+                  <option value="Tidak Aktif"<?php if($row->status_petani == 'Tidak Aktif'){ echo 'selected'; }?>>Tidak Aktif</option>
+              </select>
             </div>
-
+          </div>
         <div class="card-footer">
           <button type="submit" name="<?=$page?>" class="btn btn-primary">Submit</button>
         </div>

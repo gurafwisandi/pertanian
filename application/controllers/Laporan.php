@@ -49,6 +49,10 @@ class Laporan extends CI_Controller
         $data['title'] = 'Laporan Akun instansi';
         $data['row'] = $this->laporan_m->akun_instansi();
         $this->template->load('template','laporan/lap_akun',$data);
+      }elseif($this->input->post('jenis_laporan') == 'Petani'){
+        $data['title'] = 'Laporan Petani';
+        $data['row'] = $this->laporan_m->lap_petani();
+        $this->template->load('template','laporan/lap_petani',$data);
       }
     }
   }
@@ -91,5 +95,10 @@ class Laporan extends CI_Controller
   {
     $data['row'] = $this->laporan_m->akun_instansi();
     $this->load->view('laporan/print_akun',$data);
+  }
+  public function print_petani()
+  {
+    $data['row'] = $this->laporan_m->lap_petani();
+    $this->load->view('laporan/print_petani',$data);
   }
 }
