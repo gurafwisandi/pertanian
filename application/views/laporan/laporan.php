@@ -20,7 +20,7 @@
             <option value="">&nbsp;</option>
               <option value="Pengajuan">Pengajuan</option>
               <option value="Penyerahan">Penyerahan</option>
-              <option value="Seminar Penagjuan">Seminar Penagjuan</option>
+              <option value="Seminar Pengajuan">Seminar Pengajuan</option>
               <option value="Panen Berhasil">Panen Berhasil</option>
               <option value="Panen Gagal">Panen Gagal</option>
               <option value="Jenis Kebutuhan Petani">Jenis Kebutuhan Petani</option>

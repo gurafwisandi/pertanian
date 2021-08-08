@@ -25,7 +25,7 @@ class Laporan extends CI_Controller
         $data['title'] = 'Laporan Penyerahan';
         $data['row'] = $this->laporan_m->lap_penyerahan();
         $this->template->load('template','laporan/lap_penyerahan',$data);
-      }elseif($this->input->post('jenis_laporan') == 'Seminar Penagjuan'){
+      }elseif($this->input->post('jenis_laporan') == 'Seminar Pengajuan'){
         $data['title'] = 'Laporan Seminar';
         $data['row'] = $this->laporan_m->lap_seminar();
         $this->template->load('template','laporan/lap_seminar',$data);
@@ -51,5 +51,45 @@ class Laporan extends CI_Controller
         $this->template->load('template','laporan/lap_akun',$data);
       }
     }
+  }
+  public function print_kebutuhan()
+  {
+    $data['row'] = $this->laporan_m->lap_kebutuhan();
+    $this->load->view('laporan/print_kebutuhan',$data);
+  }
+  public function print_pengajuan()
+  {
+    $data['row'] = $this->laporan_m->lap_pengajuan();
+    $this->load->view('laporan/print_pengajuan',$data);
+  }
+  public function print_penyerahan()
+  {
+    $data['row'] = $this->laporan_m->lap_penyerahan();
+    $this->load->view('laporan/print_penyerahan',$data);
+  }
+  public function print_seminar()
+  {
+    $data['row'] = $this->laporan_m->lap_seminar();
+    $this->load->view('laporan/print_seminar',$data);
+  }
+  public function print_panen_berhasil()
+  {
+    $data['row'] = $this->laporan_m->lap_berhasil();
+    $this->load->view('laporan/print_panen_berhasil',$data);
+  }
+  public function print_panen_gagal()
+  {
+    $data['row'] = $this->laporan_m->lap_gagal();
+    $this->load->view('laporan/print_panen_gagal',$data);
+  }
+  public function print_koperasi()
+  {
+    $data['row'] = $this->laporan_m->lap_koperasi();
+    $this->load->view('laporan/print_koperasi',$data);
+  }
+  public function print_akun()
+  {
+    $data['row'] = $this->laporan_m->akun_instansi();
+    $this->load->view('laporan/print_akun',$data);
   }
 }

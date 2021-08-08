@@ -21,6 +21,14 @@
 				<div class="card">
 					<div class="card-header">
 						<h3 class="card-title">Data <?php echo $title;?></h3>
+						<ol class="float-sm-right">
+							<?php if($title == 'Laporan Gagal Panen'){?>
+								<a href="<?php echo base_url('laporan/print_panen_gagal'); ?>" target="_blank" class="btn btn-primary">Print Kop Surat</a>
+							<?php }else{ ?>
+								<a href="<?php echo base_url('laporan/print_panen_berhasil'); ?>" target="_blank" class="btn btn-primary">Print Kop Surat</a>
+							<?php } ?>
+									
+						</ol>
 					</div>
 					<!-- /.card-header -->
 					<div class="card-body">
