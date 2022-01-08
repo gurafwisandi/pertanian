@@ -72,8 +72,8 @@ window.onfocus=function(){ window.close();}
                   <th>No</th>
                   <th>No Pengajuan</th>
                   <th>Tgl Pengajuan</th>
-                  <th>Nama Koperasi</th>
-                  <th>ketua Koperasi</th>
+                  <th>Nama Kelompok Tani</th>
+                  <th>Ketua Kelompok Tani</th>
                   <th>Kebutuhan</th>
                   <th>Item Pengajuan</th>
                   <th>Qty</th>

@@ -24,7 +24,7 @@
               <option value="Panen Berhasil">Panen Berhasil</option>
               <option value="Panen Gagal">Panen Gagal</option>
               <option value="Jenis Kebutuhan Petani">Jenis Kebutuhan Petani</option>
-              <option value="Koperasi">Jumlah Pengajuan Koperasi</option>
+              <option value="Koperasi">Jumlah Pengajuan Kelompok Tani</option>
               <option value="Petani">Petani</option>
               <option value="Akun">Akun Instansi</option>
           </select>

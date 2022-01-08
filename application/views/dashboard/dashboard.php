@@ -27,7 +27,7 @@
 					<div class="inner">
 						<h3><?php echo $total_koperasi;?></sup></h3>
 
-						<p>Koperasi</p>
+						<p>Kelompok Tani</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-stats-bars"></i>
@@ -86,3 +86,103 @@
 	</div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
+
+<section class="content">
+	<?php $this->view('messages')?>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">Data Monev</h3>
+					</div>
+					<!-- /.card-header -->
+					<div class="card-body">
+					<?php
+						$date = date('Y');
+						$dataPoints1 = [];
+						$dataPoints2 = [];
+
+						$query = $this->db->query("SELECT * from hasil_panen where tgl_panen LIKE '%$date%' GROUP BY DATE_FORMAT(tgl_panen, '%Y%m')");
+						foreach ($query->result() as $row){
+							$bulan = date('Y-m', strtotime($row->tgl_panen));
+							
+							$query_panen = $this->db->query("SELECT sum(jumlah_panen) as jumlah_panen, tgl_panen from hasil_panen where tgl_panen LIKE '%$bulan%' AND jenis_panen='Berhasil' GROUP BY DATE_FORMAT(tgl_panen, '%Y%m')");
+							if(count($query_panen->result()) > 0){
+								foreach ($query_panen->result() as $row){
+									array_push($dataPoints1,array("label"=> date('F Y', strtotime($row->tgl_panen)), "y"=> $row->jumlah_panen));
+								}
+							}else{
+								array_push($dataPoints1,array("label"=> date('F Y', strtotime($bulan)), "y"=> '0'));
+							}
+							
+							$query_gagal = $this->db->query("SELECT sum(jumlah_panen) as jumlah_panen, tgl_panen from hasil_panen where tgl_panen LIKE '%$bulan%' AND jenis_panen='Gagal' GROUP BY DATE_FORMAT(tgl_panen, '%Y%m')");
+							if(count($query_gagal->result()) > 0){
+								foreach ($query_gagal->result() as $row){
+									array_push($dataPoints2,array("label"=> date('F Y', strtotime($row->tgl_panen)), "y"=> $row->jumlah_panen));
+								}
+							}else{
+								array_push($dataPoints2,array("label"=> date('F Y', strtotime($bulan)), "y"=> '0'));
+							}
+						}
+					?>
+					<script>
+						Tahun = new Date().getFullYear();
+						window.onload = function () {
+							var chart = new CanvasJS.Chart("chartContainer", {
+								animationEnabled: true,
+								theme: "light2",
+								title:{
+									text: "Grafik Panen Kelompok Tani "+ Tahun
+								},
+								axisY:{
+									includeZero: true
+								},
+								legend:{
+									cursor: "pointer",
+									verticalAlign: "center",
+									horizontalAlign: "right",
+									itemclick: toggleDataSeries
+								},
+								data: [{
+									type: "column",
+									name: "Berhasil Panen",
+									indexLabel: "{y}",
+									yValueFormatString: "#0.##",
+									showInLegend: true,
+									dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
+								},{
+									type: "column",
+									name: "Gagal Panen",
+									indexLabel: "{y}",
+									yValueFormatString: "#0.##",
+									showInLegend: true,
+									dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+								}]
+							});
+							chart.render();
+							function toggleDataSeries(e){
+								if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+									e.dataSeries.visible = false;
+								}
+								else{
+									e.dataSeries.visible = true;
+								}
+								chart.render();
+							}
+						}
+					</script>
+					<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+					<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+					</div>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container-fluid -->
+</section>

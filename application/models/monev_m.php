@@ -10,7 +10,7 @@ class Monev_m extends CI_Model
 		$this->db->join('koperasi', 'koperasi.koperasi_id=pengajuan.koperasi_id');
 		$this->db->join('jenis', 'jenis.jenis_id=pengajuan.jenis_id','left');
 		$this->db->join('tanam', 'tanam.pengajuan_id=pengajuan.pengajuan_id','left');
-    $this->db->where('status_proposal','Done Pengajuan');
+    	$this->db->where('status_proposal','Done Pengajuan');
 		if($this->session->userdata("level") == '2'){
 			$this->db->where('pengajuan.koperasi_id', $this->session->userdata("koperasi_id"));
 		}
@@ -20,7 +20,7 @@ class Monev_m extends CI_Model
 	public function tanam($pengajuan_id = null)
 	{
 		$this->db->from('tanam');
-    $this->db->where('pengajuan_id',$pengajuan_id);
+    	$this->db->where('pengajuan_id',$pengajuan_id);
 		$query = $this->db->get();
 		return $query;
 	}
@@ -29,7 +29,7 @@ class Monev_m extends CI_Model
 		$this->db->select('*, hasil_panen.id AS id_panen');
 		$this->db->from('tanam');
 		$this->db->join('hasil_panen', 'hasil_panen.id_panen=tanam.id');
-    $this->db->where('pengajuan_id',$pengajuan_id);
+   		$this->db->where('pengajuan_id',$pengajuan_id);
 		$query = $this->db->get();
 		return $query;
 	}

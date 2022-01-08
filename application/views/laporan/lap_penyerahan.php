@@ -33,8 +33,8 @@
 								<th>No</th>
 								<th>No Pengajuan</th>
 								<th>Tgl Penyerahan</th>
-								<th>Nama Koperasi</th>
-								<th>ketua Koperasi</th>
+								<th>Nama Kelompok Tani</th>
+								<th>ketua Kelompok Tani</th>
 								<th>Kebutuhan</th>
 								<th>Item Pengajuan</th>
 								<th>Nama Vendor</th>
@@ -130,8 +130,8 @@
 								<th>No</th>
 								<th>No Pengajuan</th>
 								<th>Tgl Penyerahan</th>
-								<th>Nama Koperasi</th>
-								<th>ketua Koperasi</th>
+								<th>Nama Kelompok Tani</th>
+								<th>ketua Kelompok Tani</th>
 								<th>Kebutuhan</th>
 								<th>Item Pengajuan</th>
 								<th>Nama Vendor</th>

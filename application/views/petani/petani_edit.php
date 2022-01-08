@@ -42,7 +42,7 @@
             <input type="number" class="form-control" required name="no_hp" value="<?=$row->no_hp?>"placeholder="Nomor HP">
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Koperasi <code>*</code></label>
+            <label for="exampleInputPassword1">Kelompok Tani <code>*</code></label>
             <?php echo form_dropdown('koperasi', $koperasi, $selectedkoperasi,
                     ['class'=>'form-control','required' =>'required']);?>
           </div>

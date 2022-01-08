@@ -108,7 +108,7 @@
                     ?>">
                     <i class="far fa-dot-circle nav-icon"></i>
                     <p>
-                      User Koperasi
+                      User Kelompok Tani
                     </p>
                   </a>
                 </li>

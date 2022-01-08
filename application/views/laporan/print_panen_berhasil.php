@@ -71,7 +71,7 @@ window.onfocus=function(){ window.close();}
                 <tr>
 								<th>No</th>
 								<th>No Pengajuan</th>
-								<th>Nama Koperasi</th>
+								<th>Nama Kelompok Tani</th>
 								<th>Alamat Kebun </th>
 								<th>Total Tanam</th>
 								<th>Tgl Tanam</th>

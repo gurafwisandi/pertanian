@@ -70,7 +70,7 @@ window.onfocus=function(){ window.close();}
 							<thead>
 							<tr>
 								<th>No</th>
-								<th>Nama Koperasi</th>
+								<th>Nama Kelompok Tani</th>
 								<th>Alamat</th>
 								<th>Total Pengajuan</th>
 							</tr>

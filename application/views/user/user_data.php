@@ -7,7 +7,7 @@
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
-					<li class="breadcrumb-item"><a href="#">Master / User / User Koperasi</a></li>
+					<li class="breadcrumb-item"><a href="#">Master / User / User Kelompok Tani</a></li>
 				</ol>
 			</div>
 		</div>
@@ -38,7 +38,7 @@
 				<?php } ?>
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Data user Koperasi</h3>
+						<h3 class="card-title">Data user Kelompok Tani</h3>
 							<!-- <ol class="breadcrumb float-sm-right">
 								<a href="<?=base_url('user/add')?>"><li class="fa fa-user-plus">Add</li></a>
 							</ol> -->
@@ -50,7 +50,7 @@
 							<thead>
 							<tr>
 								<th>No</th>
-								<th>Nama Koperasi</th>
+								<th>Nama Kelompok Tani</th>
 								<th>Email</th>
 								<th>Level</th>
 								<th>Status</th>
@@ -64,7 +64,7 @@
 								<td><?php echo $no++;?></td>
 								<td><?php echo $data->koperasi?></td>
 								<td><?php echo $data->email?></td>
-								<td><?php if($data->level == '1'){ echo "Dinas"; }elseif($data->level == '2'){ echo "Koperasi"; }else{ echo "Admin";}?></td>
+								<td><?php if($data->level == '1'){ echo "Dinas"; }elseif($data->level == '2'){ echo "Kelompok Tani"; }else{ echo "Admin";}?></td>
 								<td class="text-left" >
 									<a class="btn btn-<?php 
 										if($data->status == '1'){ echo "success"; 
@@ -98,7 +98,7 @@
 							<tfoot>
 							<tr>
 								<th>No</th>
-								<th>Nama Koperasi</th>
+								<th>Nama Kelompok Tani</th>
 								<th>Email</th>
 								<th>Level</th>
 								<th>Status</th>

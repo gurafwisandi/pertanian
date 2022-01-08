@@ -54,7 +54,7 @@
 									<th>No</th>
 									<th>Nama</th>
 									<th>Nik</th>
-									<th>Koperasi</th>
+									<th>Kelompok Tani</th>
 									<th>Tanaman</th>
 									<th>Status</th>
 									<?php if($this->session->userdata("level") == '2'){ ?>
@@ -87,7 +87,7 @@
 									<th>No</th>
 									<th>Nama</th>
 									<th>Nik</th>
-									<th>Koperasi</th>
+									<th>Kelompok Tani</th>
 									<th>Tanaman</th>
 									<th>Status</th>
 									<?php if($this->session->userdata("level") == '2'){ ?>

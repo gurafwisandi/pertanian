@@ -2,12 +2,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-md-6">
-        <h1>Koperasi</h1>
+        <h1>Kelompok Tani</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Input</a></li>
-          <li class="breadcrumb-item active">Data Koperasi</li>
+          <li class="breadcrumb-item active">Data Kelompok Tani</li>
         </ol>
       </div>
     </div>

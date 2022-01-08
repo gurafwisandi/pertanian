@@ -69,7 +69,7 @@
 								<th>No</th>
 								<th width="80px">No Pengajuan</th>
 								<th width="100px">Tgl Pengajuan</th>
-								<th width="300px">Nama Koperasi</th>
+								<th width="300px">Nama Kelompok Tani</th>
 								<th width="150px">Jenis Kebutuhan</th>
 								<th width="200px">Status</th>
 								<th width="200px">Action</th>
@@ -200,7 +200,7 @@
 								<th>No</th>
 								<th width="80px">No Pengajuan</th>
 								<th width="100px">Tgl Pengajuan</th>
-								<th width="300px">Nama Koperasi</th>
+								<th width="300px">Nama Kelompok Tani</th>
 								<th width="150px">Jenis Kebutuhan</th>
 								<th width="200px">Status</th>
 								<th width="200px">Action</th>

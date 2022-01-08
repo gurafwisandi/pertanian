@@ -28,7 +28,7 @@
 <section class="content">
 	<div class="card card-primary">
 		<div class="card-header">
-			<h3 class="card-title">Data Koperasi</h3>
+			<h3 class="card-title">Data Kelompok Tani</h3>
 			<div class="card-tools">
 				<button type="button" class="btn btn-tool" data-card-widget="collapse">
 					<i class="fas fa-minus"></i>
@@ -38,15 +38,15 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col-3">
-					<label>Nama Koperasi</label>
+					<label>Nama Kelompok Tani</label>
 					<input type="text" class="form-control" value="<?php echo $row[0]->koperasi; ?>" disabled>
 				</div>
 				<div class="col-3">
-					<label>Ketua Koperasi</label>
+					<label>Ketua Kelompok Tani</label>
 					<input type="text" class="form-control" value="<?php echo $row[0]->ketua; ?>" disabled>
 				</div>
 				<div class="col-3">
-					<label>Alamat Koperasi</label>
+					<label>Alamat Kelompok Tani</label>
 					<input type="text" class="form-control" value="<?php echo $row[0]->alamat; ?>" disabled>
 				</div>
 			</div>

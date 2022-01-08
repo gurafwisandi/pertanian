@@ -31,7 +31,7 @@
 							<thead>
 							<tr>
 								<th>No</th>
-								<th>Koperasi</th>
+								<th>Kelompok Tani</th>
 								<th>NIK</th>
 								<th>Nama</th>
 								<th>Alamat</th>
@@ -54,7 +54,7 @@
 							<tfoot>
 							<tr>
 								<th>No</th>
-								<th>Koperasi</th>
+								<th>Kelompok Tani</th>
 								<th>NIK</th>
 								<th>Nama</th>
 								<th>Alamat</th>

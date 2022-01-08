@@ -73,7 +73,7 @@ window.onfocus=function(){ window.close();}
 								<th>No Pengajuan</th>
 								<th>Tgl Seminar</th>
 								<th>Lokasi</th>
-								<th>Nama Koperasi</th>
+								<th>Nama Kelompok Tani</th>
 								<th>Terdaftar Seminar</th>
 								<th>Keterangan Hasil Pengajuan</th>
 								<th>Kehadiran Anggota</th>

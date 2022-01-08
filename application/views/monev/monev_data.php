@@ -59,7 +59,7 @@
 							<tr>
 								<th>No</th>
 								<th width="150px">No Pengajuan</th>
-								<th width="300px">Nama Koperasi</th>
+								<th width="300px">Nama Kelompok Tani</th>
 								<th width="100px">Tgl Tanam</th>
 								<th width="250px">Tgl Perkiraan Panen</th>
 								<th width="200px">Status</th>
@@ -132,7 +132,7 @@
 							<tr>
 								<th>No</th>
 								<th width="150px">No Pengajuan</th>
-								<th width="300px">Nama Koperasi</th>
+								<th width="300px">Nama Kelompok Tani</th>
 								<th width="100px">Tgl Tanam</th>
 								<th width="250px">Tgl Perkiraan Panen</th>
 								<th width="200px">Status</th>
